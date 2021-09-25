@@ -1,0 +1,38 @@
+@import "@/styles/var.scss";
+
+.header {
+    padding: 8px 15px;
+    background-color: #131a1e;
+    color: $gray-0;
+
+    .header__brand {
+        font-size: $font-size-20;
+        font-weight: $font-weight-bold;
+    }
+
+    .header__nav {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+
+        .header__nav__ul {
+            display: flex;
+
+            li {
+                list-style: none;
+                margin: 0 10px;
+            }
+        }
+    }
+
+    a {
+        color: $gray-0;
+        text-decoration: none;
+        transition-duration: 0.3s;
+        padding: 0 10px;
+
+        &:hover {
+            color: $orange-100;
+        }
+    }
+}

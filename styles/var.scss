@@ -1,0 +1,66 @@
+@import url("https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap");
+
+// -------------- //
+// Primary colors //
+// -------------- //
+
+$red-100: #eb5757;
+$red-80: #ea7474;
+$red-60: #e99090;
+$red-40: #e7acac;
+$red-20: #e6c8c8;
+
+$orange-100: #f2994a;
+$orange-80: #f0a869;
+$orange-60: #edb888;
+$orange-40: #eac6a7;
+$orange-20: #e7d6c6;
+
+$yellow-100: #f2c94c;
+$yellow-80: #f0cf6b;
+$yellow-60: #edd58a;
+$yellow-40: #ead9a7;
+$yellow-20: #e7dfc6;
+
+$green-100: #219653;
+$green-80: #48a670;
+$green-60: #70b68e;
+$green-40: #96c5aa;
+$green-20: #bed5c8;
+
+$blue-100: #2f80ed;
+$blue-80: #5494ec;
+$blue-60: #78a9ea;
+$blue-40: #9cbce8;
+$blue-20: #c0d1e6;
+
+$violet-100: #9b51e0;
+$violet-80: #aa6fe1;
+$violet-60: #b98de2;
+$violet-40: #c7a9e3;
+$violet-20: #d6c7e4;
+
+$gray-100: #000000;
+$gray-80: #2e2e2e;
+$gray-60: #5c5c5c;
+$gray-40: #898989;
+$gray-20: #b7b7b7;
+$gray-0: #ffffff;
+
+// ---------- //
+// Typography //
+// ---------- //
+
+$font-primary: "Roboto";
+
+$font-size-32: 2rem;
+$font-size-24: 1.5rem;
+$font-size-20: 1.25rem;
+$font-size-16: 1rem;
+$font-size-14: 0.875rem;
+$font-size-12: 0.75rem;
+
+$font-weight-regular: 300;
+$font-weight-bold: 600;
+
+$line-height: 1.5;
