@@ -1,0 +1,13 @@
+@import "@/styles/var.module.scss";
+
+.text {
+    line-height: $line-height;
+
+    &_bold {
+        font-weight: $font-weight-bold;
+    }
+
+    &_italic {
+        font-style: italic;
+    }
+}

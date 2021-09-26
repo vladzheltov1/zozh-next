@@ -22,9 +22,9 @@ export const Button = ({
         className: [
             style.button,
             style[`button_${color}`],
-            ghost && style[`button_${color}_ghost`],
-            secondary && style[`button_secondary`],
-            primary && style[`button_primary`],
+            ghost ? style[`button_${color}_ghost`] : null,
+            secondary ? style[`button_secondary`] : null,
+            primary ? style[`button_primary`] : null,
         ].join(" ")
     };
 
