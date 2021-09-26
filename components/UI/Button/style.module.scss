@@ -1,24 +1,152 @@
-@import "@/styles/var.scss";
+@import "@/styles/var.module.scss";
 
-.button{
+%button_default {
     padding: 14px 32px;
     border: none;
     color: $gray-0;
-    font-size: $font-size-16;
+    font-size: $font-size-14;
+    font-weight: $font-weight-bold;
     border-radius: 5px;
-    background-color: $blue-100;
     transition-duration: 0.3s;
-
-    &:hover{
-        // background-color: $blue-80;
-        box-shadow: 2px 2px 0px 1px $blue-80;
+    &:hover {
         cursor: pointer;
     }
+    &:disabled {
+        cursor: not-allowed;
+        opacity: 0.8;
+    }
+}
 
-    &_blue{
-        background-color: $blue-100;
-        &:hover{
-            background-color: $blue-60;
+%button_ghost {
+    color: $gray-100;
+    background-color: $gray-0 !important;
+    box-shadow: inset 0 0 0 2px $gray-80;
+}
+
+@mixin get_color($color, $color-hover) {
+    background-color: $color;
+    &:hover {
+        background-color: $color-hover;
+    }
+}
+
+@mixin button_red {
+    @include get_color($red-100, $red-80);
+}
+@mixin button_orange {
+    @include get_color($orange-100, $orange-80);
+}
+@mixin button_yellow {
+    @include get_color($yellow-100, $yellow-80);
+}
+@mixin button_green {
+    @include get_color($green-100, $green-80);
+}
+@mixin button_blue {
+    @include get_color($blue-100, $blue-80);
+}
+@mixin button_violet {
+    @include get_color($violet-100, $violet-80);
+}
+@mixin button_dark {
+    @include get_color($gray-80, $gray-60);
+}
+
+.button {
+    @extend %button_default;
+}
+
+.button_red {
+    @include button_red;
+
+    &_ghost {
+        @extend %button_ghost;
+        box-shadow: inset 0 0 0 2px $red-100;
+
+        &:hover {
+            color: $gray-0;
+            background-color: $red-100 !important;
+        }
+    }
+}
+.button_orange {
+    @include button_orange;
+
+    &_ghost {
+        @extend %button_ghost;
+        box-shadow: inset 0 0 0 2px $orange-100;
+
+        &:hover {
+            color: $gray-0;
+            background-color: $orange-100 !important;
+        }
+    }
+}
+.button_yellow {
+    @include button_yellow;
+
+    &_ghost {
+        @extend %button_ghost;
+        box-shadow: inset 0 0 0 2px $yellow-100;
+
+        &:hover {
+            color: $gray-0;
+            background-color: $yellow-100 !important;
+        }
+    }
+}
+.button_green {
+    @include button_green;
+
+    &_ghost {
+        @extend %button_ghost;
+        box-shadow: inset 0 0 0 2px $green-100;
+
+        &:hover {
+            color: $gray-0;
+            background-color: $green-100 !important;
+        }
+    }
+}
+.button_blue,
+.button_primary {
+    @include button_blue;
+
+    &_ghost {
+        @extend %button_ghost;
+        box-shadow: inset 0 0 0 2px $blue-100;
+
+        &:hover {
+            color: $gray-0;
+            background-color: $blue-100 !important;
+        }
+    }
+}
+.button_violet {
+    @include button_violet;
+
+    &_ghost {
+        @extend %button_ghost;
+        box-shadow: inset 0 0 0 2px $violet-100;
+
+        &:hover {
+            color: $gray-0;
+            background-color: $violet-100 !important;
+        }
+    }
+}
+
+.button_dark,
+.button_secondary {
+    @include button_dark;
+
+    &_ghost {
+        @extend %button_ghost;
+        box-shadow: inset 0 0 0 2px $gray-80;
+
+        &:hover {
+            color: $gray-0;
+            background-color: $gray-80 !important;
         }
     }
 }
