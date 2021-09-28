@@ -5,7 +5,7 @@ export const Space = ({ height = 0 }) => {
 
     const props = {
         className: style.space,
-        style: height
+        style: { height }
     }
 
     return React.createElement("div", props, null);

@@ -20,7 +20,9 @@ export const Text = ({
     children = "",
     bold = false,
     italic = false,
-    color = "",
+    color,
+    className,
+    size
 }) => {
     if (!_VALID_MODES.includes(mode)) mode = _DEFAULT_MODE;
 
@@ -28,10 +30,12 @@ export const Text = ({
         className: [
             style.text,
             bold ? style.text_bold : null,
-            italic ? style.text_italic : null
+            italic ? style.text_italic : null,
+            className ? className : null
         ].join(" "),
         style: {
-            color: color || null
+            color: color || null,
+            fontSize: size || null
         }
     }
 

@@ -1,16 +1,13 @@
-import {
-    Button,
-    Text
-} from "@/components/UI";
+import { Text } from "@/components/UI";
 import { Layout } from "@/layouts/Layout";
+import { IndexIntro } from "@/components/Index/Intro";
 
 export default function Home() {
     return (
         <Layout>
-            <div>
-                <Button>Кнопка</Button>
-                <Text>Текст</Text>
-            </div>
+
+            <IndexIntro />
+
         </Layout>
     )
 }

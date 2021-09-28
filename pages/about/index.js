@@ -4,7 +4,9 @@ import { Text } from "@/components/UI";
 const About = () => {
     return (
         <Layout>
-            <Text mode="h1">Страница о продукте</Text>
+            <div className="wrapper">
+                <Text mode="h1">Страница о продукте</Text>
+            </div>
         </Layout>
     )
 }
