@@ -20,7 +20,14 @@
 
             li {
                 list-style: none;
-                margin: 0 10px;
+                margin: 0 5px;
+                vertical-align: middle;
+
+                *{
+                    margin: 0 3px;
+                    display: flex;
+                    align-items: center;
+                }
             }
         }
     }
