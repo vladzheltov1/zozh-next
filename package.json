@@ -16,9 +16,12 @@
     "next": "11.1.2",
     "react": "17.0.2",
     "react-dom": "17.0.2",
-    "sass": "^1.42.1"
+    "react-sortablejs": "^6.0.0",
+    "sass": "^1.42.1",
+    "sortablejs": "^1.14.0"
   },
   "devDependencies": {
+    "@types/sortablejs": "^1.10.7",
     "eslint": "7.32.0",
     "eslint-config-next": "11.1.2"
   }
