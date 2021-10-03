@@ -5,14 +5,17 @@
             "@/components/*": [
                 "components/*"
             ],
-            "@/UI/*": [
-                "components/UI/*"
+            "@/contexts/*": [
+                "contexts/*"
             ],
             "@/styles/*": [
                 "styles/*"
             ],
             "@/layouts/*": [
                 "layouts/*"
+            ],
+            "@/UI/*": [
+                "components/UI/*"
             ],
         }
     }
