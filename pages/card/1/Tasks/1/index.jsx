@@ -1,6 +1,6 @@
 import { Button } from "@/components/UI";
 import { useContext } from "react";
-import { CardContext } from "../../../../../contexts/cardContext";
+import { CardContext } from "@/contexts/cardContext";
 
 export const Task1 = () => {
     const { changeNode } = useContext(CardContext);
