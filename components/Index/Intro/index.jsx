@@ -1,6 +1,6 @@
-import { Text, Button, Space } from "@/components/UI"
-import style from "../style.module.scss";
+import { Button, Space, Text } from "@/components/UI";
 import Link from "next/link";
+import style from "../style.module.scss";
 
 export const IndexIntro = () => {
 
@@ -30,7 +30,7 @@ export const IndexIntro = () => {
 
             {/* Background author */}
             <Text className={style.block__copyright__author}>
-                <Link href="https://unsplash.com/@danotis">
+                <Link href="https://unsplash.com/@danotis" passHref>
                     <a>
                         Background photo by @DanOtis
                     </a>
