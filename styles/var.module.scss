@@ -27,6 +27,7 @@ $green-80: #48a670;
 $green-60: #70b68e;
 $green-40: #96c5aa;
 $green-20: #bed5c8;
+$extra-green: #8BC34A;
 
 $blue-100: #2f80ed;
 $blue-80: #5494ec;
@@ -93,6 +94,7 @@ $line-height: 1.5;
     green60: $green-60;
     green40: $green-40;
     green20: $green-20;
+    extraGreen: $extra-green;
 
     blue100: $blue-100;
     blue80: $blue-80;
@@ -105,4 +107,11 @@ $line-height: 1.5;
     violet60: $violet-60;
     violet40: $violet-40;
     violet20: $violet-20;
+
+    gray100: $gray-100;
+    gray80: $gray-80;
+    gray60: $gray-60;
+    gray40: $gray-40;
+    gray20: $gray-20;
+    gray0: $gray-0;
 }

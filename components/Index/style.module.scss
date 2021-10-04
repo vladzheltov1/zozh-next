@@ -1,33 +1,7 @@
 @import "@/styles/var.module.scss";
 
-.intro_block{
-    height: calc(100vh - 67px);
-    background-image: url(/pictures/landing/intro.jpg);
-    background-position: top;
-    background-size: cover;
-    position: relative;
-}
-.intro_block__inner{
-    max-width: 900px;
-    margin: 0 auto;
-    padding: 15px;
-    height: 100%;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    text-align: center;
-}
-
-.intro_block__title{
-    margin: 0;
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-}
-
 .block{
-
+    padding: 20px;
 }
 
 .block__copyright__author{

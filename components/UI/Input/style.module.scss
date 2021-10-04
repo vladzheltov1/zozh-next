@@ -1,0 +1,21 @@
+@import "@/styles/var.module.scss";
+
+.input{
+    display: block;
+    width: 100%;
+    padding: 8px 10px;
+    border: 2px solid $gray-80;
+    border-radius: 5px;
+    font-size: $font-size-16;
+    transition-duration: 0.3s;
+
+    &:active,
+    &:focus{
+        box-shadow: 3px 3px 0 0 $gray-80;
+        outline: none;
+    }
+
+    &:disabled{
+        cursor: not-allowed;
+    }
+}
