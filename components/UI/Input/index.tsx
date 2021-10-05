@@ -1,10 +1,31 @@
 import React from "react";
 import style from "./style.module.scss";
 
-const _VALID_MODES = [
-    "input",
-    "textarea"
-]
+export type InputModes =
+    | "input"
+    | "textarea";
+
+export type InputTypes =
+    | "text"
+    | "password"
+    | "email"
+    | "number"
+    | "color"
+    | "date"
+    | "image"
+    | "range"
+    | "reset"
+    | "time";
+
+export interface IInputProps {
+    mode?: InputModes,
+    type?: InputTypes,
+    disabled?: boolean,
+    placeholder?: string,
+    value?: string,
+    onChange?: Function,
+    onClick?: Function
+}
 
 export const Input = ({
     mode = "input",
@@ -14,9 +35,7 @@ export const Input = ({
     value = "",
     onChange = () => void 0,
     onClick = () => void 0
-}) => {
-    if (!_VALID_MODES.includes(mode)) mode = _VALID_MODES[0];
-
+}: IInputProps) => {
     const props = {
         type,
         disabled,

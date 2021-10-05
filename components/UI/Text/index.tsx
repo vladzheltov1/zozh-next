@@ -1,31 +1,36 @@
 import React from "react";
 import style from "./style.module.scss";
 
-const _VALID_MODES = [
-    "div",
-    "span",
-    "h1",
-    "h2",
-    "h3",
-    "h4",
-    "h5",
-    "h6",
-    "p"
-];
+export type TextMode =
+    | "div"
+    | "span"
+    | "h1"
+    | "h2"
+    | "h3"
+    | "h4"
+    | "h5"
+    | "h6"
+    | "p";
 
-const _DEFAULT_MODE = _VALID_MODES[0];
+export interface ITextProps {
+    mode: TextMode,
+    children: any,
+    bold?: boolean,
+    italic?: boolean,
+    color?: string,
+    className?: string,
+    size?: string | number
+}
 
 export const Text = ({
-    mode = _DEFAULT_MODE,
+    mode = "div",
     children = "",
     bold = false,
     italic = false,
     color,
     className,
     size
-}) => {
-    if (!_VALID_MODES.includes(mode)) mode = _DEFAULT_MODE;
-
+}: ITextProps) => {
     const props = {
         className: [
             style.text,

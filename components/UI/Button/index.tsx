@@ -3,8 +3,21 @@ import React from "react";
 import * as style from "./style.module.scss";
 
 /**
- * UI Button component.
- * @todo If the button is secondary and ghost, the system ignores the dark color and leaves the button blue.
+ * Тип для props компонента.
+ */
+interface IButtonProps {
+    children: any,
+    redirect?: string
+    ghost?: boolean,
+    color?: string,
+    primary?: boolean,
+    secondary?: boolean,
+    onClick: Function
+}
+
+/**
+ * Кнопка.
+ * @todo Когда кнопка secondary и ghost, система игнорирует тёмный цвет и оставляет кнопку синей.
  */
 export const Button = ({
     children = "",
@@ -14,9 +27,9 @@ export const Button = ({
     primary = false,
     secondary = false,
     onClick = () => void 0,
-}) => {
-    const router = useRouter();
+}: IButtonProps) => {
 
+    const router = useRouter();
     const props = {
         onClick: redirect ? () => router.push(redirect) : () => onClick(),
         className: [
