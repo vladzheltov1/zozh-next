@@ -4,6 +4,7 @@ import style from "./style.module.scss";
 export type TextMode =
     | "div"
     | "span"
+    | "label"
     | "h1"
     | "h2"
     | "h3"
@@ -13,7 +14,7 @@ export type TextMode =
     | "p";
 
 export interface ITextProps {
-    mode: TextMode,
+    mode?: TextMode,
     children: any,
     bold?: boolean,
     italic?: boolean,

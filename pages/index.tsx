@@ -1,8 +1,8 @@
-import { Layout } from "@/layouts/Layout";
-import { IndexIntro } from "@/components/Index/Intro";
 import { InfoBlock } from "@/components/Index/InfoBlock";
+import { IndexIntro } from "@/components/Index/Intro";
 import { StudyProgram } from "@/components/Index/StudyProgram";
 import { Text } from "@/components/UI";
+import { Layout } from "@/layouts/Layout";
 
 export default function Home() {
     return (

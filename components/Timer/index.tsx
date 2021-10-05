@@ -1,8 +1,8 @@
 import { Text } from "@/components/UI";
-import { useState, useEffect, useCallback } from "react";
+import { useEffect, useState } from "react";
 
 /**
- * @todo Fix timer :/
+ * @todo Починить таймер :/
  */
 export const Timer = () => {
 
@@ -13,7 +13,7 @@ export const Timer = () => {
         setInterval(() => {
             if (seconds === 59) {
                 setMinutes(minutes + 1);
-                seconds(0);
+                setSeconds(0);
                 return;
             }
             setSeconds(seconds + 1);
@@ -22,14 +22,12 @@ export const Timer = () => {
 
 
     return (
-        <div>
-            <Text>
-                {minutes < 10 && ("0")}
-                {minutes}
-                :
-                {seconds < 10 && ("0")}
-                {seconds}
-            </Text>
-        </div>
+        <Text>
+            {minutes < 10 && "0"}
+            {minutes}
+            :
+            {seconds < 10 && "0"}
+            {seconds}
+        </Text>
     )
 }
