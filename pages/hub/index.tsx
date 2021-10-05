@@ -1,5 +1,5 @@
 import { Layout } from "@/layouts/Layout";
-import { Button, Text } from "@/components/UI";
+import { Text } from "@/components/UI";
 import style from "./style.module.scss";
 import { useRouter } from "next/router";
 
@@ -30,9 +30,6 @@ const Hub = () => {
                     ))}
                 </div>
             </div>
-            <Button ghost secondary>
-                Button
-            </Button>
         </Layout>
     )
 }
