@@ -12,7 +12,7 @@ interface IButtonProps {
     color?: string,
     primary?: boolean,
     secondary?: boolean,
-    onClick: Function
+    onClick?: Function
 }
 
 /**

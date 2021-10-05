@@ -1,7 +1,5 @@
-import { Icon } from "@/components/UI";
-import { TextImage, Task, PushMessage } from "@rsuite/icons";
-import { Text, Space } from "@/components/UI";
-
+import { Icon, Space, Text } from "@/components/UI";
+import { PushMessage, Task, TextImage } from "@rsuite/icons";
 import global_style from "../style.module.scss";
 import study_style from "./style.module.scss";
 
@@ -15,7 +13,7 @@ export const StudyProgram = () => {
 
     return (
         <div className={study_style.study__wrapper}>
-            <div className={global_style.block, study_style.study__inner}>
+            <div className={`${global_style.block} ${study_style.study__inner}`}>
                 <Text mode="h1">В программу обучения входят:</Text>
                 <Space height={40} />
                 <div className={study_style.tile_wrapper}>

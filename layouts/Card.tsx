@@ -1,10 +1,10 @@
-import { useState } from "react";
-import { CardContext } from "contexts/cardContext";
-import { useRouter } from "next/router";
-import { Text } from "@/components/UI";
 import { Timer } from "@/components/Timer";
+import { Text } from "@/components/UI";
 import cardStyle from "@/styles/card.module.scss";
 import colors from "@/styles/var.module.scss";
+import { CardContext } from "contexts/cardContext";
+import { useRouter } from "next/router";
+import { useState } from "react";
 
 export const Card = ({ children, className }) => {
     const [currentNode, setCurrentNode] = useState(0);
@@ -15,7 +15,7 @@ export const Card = ({ children, className }) => {
     const changeNode = () => {
         // Защита от дурака: перенаправление в главное меню, если все элементы отработали.
         if (currentNode === children.length - 1) {
-            return router.replace("/hub");
+            return router.push("/hub");
         }
         setCurrentNode(currentNode + 1);
     }
@@ -30,8 +30,10 @@ export const Card = ({ children, className }) => {
                 <Text bold>Количество очков: <Text mode="span" color={colors.extraGreen}>{score}</Text></Text>
                 <Timer />
             </div>
-            <CardContext.Provider value={{ currentNode, changeNode, changeScore }}>
-                {children[currentNode]}
+            <CardContext.Provider value={{ currentNode, score, changeNode, changeScore }}>
+                <CardContext.Consumer>
+                    {children[currentNode]}
+                </CardContext.Consumer>
             </CardContext.Provider>
             <style jsx global>{`
                 body{
