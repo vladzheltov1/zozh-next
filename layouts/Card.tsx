@@ -31,9 +31,7 @@ export const Card = ({ children, className }) => {
                 <Timer />
             </div>
             <CardContext.Provider value={{ currentNode, score, changeNode, changeScore }}>
-                <CardContext.Consumer>
-                    {children[currentNode]}
-                </CardContext.Consumer>
+                {children[currentNode]}
             </CardContext.Provider>
             <style jsx global>{`
                 body{

@@ -22,7 +22,7 @@ export const Timer = () => {
 
 
     return (
-        <Text>
+        <Text size={16}>
             {minutes < 10 && "0"}
             {minutes}
             :
