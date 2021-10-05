@@ -6,7 +6,7 @@ import * as style from "./style.module.scss";
  * Тип для props компонента.
  */
 interface IButtonProps {
-    children: any,
+    children?: any,
     redirect?: string
     ghost?: boolean,
     color?: string,
@@ -33,7 +33,7 @@ export const Button = ({
     const props = {
         onClick: redirect ? () => router.push(redirect) : () => onClick(),
         className: [
-            style.button,
+            style['button'],
             style[`button_${color}`],
             ghost ? style[`button_${color}_ghost`] : null,
             secondary ? style[`button_secondary`] : null,
