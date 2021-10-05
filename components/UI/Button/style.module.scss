@@ -48,7 +48,7 @@
     @include get_color($violet-100, $violet-80);
 }
 @mixin button_dark {
-    @include get_color($gray-80, $gray-60);
+    @include get_color($gray-80, #343434);
 }
 
 .button {

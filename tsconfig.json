@@ -34,6 +34,12 @@
             "@/UI/*": [
                 "components/UI/*"
             ],
+            "@/types/*": [
+                "types/*"
+            ],
+            "@/interfaces/*": [
+                "interfaces/*"
+            ],
         }
     },
     "include": [
