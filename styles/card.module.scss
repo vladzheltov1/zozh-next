@@ -2,9 +2,9 @@
 
 .card{
     background: $gray-0;
-    width: 100%;
+    display: block;
     min-height: 400px;
-    margin-top: 20px;
+    margin: 20px 15px 0;
     padding: 20px;
     border-radius: 20px;
     position: relative;
