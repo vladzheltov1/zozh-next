@@ -1,9 +1,9 @@
-import { Card } from "@/layouts/Card";
+import { Card } from "@/components/Cards/Card/Card";
 import { Layout } from "@/layouts/Layout";
 import { Task1 } from "./Tasks/1";
 import { Task2 } from "./Tasks/2";
 import style from "./style.module.scss";
-import { Theory } from "@/components/Card/Theory";
+import { Theory } from "@/components/Cards/Theory";
 
 const Card1 = () => {
     return (

@@ -1,6 +1,6 @@
 import { Timer } from "@/components/Timer";
 import { Text } from "@/components/UI";
-import cardStyle from "@/styles/card.module.scss";
+import cardStyle from "./card.module.scss";
 import colors from "@/styles/var.module.scss";
 import { CardContext } from "contexts/cardContext";
 import { useRouter } from "next/router";
@@ -20,7 +20,7 @@ export const Card = ({ children, className }) => {
         setCurrentNode(currentNode + 1);
     }
 
-    const changeScore = (points) => {
+    const changeScore = (points): any => {
         if (points) setScore(score + points);
     }
 

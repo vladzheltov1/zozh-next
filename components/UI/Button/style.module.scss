@@ -1,12 +1,13 @@
 @import "@/styles/var.module.scss";
 
 %button_default {
-    padding: 14px 32px;
+    padding: 11px 22px;
     border: none;
     color: $gray-0;
     font-size: $font-size-14;
     border-radius: 5px;
     transition-duration: 0.3s;
+    font-weight: $font-weight-bold;
     &:hover {
         cursor: pointer;
     }
