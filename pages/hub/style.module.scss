@@ -13,6 +13,7 @@
 
 .card_wrapper{
     display: flex;
+    flex-wrap: wrap;
     padding: 15px;
     gap: 20px;
     justify-content: center;
@@ -27,6 +28,7 @@ $card_border_radius: 20px;
     border: 5px solid $violet-100;
     border-radius: $card_border_radius;
     transition: all 0.3s ease-out;
+    margin-bottom: 35px;
 
     .card__picture{
         width: 100%;
