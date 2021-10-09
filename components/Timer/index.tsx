@@ -1,15 +1,17 @@
 import { Text } from "@/components/UI";
-import { useEffect, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 
 /**
- * @todo Починить таймер :/
+ * Таймер, который используется в заданиях.
+ * @todo Починить таймер: при каждом обновлении компонента система пересчитывает таймер от 0 до нужного времени. 
+ * То есть при обновлени получается 0, 0, 1, 0, 1, 2 и т.д. Возможно ли избежать такого количества обновлений?
  */
 export const Timer = () => {
 
     const [seconds, setSeconds] = useState(0);
     const [minutes, setMinutes] = useState(0);
 
-    useEffect(() => {
+    const startTimer = useCallback(() => {
         setInterval(() => {
             if (seconds === 59) {
                 setMinutes(minutes + 1);
@@ -18,8 +20,9 @@ export const Timer = () => {
             }
             setSeconds(seconds + 1);
         }, 1000);
-    })
+    }, [seconds, minutes]);
 
+    startTimer();
 
     return (
         <Text size={16}>
