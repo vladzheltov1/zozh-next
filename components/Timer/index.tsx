@@ -7,7 +7,6 @@ import { useCallback, useEffect, useState } from "react";
  * То есть при обновлени получается 0, 0, 1, 0, 1, 2 и т.д. Возможно ли избежать такого количества обновлений?
  */
 export const Timer = () => {
-
     const [seconds, setSeconds] = useState(0);
     const [minutes, setMinutes] = useState(0);
 
