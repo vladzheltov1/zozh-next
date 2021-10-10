@@ -42,6 +42,7 @@ export const Button = ({
         <button
             onClick={redirect ? () => router.push(redirect) : () => onClick()}
             className={classList.join(" ")}
+            disabled={disabled}
         >
             {children}
         </button>
