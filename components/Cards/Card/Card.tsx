@@ -1,12 +1,12 @@
 import { Timer } from "@/components/Timer";
 import { Text } from "@/components/UI";
-import cardStyle from "./card.module.scss";
 import colors from "@/styles/var.module.scss";
 import { CardContext } from "contexts/cardContext";
 import { useRouter } from "next/router";
 import { useState } from "react";
+import cardStyle from "./card.module.scss";
 
-export const Card = ({ children, className }) => {
+export const Card = ({ children }) => {
     const [currentNode, setCurrentNode] = useState(0);
     const [score, setScore] = useState(0);
 
@@ -27,7 +27,7 @@ export const Card = ({ children, className }) => {
     return (
         <div className={cardStyle.card}>
             <div className={cardStyle.card__header}>
-                <Text bold>Количество очков: <Text mode="span" color={colors.extraGreen}>{score}</Text></Text>
+                <Text bold>Количество очков: <Text mode="span" color={score >= 0 ? colors.extraGreen : colors.red100}>{score}</Text></Text>
                 <Timer />
             </div>
             <CardContext.Provider value={{ currentNode, score, changeNode, changeScore }}>

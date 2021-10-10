@@ -1,8 +1,13 @@
-import { CSSProperties, useState } from "react";
-import { Text, Button } from "@/components/UI";
+import { Button, Text } from "@/components/UI";
+import { CardContext } from "@/contexts/cardContext";
+import {
+    CSSProperties,
+    useContext,
+    useState
+} from "react";
 
 /**
- * @interface Для пропсов компонента `<TaskComponent />`
+ * @interface Пропсов компонента `<TaskComponent />`
  */
 export interface ITaskComponentProps {
     title: string,
@@ -15,6 +20,8 @@ export interface ITaskComponentProps {
  * @returns `<TaskComponent />`, `wrong`, `wrongAnswer()`
  */
 export const useTask = () => {
+    const { changeScore } = useContext(CardContext);
+
     /**
      * Локальный стейт для обработки неправильных ответов. НЕ давать компонентам менять его напрямую через `setWrong()`, а только через `wrongAnswer()`!
      * @see `wrongAnswer()`
@@ -24,8 +31,9 @@ export const useTask = () => {
 
     const wrongAnswer = () => {
         setWrong(true);
+        changeScore(-10);
         setTimeout(() => setWrong(false), 2000);
-    }
+    };
 
     /**
      * Визуальный компонент-обложка, в который должны быть обёрнуты все задания и теория БЕЗ ИСКЛЮЧЕНИЯ!
