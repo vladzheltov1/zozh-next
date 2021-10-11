@@ -40,6 +40,9 @@
             "@/interfaces/*": [
                 "interfaces/*"
             ],
+            "@/hooks/*": [
+                "hooks/*"
+            ],
         }
     },
     "include": [
