@@ -1,6 +1,6 @@
+import React from "react";
 import { Color } from '@/types/Color';
 import { useRouter } from 'next/router';
-import React from "react";
 import * as style from "./style.module.scss";
 
 export interface IButtonProps {
