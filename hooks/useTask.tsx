@@ -1,5 +1,6 @@
 import { Button, Text } from "@/components/UI";
 import { CardContext } from "@/contexts/cardContext";
+import { Color } from "@/types/Color";
 import {
     CSSProperties,
     useContext,
@@ -16,24 +17,51 @@ export interface ITaskComponentProps {
 }
 
 /**
+ * @interface Для описания цветов кнопки при разных состояниях ответа (правильный, неправильный, нет ответа).
+ */
+export interface ILocalButtonColors {
+    default: Color,
+    correct: Color,
+    wrong: Color
+}
+
+/**
+ * @type Для для описания возможных значений состояний ответа (default, правильный, неправильный).
+ */
+export type AnswerState =
+    | "default"
+    | "correct"
+    | "wrong";
+
+/**
  * Главный хук для обработки логики взаимодействия с заданиями.
- * @returns `<TaskComponent />`, `wrong`, `wrongAnswer()`
+ * @returns `<TaskComponent />`, `correctAnswer()`, `wrongAnswer()`
  */
 export const useTask = () => {
-    const { changeScore } = useContext(CardContext);
+    const { changeScore, changeNode } = useContext(CardContext);
 
     /**
-     * Локальный стейт для обработки неправильных ответов. НЕ давать компонентам менять его напрямую через `setWrong()`, а только через `wrongAnswer()`!
+     * Локальный стейт для обработки ответов. НЕ давать компонентам менять его напрямую через `setAnswer()`, а только через `correctAnswer()` и `wrongAnswer()`!
+     * @see `correctAnswer()`
      * @see `wrongAnswer()`
-     * @readonly
      */
-    const [wrong, setWrong] = useState(false);
+    const [answer, setAnswer] = useState<AnswerState>("default");
+
+    const [disabled, setDisabled] = useState(false);
 
     const wrongAnswer = () => {
-        setWrong(true);
+        setAnswer("wrong");
         changeScore(-10);
-        setTimeout(() => setWrong(false), 2000);
+        setTimeout(() => setAnswer("default"), 2000);
     };
+
+    const correctAnswer = () => {
+        setAnswer("correct");
+        changeScore(100);
+        setDisabled(true);
+
+        setTimeout(() => changeNode(), 1000);
+    }
 
     /**
      * Визуальный компонент-обложка, в который должны быть обёрнуты все задания и теория БЕЗ ИСКЛЮЧЕНИЯ!
@@ -51,19 +79,25 @@ export const useTask = () => {
             } as CSSProperties
         }
 
+        const buttonColors: ILocalButtonColors = {
+            default: "blue",
+            correct: "green",
+            wrong: "red"
+        }
+
         return <>
             <div>
                 <Text mode="h2">{title}</Text>
                 {children}
                 <div style={style.nextButtonArea}>
-                    <Button onClick={next} color={wrong ? "red" : "blue"}>Готово</Button>
+                    <Button onClick={next} color={buttonColors[answer]} disabled={disabled}>Готово</Button>
                 </div>
             </div>
         </>
     }
 
     /**
-     * НЕ возвращать `setWrong()`! Это может привести к неправильной работе компонента!
+     * НЕ возвращать `setAnswer()`! Это может привести к неправильной работе компонента!
      */
-    return { TaskComponent, wrong, wrongAnswer };
+    return { TaskComponent, wrongAnswer, correctAnswer };
 }
