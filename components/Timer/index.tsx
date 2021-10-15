@@ -1,12 +1,12 @@
+import React, { useCallback, useState } from "react";
 import { Text } from "@/components/UI";
-import { useCallback, useEffect, useState } from "react";
 
 /**
  * Таймер, который используется в заданиях.
  * @todo Починить таймер: при каждом обновлении компонента система пересчитывает таймер от 0 до нужного времени. 
  * То есть при обновлени получается 0, 0, 1, 0, 1, 2 и т.д. Возможно ли избежать такого количества обновлений?
  */
-export const Timer = () => {
+export const Timer = React.memo(function Timer() {
     const [seconds, setSeconds] = useState(0);
     const [minutes, setMinutes] = useState(0);
 
@@ -31,5 +31,5 @@ export const Timer = () => {
             {seconds < 10 && "0"}
             {seconds}
         </Text>
-    )
-}
+    );
+});
