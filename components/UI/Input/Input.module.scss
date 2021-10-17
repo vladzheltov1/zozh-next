@@ -1,6 +1,6 @@
 @import "@/styles/var.module.scss";
 
-.input{
+.input {
     display: block;
     width: 100%;
     padding: 8px 10px;
@@ -10,12 +10,16 @@
     transition-duration: 0.3s;
 
     &:active,
-    &:focus{
+    &:focus {
         box-shadow: 3px 3px 0 0 $gray-80;
         outline: none;
     }
 
-    &:disabled{
+    &:disabled {
         cursor: not-allowed;
     }
+}
+
+.input_textarea {
+    resize: vertical;
 }
