@@ -1,5 +1,9 @@
 import { useContext, useState, FC } from "react";
-import { ReactSortable } from "react-sortablejs";
+import {
+    DragDropContext,
+    Droppable,
+    Draggable
+} from "react-beautiful-dnd";
 import { CardContext } from "@/contexts/cardContext";
 import { useTask } from "@/hooks/useTask";
 import style from "./style.module.scss";
@@ -21,15 +25,44 @@ export const Task2: FC = () => {
         { id: 5, value: "развитие" }
     ]);
 
+    const onDragEnd = (result) => {
+        const tempItems = Array.from(items);
+        const [newOrder] = tempItems.splice(result.source.index, 1);
+        tempItems.splice(result.destination.index, 0, newOrder);
+
+        setItems(tempItems);
+    }
+
+
     return (
         <TaskComponent title={"2. Заполните пропуски, перетаскивая нужные слова"} next={changeNode}>
-            <div className={style.word_container}>
-                <ReactSortable list={items} setList={setItems}>
-                    {items.map(item => (
-                        <div key={item.id} className={style.word}>{item.value}</div>
-                    ))}
-                </ReactSortable>
-            </div>
-        </TaskComponent>
+            <DragDropContext onDragEnd={onDragEnd}>
+                <Droppable droppableId="task1_wordArea" direction="horizontal">
+                    {(droppableProvided) => (
+                        <div className={style.word_container} {...droppableProvided.droppableProps} ref={droppableProvided.innerRef}>
+                            {items.map((item, index) => (
+                                <Draggable
+                                    key={item.id}
+                                    draggableId={item.id.toString()}
+                                    index={index}
+                                >
+                                    {(draggableProvided) => (
+                                        <div
+                                            className={style.word}
+                                            {...draggableProvided.draggableProps}
+                                            {...draggableProvided.dragHandleProps}
+                                            ref={draggableProvided.innerRef}
+                                        >
+                                            {item.value}
+                                        </div>
+                                    )}
+                                </Draggable>
+                            ))}
+                            {droppableProvided.placeholder}
+                        </div>
+                    )}
+                </Droppable>
+            </DragDropContext>
+        </TaskComponent >
     )
 }
