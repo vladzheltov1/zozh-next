@@ -1,5 +1,5 @@
-import React from "react";
 import classNames from "classnames";
+import React from "react";
 import style from "./Text.module.scss";
 
 export type TextModes =
@@ -43,7 +43,12 @@ export interface ITextProps {
     /**
      * Размер текста
      */
-    size?: string | number
+    size?: string | number,
+
+    /**
+     * Дополнительные классы для компонента 
+     */
+    className?: string
 }
 
 export const Text: React.FC<ITextProps> = (props) => {
