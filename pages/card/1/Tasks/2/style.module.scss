@@ -10,10 +10,31 @@
     padding: 15px;
     border-radius: 10px;
     
+}
+.word{
+    padding: 10px 30px;
+    border-radius: 30px;
+    background-color: $green-100;
+    color: $gray-0;
+    text-align: center;
+    font-size: 1rem;
+}
+
+.task1_text{
+    display: flex;
+    align-items: center;
+}
+
+.intext_droppableArea{
+    background: $yellow-20;
+    display: inline-block;
+    border-radius: 30px;
+    width: 200px;
+    height: 40px;
+    margin: auto 10px;
+    position: relative;
+
     .word{
-        padding: 10px 30px;
-        border-radius: 30px;
-        background-color: $green-100;
-        color: $gray-0;
+        width: 100%;
     }
 }

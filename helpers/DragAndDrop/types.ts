@@ -1,6 +1,8 @@
 import { DraggableLocation } from "react-beautiful-dnd"
 
-type DragAndDropItems = {}
+type DragAndDropItems = {
+    [keyof: string]: string
+}
 
 type DragAndDropReorderList = {
     item: DragAndDropItems,
