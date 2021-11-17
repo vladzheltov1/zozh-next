@@ -3,7 +3,7 @@ import { useRouter } from "next/router";
 import { Text } from "@/components/UI";
 import { Timer } from "@/components/Timer";
 import { TimerContext } from "@/contexts/TimerContext";
-import { CardContext } from "@/contexts/cardContext";
+import { CardContext } from "@/contexts/CardContext";
 import colors from "@/styles/var.module.scss";
 import cardStyle from "./card.module.scss";
 

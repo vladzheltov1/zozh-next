@@ -1,5 +1,5 @@
 import { Button, Text } from "@/components/UI";
-import { CardContext } from "@/contexts/cardContext";
+import { CardContext } from "@/contexts/CardContext";
 import { Color } from "@/types/Color";
 import {
     CSSProperties,

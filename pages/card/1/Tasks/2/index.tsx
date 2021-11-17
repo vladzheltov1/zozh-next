@@ -4,7 +4,7 @@ import {
     Droppable,
     Draggable
 } from "react-beautiful-dnd";
-import { CardContext } from "@/contexts/cardContext";
+import { CardContext } from "@/contexts/CardContext";
 import { useTask } from "@/hooks/useTask";
 import { Space, Text } from "@/components/UI";
 import { reorder } from "@/helpers/DragAndDrop";

@@ -1,7 +1,7 @@
 import { useContext } from "react";
 import { Text } from "@/components/UI";
 import { useTask } from "@/hooks/useTask";
-import { CardContext } from "@/contexts/cardContext";
+import { CardContext } from "@/contexts/CardContext";
 
 
 export const Theory = ({ children }) => {
