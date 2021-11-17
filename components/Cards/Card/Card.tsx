@@ -1,13 +1,21 @@
-import { useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { useRouter } from "next/router";
 import { Text } from "@/components/UI";
 import { Timer } from "@/components/Timer";
+import { TimerContext } from "@/contexts/TimerContext";
 import { CardContext } from "@/contexts/cardContext";
 import colors from "@/styles/var.module.scss";
 import cardStyle from "./card.module.scss";
 
 export const Card = ({ children }) => {
     const router = useRouter();
+
+    const { getCurrentTime } = useContext(TimerContext);
+
+    // Тест: получение значения таймера в момент времени 4 секунды.
+    useEffect(() => {
+        setTimeout(() => console.log(getCurrentTime()), 4000);
+    })
 
     // Нужно для отображения только одного задания из всех переданных в компонент. `Children` могут менять это значение через `changeNode()`, которая поставит следующий по списку `child` данного компонента.
     const [currentNode, setCurrentNode] = useState(0);
