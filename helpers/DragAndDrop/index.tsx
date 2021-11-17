@@ -1,5 +1,5 @@
 const reorderItem = (destination, source, items) => {
-    const result = Array.from(items);
+    const result: Array<any> = Array.from(items);
     const [removed] = result.splice(source.index, 1);
     result.splice(destination.index, 0, removed);
     return [result, removed];
