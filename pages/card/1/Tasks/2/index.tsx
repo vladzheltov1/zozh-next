@@ -35,7 +35,9 @@ export const Task2: FC = () => {
         gap5: { id: 0, value: null }
     });
 
-    const onDragEnd = ({ destination, source }) => {
+    const onDragEnd = (result) => {
+        const { destination, source } = result;
+
         const { resultItems, resultGaps } = reorder(destination, source, items, gaps);
 
         if (resultItems) setItems(resultItems);
@@ -44,9 +46,7 @@ export const Task2: FC = () => {
 
     return (
         <TaskComponent title={"2. Заполните пропуски, перетаскивая нужные слова"} next={changeNode}>
-            <DragDropContext
-                onDragEnd={onDragEnd}
-            >
+            <DragDropContext onDragEnd={onDragEnd}>
                 <Droppable droppableId="menu_box" direction={"horizontal"}>
                     {(providedDroppable) => (
                         <div
