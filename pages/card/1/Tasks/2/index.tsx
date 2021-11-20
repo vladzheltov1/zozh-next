@@ -33,10 +33,10 @@ export const Task2: FC = () => {
 
     const onDragEnd = (result) => {
         const { destination, source } = result;
-        const { resultItems, resultGaps } = reorder(destination, source, items, gaps);
+        const [resultItems, resultGaps] = reorder(destination, source, items, gaps, "menu_box");
 
-        if (resultItems) setItems(resultItems);
-        if (resultGaps) setGaps(resultGaps);
+        setItems(resultItems);
+        setGaps(resultGaps);
     };
 
     const correct = {
