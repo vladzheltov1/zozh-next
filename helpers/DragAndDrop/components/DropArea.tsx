@@ -7,13 +7,14 @@ export interface IDropAreaProps {
     children: ReactChild | JSX.Element | JSX.Element[],
     className?: string,
     direction?: DroppableDirection,
-    droppableId: string
+    droppableId: string,
+    isDropDisabled?: boolean
 }
 
 export const DropArea: FC<IDropAreaProps> = (props) => {
-    const { children, className = "", direction = "vertical", droppableId, ...restProps } = props;
+    const { children, className = "", direction = "vertical", droppableId, isDropDisabled = false, ...restProps } = props;
     return (
-        <Droppable droppableId={droppableId} direction={direction}>
+        <Droppable droppableId={droppableId} direction={direction} isDropDisabled={isDropDisabled}>
             {(providedDroppable) => (
                 <div
                     className={className}

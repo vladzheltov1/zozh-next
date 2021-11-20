@@ -13,7 +13,7 @@ export interface IItem {
 
 export const Task2: FC = () => {
     const { changeNode } = useContext(CardContext);
-    const { TaskComponent } = useTask();
+    const { TaskComponent, wrongAnswer, correctAnswer } = useTask();
 
     const [items, setItems] = useState<Array<IItem>>([
         { id: 1, value: "профилактику" },
@@ -39,8 +39,34 @@ export const Task2: FC = () => {
         if (resultGaps) setGaps(resultGaps);
     };
 
+    const correct = {
+        gap1: "образ",
+        gap2: "жизни",
+        gap3: "укрепление",
+        gap4: "профилактику",
+        gap5: "развитие"
+    };
+
+    const checkTask = () => {
+        let isCorrect = true;
+        for (let key in gaps) {
+            if (gaps[key].value !== correct[key]) {
+                isCorrect = false;
+                break;
+            }
+        }
+        if (isCorrect) {
+            correctAnswer();
+            setTimeout(() => {
+                changeNode();
+            }, 5000);
+        } else {
+            wrongAnswer();
+        }
+    }
+
     return (
-        <TaskComponent title={"2. Заполните пропуски, перетаскивая нужные слова"} next={changeNode}>
+        <TaskComponent title={"2. Заполните пропуски, перетаскивая нужные слова"} next={checkTask}>
             <DragDropContext
                 onDragEnd={onDragEnd}
             >
@@ -60,7 +86,7 @@ export const Task2: FC = () => {
                 <Text size={"1.4rem"} className={style.task1_text}>
                     Здоровый образ жизни -
                     {/* Образ */}
-                    <DropArea droppableId={"gap1"} direction="horizontal" className={style.intext_droppableArea}>
+                    <DropArea droppableId={"gap1"} direction="horizontal" className={style.intext_droppableArea} isDropDisabled={gaps.gap1.value != null}>
                         {gaps.gap1.value ? (
                             <DragItem
                                 draggableId={"gap1_value"}
@@ -72,7 +98,7 @@ export const Task2: FC = () => {
                         ) : null}
                     </DropArea>
                     {/* Жизни */}
-                    <DropArea droppableId={"gap2"} direction="horizontal" className={style.intext_droppableArea}>
+                    <DropArea droppableId={"gap2"} direction="horizontal" className={style.intext_droppableArea} isDropDisabled={gaps.gap2.value != null}>
                         {gaps.gap2.value ? (
                             <DragItem
                                 draggableId={"gap2_value"}
@@ -85,10 +111,10 @@ export const Task2: FC = () => {
                     </DropArea>
                     человека, направленный на
                     {/* Укрепление */}
-                    <DropArea droppableId={"gap3"} direction="horizontal" className={style.intext_droppableArea}>
+                    <DropArea droppableId={"gap3"} direction="horizontal" className={style.intext_droppableArea} isDropDisabled={gaps.gap3.value != null}>
                         {gaps.gap3.value ? (
                             <DragItem
-                                draggableId={"gap5_value"}
+                                draggableId={"gap3_value"}
                                 index={3}
                                 className={style.word}
                             >
@@ -98,7 +124,7 @@ export const Task2: FC = () => {
                     </DropArea>
                     здоровья,
                     {/* Профилактику */}
-                    <DropArea droppableId={"gap4"} direction="horizontal" className={style.intext_droppableArea}>
+                    <DropArea droppableId={"gap4"} direction="horizontal" className={style.intext_droppableArea} isDropDisabled={gaps.gap4.value != null}>
                         {gaps.gap4.value ? (
                             <DragItem
                                 draggableId={"gap4_value"}
@@ -111,7 +137,7 @@ export const Task2: FC = () => {
                     </DropArea>
                     болезней и
                     {/* Развитие */}
-                    <DropArea droppableId={"gap5"} direction="horizontal" className={style.intext_droppableArea}>
+                    <DropArea droppableId={"gap5"} direction="horizontal" className={style.intext_droppableArea} isDropDisabled={gaps.gap5.value != null}>
                         {gaps.gap5.value ? (
                             <DragItem
                                 draggableId={"gap5_value"}
