@@ -1,11 +1,14 @@
-import { useState } from "react";
-import { useRouter } from "next/router";
-import { Text } from "@/components/UI";
 import { Timer } from "@/components/Timer";
+import { Text } from "@/components/UI";
 import { CardContext } from "@/contexts/cardContext";
 import colors from "@/styles/var.module.scss";
+import { useRouter } from "next/router";
+import { useState } from "react";
 import cardStyle from "./card.module.scss";
 
+/**
+ * @deprecated используй компонент, который лежит в папке `core`
+ */
 export const Card = ({ children }) => {
     const router = useRouter();
 

@@ -1,7 +1,6 @@
 import { Space, Text } from "@/components/UI";
-import { CardContext } from "@/contexts/cardContext";
+import { Task, TaskContext } from "@/core/index";
 import { DragItem, DropArea, reorder } from "@/helpers/DragAndDrop";
-import { useTask } from "@/hooks/useTask";
 import { FC, useContext, useState } from "react";
 import { DragDropContext } from "react-beautiful-dnd";
 import style from "./style.module.scss";
@@ -12,8 +11,7 @@ export interface IItem {
 }
 
 export const Task2: FC = () => {
-    const { changeNode } = useContext(CardContext);
-    const { TaskComponent, wrongAnswer, correctAnswer } = useTask();
+    const { handleAnswer } = useContext(TaskContext);
 
     const [items, setItems] = useState<Array<IItem>>([
         { id: 1, value: "профилактику" },
@@ -48,6 +46,7 @@ export const Task2: FC = () => {
     };
 
     const checkTask = () => {
+        console.log("CHECK");
         let isCorrect = true;
         for (let key in gaps) {
             if (gaps[key].value !== correct[key]) {
@@ -55,18 +54,11 @@ export const Task2: FC = () => {
                 break;
             }
         }
-        if (isCorrect) {
-            correctAnswer();
-            setTimeout(() => {
-                changeNode();
-            }, 5000);
-        } else {
-            wrongAnswer();
-        }
+        handleAnswer(isCorrect);
     }
 
     return (
-        <TaskComponent title={"2. Заполните пропуски, перетаскивая нужные слова"} next={checkTask}>
+        <Task title={"2. Заполните пропуски, перетаскивая нужные слова"} action={checkTask}>
             <DragDropContext
                 onDragEnd={onDragEnd}
             >
@@ -151,6 +143,6 @@ export const Task2: FC = () => {
                     организма в целом.
                 </Text>
             </DragDropContext>
-        </TaskComponent >
+        </Task >
     )
 }
