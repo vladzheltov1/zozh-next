@@ -7,10 +7,10 @@
  * @returns [result, gaps]
  */
 const moveInHub = (destination, source, items, gaps) => {
-    const result: Array<any> = Array.from(items);
-    const [removed] = result.splice(source.index, 1);
-    result.splice(destination.index, 0, removed);
-    return [result, gaps];
+    const resultItems: Array<any> = Array.from(items);
+    const [removed] = resultItems.splice(source.index, 1);
+    resultItems.splice(destination.index, 0, removed);
+    return [resultItems, gaps];
 }
 
 /**
@@ -22,11 +22,11 @@ const moveInHub = (destination, source, items, gaps) => {
  * @returns [result, gaps]
  */
 const appendToTheHubBlock = (destination, source, items, gaps) => {
-    const result = Array.from(items);
-    const child = gaps[source.droppableId];
-    result.splice(destination.index, 0, child);
+    const resultItems = Array.from(items);
+    const addedItem = gaps[source.droppableId];
+    resultItems.splice(destination.index, 0, addedItem);
     const resultGaps = { ...gaps, [source.droppableId]: { id: 0, value: null } };
-    return [result, resultGaps];
+    return [resultItems, resultGaps];
 }
 
 /**
@@ -38,10 +38,9 @@ const appendToTheHubBlock = (destination, source, items, gaps) => {
  * @returns [result, gaps]
  */
 const moveBetweenGaps = (destination, source, items, gaps) => {
-    const child = gaps[source.droppableId];
-    const resultItems = [...items];
-    const resultGaps = { ...gaps, [destination.droppableId]: child, [source.droppableId]: { id: 0, value: null } };
-    return [resultItems, resultGaps];
+    const addedItem = gaps[source.droppableId];
+    const resultGaps = { ...gaps, [destination.droppableId]: addedItem, [source.droppableId]: { id: 0, value: null } };
+    return [items, resultGaps];
 }
 
 /**
@@ -53,11 +52,11 @@ const moveBetweenGaps = (destination, source, items, gaps) => {
  * @returns [result, gaps]
  */
 const moveFromHub = (destination, source, items, gaps) => {
-    const result: Array<any> = Array.from(items);
-    const [removed] = result.splice(source.index, 1);
-    result.splice(destination.index, 0, removed);
-    const resultItems = result.filter((item) => item !== removed);
-    const resultGaps = { ...gaps, [destination.droppableId]: removed };
+    const tempResult: Array<any> = Array.from(items);
+    const [removedItem] = tempResult.splice(source.index, 1);
+    tempResult.splice(destination.index, 0, removedItem);
+    const resultItems = tempResult.filter((item) => item !== removedItem);
+    const resultGaps = { ...gaps, [destination.droppableId]: removedItem };
     return [resultItems, resultGaps];
 }
 
