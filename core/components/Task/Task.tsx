@@ -1,37 +1,25 @@
-import { CardContext } from "@/contexts/cardContext";
-import { Color } from "@/types/Color";
-import { FC, useContext, useState } from "react";
-import { ITaskComponentProps, TaskContext } from "../../index";
-import { TaskComponent } from "./TaskComponent";
+import { Button, Text } from "@/components/UI";
+import { ITaskComponentProps, TaskContext } from "@/core/index";
+import { FC } from "react";
+import { useTaskState } from "@/core/index";
+import styles from "./Task.module.scss";
 
 export const Task: FC<ITaskComponentProps> = (props) => {
+    const {
+        children,
+        title,
+        action = () => void 0
+    } = props;
 
-    const [buttonColor, setButtonColor] = useState<Color>("blue");
-    const [buttonDisabled, setButtonDisabled] = useState<boolean>(false);
-
-    const { changeScore } = useContext(CardContext);
-
-    const handleAnswer = (isAnswerCorrect: boolean) => {
-        console.log("Handler working");
-
-        if (!isAnswerCorrect) {
-            setButtonColor("red");
-            changeScore(-10);
-            setInterval(() => {
-                return setButtonColor("blue");
-            }, 4000);
-        }
-        setButtonDisabled(true);
-        setButtonColor("green");
-    }
+    const { buttonColor, buttonDisabled } = useTaskState();
 
     return (
-        <TaskContext.Provider value={{
-            buttonColor,
-            buttonDisabled,
-            handleAnswer
-        }}>
-            <TaskComponent {...props} />
-        </TaskContext.Provider>
+        <div>
+            <Text mode="h2">{title}</Text>
+            {children}
+            <div className={styles.nextButtonArea}>
+                <Button onClick={action} color={buttonColor} disabled={buttonDisabled}>Готово</Button>
+            </div>
+        </div>
     )
 }

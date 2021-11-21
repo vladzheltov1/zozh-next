@@ -4,6 +4,7 @@ import { DragItem, DropArea, reorder } from "@/helpers/DragAndDrop";
 import { FC, useContext, useState } from "react";
 import { DragDropContext } from "react-beautiful-dnd";
 import style from "./style.module.scss";
+import { useTaskState } from "@/core/index";
 
 export interface IItem {
     id: number,
@@ -11,7 +12,7 @@ export interface IItem {
 }
 
 export const Task2: FC = () => {
-    const { handleAnswer } = useContext(TaskContext);
+    const { handleAnswer } = useTaskState();
 
     const [items, setItems] = useState<Array<IItem>>([
         { id: 1, value: "профилактику" },
