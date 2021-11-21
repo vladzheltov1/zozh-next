@@ -1,17 +1,14 @@
 @import "@/styles/var.module.scss";
 
-.word_container{
+.word_container {
     background-color: #f0f0f0;
-
     display: flex;
     flex-wrap: wrap;
     gap: 10px;
-
     padding: 15px;
     border-radius: 10px;
-    
 }
-.word{
+.word {
     padding: 10px 30px;
     border-radius: 30px;
     background-color: $green-100;
@@ -20,21 +17,18 @@
     font-size: 1rem;
 }
 
-.task1_text{
+.task1_text {
     display: flex;
     align-items: center;
+    flex-wrap: wrap;
 }
 
-.intext_droppableArea{
+.intext_droppableArea {
     background: $gray-20;
     display: inline-block;
     border-radius: 30px;
     width: 200px;
     height: 40px;
-    margin: auto 10px;
+    margin: 3px 10px;
     position: relative;
-
-    .word{
-        width: 100%;
-    }
 }

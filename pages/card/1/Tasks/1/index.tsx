@@ -1,6 +1,6 @@
+import { useTask } from "@/hooks/useTask";
 import { useState } from "react";
 import style from "./style.module.scss";
-import { useTask } from "@/hooks/useTask";
 
 export const Task1 = () => {
     const { TaskComponent, correctAnswer, wrongAnswer } = useTask();
@@ -36,14 +36,11 @@ export const Task1 = () => {
             }
 
             if (correct()) {
-                console.log("Correct!");
                 correctAnswer();
                 return;
             }
 
         }
-
-        console.log("Wrong! Any condition now!");
         wrongAnswer();
     }
 

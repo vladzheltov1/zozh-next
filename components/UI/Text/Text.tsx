@@ -1,3 +1,4 @@
+import { Color } from "@/types/Color";
 import classNames from "classnames";
 import React from "react";
 import style from "./Text.module.scss";
@@ -38,7 +39,7 @@ export interface ITextProps {
     /**
      * Цвет текста
      */
-    color?: string,
+    color?: Color | string,
 
     /**
      * Размер текста
