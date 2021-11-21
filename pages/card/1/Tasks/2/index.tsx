@@ -1,10 +1,9 @@
 import { Space, Text } from "@/components/UI";
-import { Task, TaskContext } from "@/core/index";
+import { Task, useTaskState } from "@/core/index";
 import { DragItem, DropArea, reorder } from "@/helpers/DragAndDrop";
-import { FC, useContext, useState } from "react";
+import { FC, useState } from "react";
 import { DragDropContext } from "react-beautiful-dnd";
 import style from "./style.module.scss";
-import { useTaskState } from "@/core/index";
 
 export interface IItem {
     id: number,
@@ -47,12 +46,10 @@ export const Task2: FC = () => {
     };
 
     const checkTask = () => {
-        console.log("CHECK");
         let isCorrect = true;
         for (let key in gaps) {
             if (gaps[key].value !== correct[key]) {
                 isCorrect = false;
-                break;
             }
         }
         handleAnswer(isCorrect);

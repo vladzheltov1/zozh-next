@@ -1,6 +1,6 @@
-import { useState, useContext } from "react";
-import { Color } from "@/types/Color";
 import { useCardState } from "@/core/index";
+import { Color } from "@/types/Color";
+import { useState } from "react";
 
 export const useTaskState = () => {
     const [buttonColor, setButtonColor] = useState<Color>("blue");
@@ -21,6 +21,8 @@ export const useTaskState = () => {
             setButtonColor("green");
             changeScore(100);
         }
+        setButtonColor("red");
+        changeScore(100);
     }
 
     return { buttonColor, setButtonColor, buttonDisabled, setButtonDisabled, handleAnswer };
