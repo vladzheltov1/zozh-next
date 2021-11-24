@@ -1,5 +1,5 @@
 import { Space, Text } from "@/components/UI";
-import { Task, useTaskState } from "@/core/index";
+import { Task } from "@/core/index";
 import { DragItem, DropArea, reorder } from "@/helpers/DragAndDrop";
 import { FC, useState } from "react";
 import { DragDropContext } from "react-beautiful-dnd";
@@ -11,7 +11,7 @@ export interface IItem {
 }
 
 export const Task2: FC = () => {
-    const { handleAnswer } = useTaskState();
+    const { handleAnswer, TaskComponent } = Task();
 
     const [items, setItems] = useState<Array<IItem>>([
         { id: 1, value: "профилактику" },
@@ -56,7 +56,7 @@ export const Task2: FC = () => {
     }
 
     return (
-        <Task title={"2. Заполните пропуски, перетаскивая нужные слова"} action={checkTask}>
+        <TaskComponent title={"2. Заполните пропуски, перетаскивая нужные слова"} action={checkTask}>
             <DragDropContext
                 onDragEnd={onDragEnd}
             >
@@ -141,6 +141,6 @@ export const Task2: FC = () => {
                     организма в целом.
                 </Text>
             </DragDropContext>
-        </Task >
+        </TaskComponent >
     )
 }

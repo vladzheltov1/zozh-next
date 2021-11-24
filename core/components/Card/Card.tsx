@@ -1,13 +1,19 @@
 import { Timer } from "@/components/Timer";
 import { Text } from "@/components/UI";
-import { useCardState } from "@/core/index";
+import { useCardState } from "@/core/hooks/useCardState";
 import vars from "@/styles/var.module.scss";
 import { useRouter } from "next/router";
 import cardStyle from "./Card.module.scss";
 
 export const Card = ({ children }) => {
-    const { score, currentNode } = useCardState();
     const router = useRouter();
+
+    const { currentNode, score } = useCardState();
+
+    // Перенаправление в главное меню в случае, если все компоненты отработали
+    const getCurrentNode = () => {
+        return children[currentNode] ? children[currentNode] : () => router.push("/hub");
+    }
 
     return (
         <div className={cardStyle.card}>
@@ -19,7 +25,7 @@ export const Card = ({ children }) => {
                 </Text>
                 <Timer />
             </div>
-            {children[currentNode] ? children[currentNode] : () => router.push("/hub")}
+            {getCurrentNode()}
             <style jsx global>{`
                 body{
                     background: #f0f0f0;

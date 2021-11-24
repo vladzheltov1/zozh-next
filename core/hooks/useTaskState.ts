@@ -8,8 +8,8 @@ export const useTaskState = () => {
 
     const { changeScore } = useCardState();
 
-    const handleAnswer = (isAnswerCorrect: boolean) => {
-        if (!isAnswerCorrect) {
+    const onAnswerSubmit = (isCorrect) => {
+        if (!isCorrect) {
             setButtonColor("red");
             changeScore(-10);
             setInterval(() => {
@@ -25,5 +25,5 @@ export const useTaskState = () => {
         changeScore(100);
     }
 
-    return { buttonColor, setButtonColor, buttonDisabled, setButtonDisabled, handleAnswer };
+    return { buttonColor, buttonDisabled, setButtonColor, setButtonDisabled, onAnswerSubmit };
 }

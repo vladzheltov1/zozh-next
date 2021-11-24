@@ -1,9 +1,10 @@
-import { Task, useTaskState } from "@/core/index";
-import { useState } from "react";
+import { Task, useCardState, useTaskState } from "@/core/index";
+import { useEffect, useState } from "react";
 import style from "./style.module.scss";
 
 export const Task1 = () => {
-    const { handleAnswer } = useTaskState();
+    const { onAnswerSubmit } = useTaskState();
+    const { changeScore, changeNode } = useCardState();
 
     const [options, setOptions] = useState([
         { id: 1, value: "Курение", isSelected: false },
@@ -36,12 +37,12 @@ export const Task1 = () => {
             }
 
             if (correct()) {
-                handleAnswer(true);
+                onAnswerSubmit(true);
                 return;
             }
 
         }
-        handleAnswer(false);
+        onAnswerSubmit(false);
     }
 
     const optionToggleClick = (id) => {
@@ -54,6 +55,10 @@ export const Task1 = () => {
             })
         )
     }
+
+    useEffect(() => {
+        setTimeout(() => changeNode, 2000);
+    })
 
     return (
         <Task title="1. Что из этого негативно влияет на здоровье человека?" action={checkTask}>
