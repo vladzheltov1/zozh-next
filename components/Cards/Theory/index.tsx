@@ -1,8 +1,10 @@
 import { Text } from "@/components/UI";
-import { Task, useCardState } from "@/core/index";
+import { cardStore, Task } from "@/core/index";
 
 export const Theory = ({ children }) => {
-    const { changeNode } = useCardState();
+    const changeNode = (): void => {
+        cardStore.dispatch({ type: "CHANGE_NODE" });
+    }
     return (
         <Task title={""} action={changeNode}>
             <>

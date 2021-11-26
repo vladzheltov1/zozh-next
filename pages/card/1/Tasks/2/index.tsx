@@ -11,7 +11,6 @@ export interface IItem {
 }
 
 export const Task2: FC = () => {
-    const { handleAnswer, TaskComponent } = Task();
 
     const [items, setItems] = useState<Array<IItem>>([
         { id: 1, value: "профилактику" },
@@ -52,11 +51,11 @@ export const Task2: FC = () => {
                 isCorrect = false;
             }
         }
-        handleAnswer(isCorrect);
+        // handleAnswer(isCorrect);
     }
 
     return (
-        <TaskComponent title={"2. Заполните пропуски, перетаскивая нужные слова"} action={checkTask}>
+        <Task title={"2. Заполните пропуски, перетаскивая нужные слова"} action={checkTask}>
             <DragDropContext
                 onDragEnd={onDragEnd}
             >
@@ -141,6 +140,6 @@ export const Task2: FC = () => {
                     организма в целом.
                 </Text>
             </DragDropContext>
-        </TaskComponent >
+        </Task >
     )
 }

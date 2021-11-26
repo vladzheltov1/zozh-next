@@ -1,0 +1,4 @@
+export const taskActions = {
+    SET_BUTTON_COLOR: "SET_BUTTON_COLOR",
+    SET_BUTTON_DISABLED: "SET_BUTTON_DISABLED"
+}

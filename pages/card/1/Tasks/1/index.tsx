@@ -1,11 +1,8 @@
-import { Task, useCardState, useTaskState } from "@/core/index";
-import { useEffect, useState } from "react";
+import { onAnswerSubmit, Task } from "@/core/index";
+import { useState } from "react";
 import style from "./style.module.scss";
 
 export const Task1 = () => {
-    const { onAnswerSubmit } = useTaskState();
-    const { changeScore, changeNode } = useCardState();
-
     const [options, setOptions] = useState([
         { id: 1, value: "Курение", isSelected: false },
         { id: 2, value: "4-часовой сон", isSelected: false },
@@ -55,11 +52,6 @@ export const Task1 = () => {
             })
         )
     }
-
-    useEffect(() => {
-        setTimeout(() => changeNode, 2000);
-    })
-
     return (
         <Task title="1. Что из этого негативно влияет на здоровье человека?" action={checkTask}>
             <div className={style.task_wrapper}>

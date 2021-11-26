@@ -1,14 +1,25 @@
 import { Timer } from "@/components/Timer";
 import { Text } from "@/components/UI";
-import { useCardState } from "@/core/hooks/useCardState";
+import { cardStore } from "@/core/redux";
 import vars from "@/styles/var.module.scss";
 import { useRouter } from "next/router";
+import { useState } from "react";
 import cardStyle from "./Card.module.scss";
 
 export const Card = ({ children }) => {
     const router = useRouter();
 
-    const { currentNode, score } = useCardState();
+    // Данная прослойка нужна для того, чтобы React сам перерендеривал компонент, когда меняется состояние в `store`,
+    // иначе перерисовка страницы не произойдёт. Возможно, есть способ сделать это по-другому?
+    const [currentNode, setCurrentNode] = useState<number>(0);
+    const [score, setScore] = useState<number>(0);
+
+    // Подписка на изменение состояния внутри `store`
+    cardStore.subscribe(() => {
+        const state = cardStore.getState();
+        setCurrentNode(state.currentNode);
+        setScore(state.score);
+    });
 
     // Перенаправление в главное меню в случае, если все компоненты отработали
     const getCurrentNode = () => {

@@ -1,6 +1,8 @@
 import { Text } from "@/components/UI";
-import { NextButton, useTaskState } from "@/core/index";
-import { FC, ReactChild } from "react";
+import { NextButton } from "@/core/index";
+import { taskStore } from "@/core/redux";
+import { Color } from "@/types/Color";
+import { FC, ReactChild, useState } from "react";
 
 export interface ITaskComponentProps {
     children: ReactChild,
@@ -11,7 +13,14 @@ export interface ITaskComponentProps {
 export const Task: FC<ITaskComponentProps> = (props) => {
     const { children, title = "", action = () => void 0 } = props;
 
-    const { buttonColor, buttonDisabled } = useTaskState();
+    const [buttonColor, setButtonColor] = useState<Color>("blue");
+    const [buttonDisabled, setButtonDisabled] = useState<boolean>(false);
+
+    taskStore.subscribe(() => {
+        const { buttonColor, buttonDisabled } = taskStore.getState();
+        setButtonDisabled(buttonDisabled);
+        setButtonColor(buttonColor);
+    })
 
     return (
         <div>
