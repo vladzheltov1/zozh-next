@@ -1,5 +1,5 @@
 import { Space, Text } from "@/components/UI";
-import { Task } from "@/core/index";
+import { onAnswerSubmit, Task } from "@/core/index";
 import { DragItem, DropArea, reorder } from "@/helpers/DragAndDrop";
 import { FC, useState } from "react";
 import { DragDropContext } from "react-beautiful-dnd";
@@ -11,7 +11,6 @@ export interface IItem {
 }
 
 export const Task2: FC = () => {
-
     const [items, setItems] = useState<Array<IItem>>([
         { id: 1, value: "профилактику" },
         { id: 2, value: "жизни" },
@@ -51,7 +50,7 @@ export const Task2: FC = () => {
                 isCorrect = false;
             }
         }
-        // handleAnswer(isCorrect);
+        onAnswerSubmit(isCorrect);
     }
 
     return (

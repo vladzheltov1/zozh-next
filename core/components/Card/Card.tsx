@@ -14,17 +14,18 @@ export const Card = ({ children }) => {
     const [currentNode, setCurrentNode] = useState<number>(0);
     const [score, setScore] = useState<number>(0);
 
-    // Подписка на изменение состояния внутри `store`
     cardStore.subscribe(() => {
         const state = cardStore.getState();
+
+        // Перенаправление в меню, если все компоненты отработали
+        if (children[state.currentNode] == null) {
+            router.push("/hub");
+            return;
+        }
+
         setCurrentNode(state.currentNode);
         setScore(state.score);
     });
-
-    // Перенаправление в главное меню в случае, если все компоненты отработали
-    const getCurrentNode = () => {
-        return children[currentNode] ? children[currentNode] : () => router.push("/hub");
-    }
 
     return (
         <div className={cardStyle.card}>
@@ -36,7 +37,7 @@ export const Card = ({ children }) => {
                 </Text>
                 <Timer />
             </div>
-            {getCurrentNode()}
+            {children[currentNode]}
             <style jsx global>{`
                 body{
                     background: #f0f0f0;

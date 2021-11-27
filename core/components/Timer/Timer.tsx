@@ -1,23 +1,27 @@
 import { Text } from "@/components/UI";
 import { timerActions, timerStore } from "@/core/redux";
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 
 /**
  * Таймер, который используется в заданиях
  */
 export const Timer = () => {
     const [timer, setTimer] = useState(0);
+    const interval = useRef(null);
 
     const startTimer = (): void => {
-        setInterval(() => {
+        interval.current = setInterval(() => {
             timerStore.dispatch({ type: timerActions.INCREMENT });
         }, 1000);
     }
 
     /**
-     * Запуск таймера после загрузки страницы
+     * Запуск таймера после загрузки страницы, очистка при выходе из карточки
      */
-    useEffect(() => startTimer(), []);
+    useEffect(() => {
+        startTimer();
+        return () => clearInterval(interval.current);
+    }, []);
 
     /**
      * Форматирование числа, записанного в таймере в нормальный вид
@@ -31,7 +35,7 @@ export const Timer = () => {
     }
 
     /**
-     * Нужно, чтобы перерисовывать компонент при обновлении store
+     * Нужно, чтобы перерисовывать компонент при обновлении `store`
      */
     timerStore.subscribe(() => {
         setTimer(timerStore.getState());

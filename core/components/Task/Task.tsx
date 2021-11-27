@@ -2,7 +2,7 @@ import { Text } from "@/components/UI";
 import { NextButton } from "@/core/index";
 import { taskStore } from "@/core/redux";
 import { Color } from "@/types/Color";
-import { FC, ReactChild, useState } from "react";
+import { FC, ReactChild, useEffect, useState } from "react";
 
 export interface ITaskComponentProps {
     children: ReactChild,
@@ -10,23 +10,32 @@ export interface ITaskComponentProps {
     action: Function
 }
 
+type ButtonState = {
+    color: Color,
+    disabled: boolean
+}
+
 export const Task: FC<ITaskComponentProps> = (props) => {
     const { children, title = "", action = () => void 0 } = props;
 
-    const [buttonColor, setButtonColor] = useState<Color>("blue");
-    const [buttonDisabled, setButtonDisabled] = useState<boolean>(false);
+    const [button, setButton] = useState<ButtonState>({
+        color: "blue",
+        disabled: false
+    })
 
-    taskStore.subscribe(() => {
-        const { buttonColor, buttonDisabled } = taskStore.getState();
-        setButtonDisabled(buttonDisabled);
-        setButtonColor(buttonColor);
+    useEffect(() => {
+        const unsubscribe = taskStore.subscribe(() => {
+            const { buttonColor, buttonDisabled } = taskStore.getState();
+            setButton({ color: buttonColor, disabled: buttonDisabled });
+        });
+        return () => unsubscribe();
     })
 
     return (
         <div>
             <Text mode="h2">{title}</Text>
             {children}
-            <NextButton color={buttonColor} disabled={buttonDisabled} onClick={action} >
+            <NextButton color={button.color} disabled={button.disabled} onClick={action} >
                 Готово
             </NextButton>
         </div>

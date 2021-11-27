@@ -1,13 +1,13 @@
-/// Данный файл представляет собой набор функций, реализующих некоторый функцианал, который может быть использован внутри множества компонентов.
-/// Это нужно для того, чтобы несистемные компоненты как можно реже обращались к функционалу ядра.
+// Данный файл представляет собой набор функций, реализующих некоторый функцианал, который может быть использован внутри множества компонентов.
+// Это нужно для того, чтобы несистемные компоненты как можно реже обращались к функционалу ядра.
 
 import { cardActions, cardStore, taskActions, taskStore } from ".";
 
-export const changeNode = (): void => {
+const changeNode = (): void => {
     cardStore.dispatch({ type: cardActions.CHANGE_NODE });
 }
 
-export const onAnswerSubmit = (correct: boolean) => {
+const onAnswerSubmit = (correct: boolean) => {
     if (correct) {
         cardStore.dispatch({ type: cardActions.CHANGE_SCORE, data: 100 });
         taskStore.dispatch({ type: taskActions.SET_BUTTON_DISABLED, data: true });
@@ -31,3 +31,8 @@ export const onAnswerSubmit = (correct: boolean) => {
 
     return;
 }
+
+export {
+    changeNode,
+    onAnswerSubmit
+};
