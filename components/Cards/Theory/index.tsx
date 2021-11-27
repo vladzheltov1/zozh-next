@@ -1,19 +1,18 @@
-import { useContext } from "react";
 import { Text } from "@/components/UI";
-import { useTask } from "@/hooks/useTask";
-import { CardContext } from "@/contexts/cardContext";
-
+import { cardActions, cardStore, Task } from "@/core/index";
 
 export const Theory = ({ children }) => {
-    const { changeNode } = useContext(CardContext);
-    const { TaskComponent } = useTask();
-
+    const changeNode = (): void => {
+        cardStore.dispatch({ type: cardActions.CHANGE_NODE });
+    }
     return (
-        <TaskComponent title={""} next={changeNode}>
-            <Text mode="h1">Основная теория по теме</Text>
-            <Text mode="p">
-                {children}
-            </Text>
-        </TaskComponent>
+        <Task title={""} action={changeNode}>
+            <>
+                <Text mode="h1">Основная теория по теме</Text>
+                <Text mode="p">
+                    {children}
+                </Text>
+            </>
+        </Task>
     )
 }

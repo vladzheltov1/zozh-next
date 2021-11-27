@@ -1,10 +1,8 @@
+import { onAnswerSubmit, Task } from "@/core/index";
 import { useState } from "react";
 import style from "./style.module.scss";
-import { useTask } from "@/hooks/useTask";
 
 export const Task1 = () => {
-    const { TaskComponent, correctAnswer, wrongAnswer } = useTask();
-
     const [options, setOptions] = useState([
         { id: 1, value: "Курение", isSelected: false },
         { id: 2, value: "4-часовой сон", isSelected: false },
@@ -36,15 +34,12 @@ export const Task1 = () => {
             }
 
             if (correct()) {
-                console.log("Correct!");
-                correctAnswer();
+                onAnswerSubmit(true);
                 return;
             }
 
         }
-
-        console.log("Wrong! Any condition now!");
-        wrongAnswer();
+        onAnswerSubmit(false);
     }
 
     const optionToggleClick = (id) => {
@@ -57,9 +52,8 @@ export const Task1 = () => {
             })
         )
     }
-
     return (
-        <TaskComponent title="1. Что из этого негативно влияет на здоровье человека?" next={checkTask}>
+        <Task title="1. Что из этого негативно влияет на здоровье человека?" action={checkTask}>
             <div className={style.task_wrapper}>
                 {options.map(option => (
                     <div
@@ -71,6 +65,6 @@ export const Task1 = () => {
                     </div>
                 ))}
             </div>
-        </TaskComponent>
+        </Task>
     )
 }
