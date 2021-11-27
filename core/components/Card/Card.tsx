@@ -1,5 +1,5 @@
-import { Timer } from "@/components/Timer";
 import { Text } from "@/components/UI";
+import { Timer } from "@/core/components/Timer";
 import { cardStore } from "@/core/redux";
 import vars from "@/styles/var.module.scss";
 import { useRouter } from "next/router";
