@@ -1,4 +1,4 @@
-import { ITimerActions } from "./interfaces";
+import { ITimerActions } from "../interfaces";
 
 export const timerActions: ITimerActions = {
     INCREMENT: "INCREMENT",

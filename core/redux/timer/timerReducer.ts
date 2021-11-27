@@ -1,4 +1,5 @@
-import { Action, timerActions } from "..";
+import { Action } from "../types";
+import { timerActions } from "./index";
 
 export const timerReducer = (state: number, action: Action) => {
     switch (action.type) {

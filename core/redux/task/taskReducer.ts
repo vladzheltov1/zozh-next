@@ -1,4 +1,4 @@
-import { taskActions } from "..";
+import { taskActions } from ".";
 import { Action, TaskStoreState } from "../types";
 
 const errorMessage = "Необходимо передать дополнительные данные для изменения состояния!";
