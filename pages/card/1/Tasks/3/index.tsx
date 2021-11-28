@@ -7,14 +7,14 @@ export const Task3 = () => {
 
     return (
         <Task title="3. Заполните таблицу" action={checkTask}>
-            <Table accentColor="dark">
+            <Table accentColor="green">
                 <TableRow>
                     <TableColumn mode="th">Вид активности</TableColumn>
                     <TableColumn mode="th">Время</TableColumn>
                 </TableRow>
                 <TableRow>
-                    <TableColumn mode="td">Просто текст</TableColumn>
-                    <TableColumn mode="td">Просто текст</TableColumn>
+                    <TableColumn mode="td">Пропуск</TableColumn>
+                    <TableColumn mode="td">Пропуск</TableColumn>
                 </TableRow>
             </Table>
         </Task>
