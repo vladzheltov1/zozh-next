@@ -8,14 +8,18 @@ export const Task3 = () => {
     return (
         <Task title="3. Заполните таблицу" action={checkTask}>
             <Table accentColor="green">
-                <TableRow>
-                    <TableColumn mode="th">Вид активности</TableColumn>
-                    <TableColumn mode="th">Время</TableColumn>
-                </TableRow>
-                <TableRow>
-                    <TableColumn mode="td">Пропуск</TableColumn>
-                    <TableColumn mode="td">Пропуск</TableColumn>
-                </TableRow>
+                <thead>
+                    <TableRow>
+                        <TableColumn mode="th">Вид активности</TableColumn>
+                        <TableColumn mode="th">Время</TableColumn>
+                    </TableRow>
+                </thead>
+                <tbody>
+                    <TableRow>
+                        <TableColumn mode="td">Пропуск</TableColumn>
+                        <TableColumn mode="td">Пропуск</TableColumn>
+                    </TableRow>
+                </tbody>
             </Table>
         </Task>
     )
