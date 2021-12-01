@@ -98,7 +98,7 @@ export const Task3 = () => {
                 </Table>
                 <DropArea droppableId="root" direction="horizontal" className={style.rootContainer}>
                     {items.map((item, index) => (
-                        <DragItem key={item.id} draggableId={"draggable_" + item.id} index={index}>
+                        <DragItem key={item.id} draggableId={"draggable_" + item.id || ""} index={index}>
                             <div className={style.dragItem}>{item.value}</div>
                         </DragItem>
                     ))}
