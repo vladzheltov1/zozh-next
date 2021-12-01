@@ -4,11 +4,11 @@
 // --- Primary colors --- //
 // ---------------------- //
 
-$red-100: #F44336;
-$red-80: #F16459;
-$red-60: #EE837C;
-$red-40: #EBA49F;
-$red-20: #E8C4C2;
+$red-100: #f44336;
+$red-80: #f16459;
+$red-60: #ee837c;
+$red-40: #eba49f;
+$red-20: #e8c4c2;
 
 $orange-100: #f2994a;
 $orange-80: #f0a869;
@@ -27,7 +27,6 @@ $green-80: #48a670;
 $green-60: #70b68e;
 $green-40: #96c5aa;
 $green-20: #bed5c8;
-$extra-green: #8BC34A;
 
 $blue-100: #2f80ed;
 $blue-80: #5494ec;
@@ -47,6 +46,9 @@ $gray-60: #5c5c5c;
 $gray-40: #898989;
 $gray-20: #b7b7b7;
 $gray-0: #ffffff;
+
+$extra-green: #8bc34a;
+$gray-blue: #00294b31;
 
 // ------------------ //
 // --- Typography --- //
@@ -94,7 +96,6 @@ $line-height: 1.5;
     green60: $green-60;
     green40: $green-40;
     green20: $green-20;
-    extraGreen: $extra-green;
 
     blue100: $blue-100;
     blue80: $blue-80;
@@ -114,4 +115,7 @@ $line-height: 1.5;
     gray40: $gray-40;
     gray20: $gray-20;
     gray0: $gray-0;
+
+    extraGreen: $extra-green;
+    grayBlue: $gray-blue;
 }
