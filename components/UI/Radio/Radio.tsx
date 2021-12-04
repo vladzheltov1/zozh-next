@@ -16,10 +16,14 @@ export const Radio: FC<IRadioProps> = (props) => {
     } = props;
     return <>
         <input
+            id={value}
             type="radio"
             value={value}
             checked={checked}
-            onChange={() => onChange()}
-        />{title}
+            onChange={() => onChange(event)}
+        />
+        <label htmlFor={value}>
+            {title}
+        </label>
     </>
 }
