@@ -68,17 +68,17 @@ const moveFromHub = (destination, source, items, gaps) => {
  * @param gaps 
  * @returns [result, gaps]
  */
-export const reorder = (destination, source, items, gaps, hubDroppableId: string) => {
+export const reorder = (destination, source, items, gaps, rootContainerId: string) => {
     // Нужно, чтобы избежать ошибок
     if (!destination || !source) return [items, gaps];
 
     if (destination.droppableId === source.droppableId) {
         return moveInHub(destination, source, items, gaps);
     }
-    else if (destination.droppableId === hubDroppableId) {
+    else if (destination.droppableId === rootContainerId) {
         return appendToTheHubBlock(destination, source, items, gaps);
     }
-    else if (destination.droppableId !== hubDroppableId && source.droppableId !== hubDroppableId) {
+    else if (destination.droppableId !== rootContainerId && source.droppableId !== rootContainerId) {
         return moveBetweenGaps(destination, source, items, gaps);
     }
     else {

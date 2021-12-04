@@ -1,0 +1,39 @@
+@import "@/styles/var.module.scss";
+
+.tableGapArea {
+    width: 40%;
+    height: 40px;
+    background-color: $gray-blue;
+    border-radius: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    margin: 0 auto;
+
+    .dragItem {
+        width: 100%;
+    }
+}
+.rootContainer {
+    width: 100%;
+    padding: 15px;
+    min-height: 20px;
+    margin-top: 20px;
+    display: flex;
+    gap: 5px;
+    border-radius: 10px;
+    background-color: #f0f0f0;
+}
+.dragItem {
+    width: 100px;
+    height: 40px;
+    background-color: $green-80;
+    border-radius: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: $gray-0;
+    font-weight: $font-weight-bold;
+    font-size: $font-size-20;
+}
