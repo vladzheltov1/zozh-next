@@ -3,3 +3,28 @@
 .questionBlock{
     font-size: $font-size-20;
 }
+.options{
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    font-size: 24px;
+    gap: 10px;
+    margin: 20px 0;
+
+    input[type=radio]{
+        width: 18px;
+        height: 18px;
+    }
+}
+.dropArea{
+    position: relative;
+    width: max-content;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.dropItem{
+    background-color: $green-40;
+    padding: 5px 15px;
+    border-radius: 20px;
+}
