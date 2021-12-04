@@ -30,7 +30,7 @@ export const Radio: FC<IRadioProps> = (props) => {
         onChange = () => void 0,
         ...restProps
     } = props;
-    return <>
+    return <span>
         <input
             {...restProps}
             id={value}
@@ -42,5 +42,5 @@ export const Radio: FC<IRadioProps> = (props) => {
         <label htmlFor={value}>
             {title}
         </label>
-    </>
+    </span>
 }
