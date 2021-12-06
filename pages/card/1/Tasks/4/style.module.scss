@@ -1,9 +1,9 @@
 @import "@/styles/var.module.scss";
 
-.questionBlock{
+.questionBlock {
     font-size: $font-size-20;
 }
-.options{
+.options {
     width: 100%;
     display: flex;
     justify-content: center;
@@ -11,20 +11,36 @@
     gap: 10px;
     margin: 20px 0;
 
-    input[type=radio]{
+    input[type="radio"] {
         width: 18px;
         height: 18px;
     }
 }
-.dropArea{
+.dropArea {
     position: relative;
     width: max-content;
-    display: flex;
-    justify-content: center;
-    align-items: center;
+    display: inline-block;
+    margin: 2px 0;
 }
-.dropItem{
+.dropItem {
     background-color: $green-40;
     padding: 5px 15px;
     border-radius: 20px;
+}
+.bottomWordRow {
+    display: flex;
+    gap: 5px;
+    justify-content: center;
+    align-items: center;
+    font-size: $font-size-20;
+}
+.wordRowArea {
+    width: max-content;
+    min-width: 100px;
+    background: $gray-blue;
+    border-radius: 30px;
+    height: 30px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
