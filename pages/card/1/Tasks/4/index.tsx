@@ -18,18 +18,25 @@ export const Task4 = () => {
         gap3: { id: 0, value: null },
         gap4: { id: 0, value: null },
     });
-    const [items, setItems] = useState({
-        item1: { id: 0, value: "овощи" },
-        item2: { id: 1, value: "фрукты" },
-        item3: { id: 2, value: "каши" },
-    })
+    const [items, setItems] = useState([
+        { id: 0, value: "овощи" },
+        { id: 1, value: "фрукты" },
+        { id: 2, value: "каши" },
+        { id: 3, value: "молочные продукты" },
+        { id: 4, value: "чипсы" },
+        { id: 5, value: "сухарики" },
+        { id: 6, value: "лемонад" },
+        { id: 7, value: "конфеты" },
+    ])
 
     const handleCheck = (event) => {
         setCheck(event.target.defaultValue);
     }
 
     const onDragEnd = (destination, source) => {
-        const [] = reorder(destination, source, items, gaps, null);
+        const [result, resGaps] = reorder(destination, source, items, gaps, null);
+        setGaps(resGaps);
+        setItems(result);
     }
 
     const checkTask = () => { };
@@ -44,26 +51,26 @@ export const Task4 = () => {
                     {check ? (
                         <>
                             <DropArea droppableId="word1" isDropDisabled={true} className={style.dropArea}>
-                                <DragItem draggableId="vegetables" index={0} className={style.dropItem}>
-                                    <div>овощи</div>
+                                <DragItem draggableId={items[0].value} index={0} className={style.dropItem}>
+                                    <div>{items[0].value}</div>
                                 </DragItem>
                             </DropArea>
                             ,&nbsp;
                             <DropArea droppableId="word2" isDropDisabled={true} className={style.dropArea}>
-                                <DragItem draggableId="fruit" index={1} className={style.dropItem}>
-                                    <div>фрукты</div>
+                                <DragItem draggableId={items[1].value} index={1} className={style.dropItem}>
+                                    <div>{items[1].value}</div>
                                 </DragItem>
                             </DropArea>
                             ,&nbsp;
                             <DropArea droppableId="word3" isDropDisabled={true} className={style.dropArea}>
-                                <DragItem draggableId="cereals" index={2} className={style.dropItem}>
-                                    <div>каши</div>
+                                <DragItem draggableId={items[2].value} index={2} className={style.dropItem}>
+                                    <div>{items[2].value}</div>
                                 </DragItem>
                             </DropArea>
                             &nbsp;и&nbsp;
                             <DropArea droppableId="word4" isDropDisabled={true} className={style.dropArea}>
-                                <DragItem draggableId="dairyProducts" index={3} className={style.dropItem}>
-                                    <div>молочные продукты</div>
+                                <DragItem draggableId={items[3].value} index={3} className={style.dropItem}>
+                                    <div>{items[3].value}</div>
                                 </DragItem>
                             </DropArea>.&nbsp;
                         </>
@@ -77,24 +84,24 @@ export const Task4 = () => {
                     {check ? (
                         <>
                             <DropArea droppableId="word5" isDropDisabled={true} className={style.dropArea}>
-                                <DragItem draggableId="chips" index={4} className={style.dropItem}>
-                                    <div>чипсы</div>
+                                <DragItem draggableId={items[4].value} index={4} className={style.dropItem}>
+                                    <div>{items[4].value}</div>
                                 </DragItem>
                             </DropArea>,&nbsp;
                             <DropArea droppableId="word6" isDropDisabled={true} className={style.dropArea}>
-                                <DragItem draggableId="crackers" index={5} className={style.dropItem}>
-                                    <div>сухарики</div>
+                                <DragItem draggableId={items[5].value} index={5} className={style.dropItem}>
+                                    <div>{items[5].value}</div>
                                 </DragItem>
                             </DropArea>,&nbsp;
                             <DropArea droppableId="word7" isDropDisabled={true} className={style.dropArea}>
-                                <DragItem draggableId="lamonade" index={6} className={style.dropItem}>
-                                    <div>лимонад</div>
+                                <DragItem draggableId={items[6].value} index={6} className={style.dropItem}>
+                                    <div>{items[6].value}</div>
                                 </DragItem>
                             </DropArea>
                             &nbsp;и&nbsp;
                             <DropArea droppableId="word8" isDropDisabled={true} className={style.dropArea}>
-                                <DragItem draggableId="sweets" index={7} className={style.dropItem}>
-                                    <div>конфеты</div>
+                                <DragItem draggableId={items[7].value} index={7} className={style.dropItem}>
+                                    <div>{items[7].value}</div>
                                 </DragItem>
                             </DropArea>.&nbsp;
                             Как ты думаешь, кто
