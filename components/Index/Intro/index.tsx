@@ -25,7 +25,7 @@ export const IndexIntro = () => {
             </Text>
 
             {/* Button */}
-            <Button color="red" redirect="/hub"><Text size={20} bold>Начать</Text></Button>
+            <Button appearance="danger" link="/hub"><Text size={20} bold>Начать</Text></Button>
 
             {/* Background author */}
             <Text className={global_style.block__copyright__author}>
