@@ -14,9 +14,9 @@ export const Task4 = () => {
     const [check, setCheck] = useState<null | string>(null);
     const [gaps, setGaps] = useState({
         gap1: { id: 0, value: null },
-        gap2: { id: 0, value: null },
-        gap3: { id: 0, value: null },
-        gap4: { id: 0, value: null },
+        gap2: { id: 1, value: null },
+        gap3: { id: 2, value: null },
+        gap4: { id: 3, value: null },
     });
     const [items, setItems] = useState([
         { id: 0, value: "овощи" },
@@ -35,11 +35,14 @@ export const Task4 = () => {
 
     const onDragEnd = (destination, source) => {
         const [result, resGaps] = reorder(destination, source, items, gaps, null);
-        setGaps(resGaps);
         setItems(result);
+        setGaps(resGaps);
     }
 
-    const checkTask = () => { };
+    const checkTask = () => {
+        const correct = ["чипсы", "сухарики", "лемонад", "конфеты"];
+
+    };
 
     return (
         <Task title="4. Ответьте на вопрос" action={checkTask}>
@@ -159,6 +162,7 @@ export const Task4 = () => {
                                 </DragItem>
                             )}
                         </DropArea>
+                        <div style={{ fontSize: 20 }}> - вредные для здоровья продукты.</div>
                     </div>
                 )}
             </DragDropContext>
