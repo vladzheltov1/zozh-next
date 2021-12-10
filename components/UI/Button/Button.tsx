@@ -1,4 +1,3 @@
-import { Color } from '@/types/Color';
 import classNames from "classnames";
 import { useRouter } from 'next/router';
 import React from "react";
@@ -30,11 +29,6 @@ export interface IButtonProps {
      * Вариация кнопки
      */
     appearance?: ButtonAppearance,
-
-    /**
-     * Цвет фона кнопки. По умолчанию - "blue"
-     */
-    color?: Color,
 
     /**
      * Визуальная вариация кнопки с белым фоном и цветной рамкой
