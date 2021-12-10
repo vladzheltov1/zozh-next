@@ -1,8 +1,16 @@
-import React from "react";
-import classNames from "classnames";
 import { Color } from '@/types/Color';
+import classNames from "classnames";
 import { useRouter } from 'next/router';
+import React from "react";
 import * as style from "./Button.module.scss";
+
+export type ButtonAppearance =
+    | "primary"
+    | "secondary"
+    | "success"
+    | "danger"
+    | "warning"
+    | "dark";
 
 /**
  * Button properties
@@ -21,7 +29,7 @@ export interface IButtonProps {
     /**
      * Вариация кнопки
      */
-    mode?: "default" | "primary" | "secondary",
+    appearance?: ButtonAppearance,
 
     /**
      * Цвет фона кнопки. По умолчанию - "blue"
@@ -41,7 +49,7 @@ export interface IButtonProps {
     /**
      * Путь, куда будет перенаправлен пользователь при нажатии на кнопку
      */
-    redirect?: string
+    link?: string
 
     /**
      * Выключение кнопки. Она будет видна, но не доступна для действий пользователя
@@ -54,24 +62,23 @@ export const Button: React.FC<IButtonProps> = (props) => {
     const {
         children,
         type = "button",
-        mode = "default",
-        color = "blue",
+        appearance = "default",
         ghost = false,
         onClick = () => void 0,
-        redirect,
+        link,
         ...restProps
     } = props;
 
-    const action = () => redirect ? router.push(redirect) : onClick();
+    const action = () => link ? router.push(link) : onClick();
 
     const router = useRouter();
 
     const className = classNames(
         style["button"],
-        style[`button_${color}`],
+        style[`button_${appearance}`],
         {
-            [style[`button_${color}_ghost`]]: ghost && mode === "default",
-            [style[`button_${mode}`]]: mode !== "default",
+            [style[`button_${appearance}_ghost`]]: ghost && appearance !== "secondary",
+            [style[`button_${appearance}`]]: appearance !== "default",
         }
     )
 
