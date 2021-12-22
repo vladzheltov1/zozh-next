@@ -1,9 +1,6 @@
-import { Radio } from "@/components/UI";
+import { Radio, Select } from "@/components/UI";
 import { Task } from "@/core/index";
-import { DragItem, DropArea, reorder } from "@/helpers/DragAndDrop";
 import { useState } from "react";
-import { DragDropContext } from "react-beautiful-dnd";
-import { ChooseList } from "./ChooseList";
 import style from "./style.module.scss";
 
 const options = {
@@ -14,20 +11,31 @@ const options = {
 export const Task4 = () => {
     const [check, setCheck] = useState<null | string>(null);
 
+    const [values, setValues] = useState({
+        value1: null,
+        value2: null,
+        value3: null,
+        value4: null
+    });
+
     const [items, setItems] = useState({
-        group1: [{ id: 0, value: "овощи", isChosen: false }, { id: 1, value: "чипсы", isChosen: false }],
-        group2: [{ id: 0, value: "сухарики", isChosen: false }, { id: 1, value: "фрукты", isChosen: false }],
-        group3: [{ id: 0, value: "каши", isChosen: false }, { id: 1, value: "лемонад", isChosen: false }],
-        group4: [{ id: 0, value: "конфеты", isChosen: false }, { id: 1, value: "молочные продукты", isChosen: false }]
+        group1: [{ id: 0, value: "---" }, { id: 1, value: "овощи" }, { id: 2, value: "чипсы" }],
+        group2: [{ id: 0, value: "---" }, { id: 1, value: "сухарики" }, { id: 2, value: "фрукты" }],
+        group3: [{ id: 0, value: "---" }, { id: 1, value: "каши" }, { id: 2, value: "лемонад" }],
+        group4: [{ id: 0, value: "---" }, { id: 1, value: "конфеты" }, { id: 2, value: "молочные продукты" }]
     })
 
     const handleCheck = (event) => {
         setCheck(event.target.defaultValue);
     }
 
+    const handleClick = (event, value) => {
+        setValues({ ...values, [values[value]]: event.target.value });
+    }
+
     const checkTask = () => {
         const correct = ["чипсы", "сухарики", "лемонад", "конфеты"];
-
+        console.log(values);
     };
 
     return (
@@ -58,10 +66,10 @@ export const Task4 = () => {
                 {check && (
                     <div className={style.bottomWordRow}>
                         <div style={{ fontSize: 20 }}>потому что</div>
-                        <ChooseList list={items.group1} />,
-                        <ChooseList list={items.group2} />,
-                        <ChooseList list={items.group3} /> и
-                        <ChooseList list={items.group4} />
+                        <Select list={items.group1} onChange={() => handleClick(event, "value1")} />,
+                        <Select list={items.group2} onChange={() => handleClick(event, "value2")} />,
+                        <Select list={items.group3} onChange={() => handleClick(event, "value3")} /> и
+                        <Select list={items.group4} onChange={() => handleClick(event, "value4")} />
                         <div style={{ fontSize: 20 }}> - вредные для здоровья продукты.</div>
                     </div>
                 )}
