@@ -2,11 +2,13 @@ import { Radio, Select } from "@/components/UI";
 import { Task } from "@/core/index";
 import { useState } from "react";
 import style from "./style.module.scss";
+import { onAnswerSubmit } from "@/core/helpers";
 
 const options = {
     misha: "misha",
     kola: "kola"
 }
+
 
 export const Task4 = () => {
     const [check, setCheck] = useState<null | string>(null);
@@ -25,17 +27,17 @@ export const Task4 = () => {
         group4: [{ id: 0, value: "---" }, { id: 1, value: "конфеты" }, { id: 2, value: "молочные продукты" }]
     })
 
-    const handleCheck = (event) => {
-        setCheck(event.target.defaultValue);
-    }
+    const handleCheck = (event) => setCheck(event.target.defaultValue);
 
-    const handleClick = (event, value) => {
-        setValues({ ...values, [values[value]]: event.target.value });
-    }
+    const handleClick = (event, value) => setValues({ ...values, [value]: event.target.value });
 
     const checkTask = () => {
         const correct = ["чипсы", "сухарики", "лемонад", "конфеты"];
-        console.log(values);
+        let isCorrect = true;
+        for (let key in values) {
+            if (correct.indexOf(values[key]) === -1 || check === options.kola) isCorrect = false;
+        }
+        onAnswerSubmit(isCorrect);
     };
 
     return (
