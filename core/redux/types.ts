@@ -1,4 +1,4 @@
-import { Color } from "@/types/Color";
+import { ButtonAppearance } from "@/components/UI";
 
 export type Action = {
     type: string,
@@ -9,6 +9,6 @@ export type CardStoreState = {
     score: number
 }
 export type TaskStoreState = {
-    buttonColor: Color,
+    buttonAppearance: ButtonAppearance,
     buttonDisabled: boolean
 }

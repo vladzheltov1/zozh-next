@@ -11,22 +11,22 @@ const onAnswerSubmit = (correct: boolean) => {
     if (correct) {
         cardStore.dispatch({ type: cardActions.CHANGE_SCORE, data: 100 });
         taskStore.dispatch({ type: taskActions.SET_BUTTON_DISABLED, data: true });
-        taskStore.dispatch({ type: taskActions.SET_BUTTON_COLOR, data: "green" });
+        taskStore.dispatch({ type: taskActions.SET_BUTTON_COLOR, data: "success" });
 
         setTimeout(() => {
             cardStore.dispatch({ type: cardActions.CHANGE_NODE });
             taskStore.dispatch({ type: taskActions.SET_BUTTON_DISABLED, data: false });
-            taskStore.dispatch({ type: taskActions.SET_BUTTON_COLOR, data: "blue" });
+            taskStore.dispatch({ type: taskActions.SET_BUTTON_COLOR, data: "primary" });
         }, 3000);
 
         return;
     }
 
     cardStore.dispatch({ type: cardActions.CHANGE_SCORE, data: -10 });
-    taskStore.dispatch({ type: taskActions.SET_BUTTON_COLOR, data: "red" });
+    taskStore.dispatch({ type: taskActions.SET_BUTTON_COLOR, data: "danger" });
 
     setTimeout(() => {
-        taskStore.dispatch({ type: taskActions.SET_BUTTON_COLOR, data: "blue" });
+        taskStore.dispatch({ type: taskActions.SET_BUTTON_COLOR, data: "primary" });
     }, 2000);
 
     return;
