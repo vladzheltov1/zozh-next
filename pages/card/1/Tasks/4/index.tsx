@@ -9,7 +9,6 @@ const options = {
     kola: "kola"
 }
 
-
 export const Task4 = () => {
     const [check, setCheck] = useState<null | string>(null);
 
