@@ -1,0 +1,13 @@
+.tabTitleList{
+    display: flex;
+}
+
+.tabTitleItem{
+    padding: 8px 15px;
+    background-color: #f0f0f0;
+
+    &:hover{
+        background-color: #515151;
+        cursor: pointer;
+    }
+}

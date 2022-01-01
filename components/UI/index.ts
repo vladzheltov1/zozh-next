@@ -6,3 +6,4 @@ export * from "./Select";
 export * from "./Table";
 export * from "./Radio";
 export * from "./Text";
+export * from "./Tabs";
