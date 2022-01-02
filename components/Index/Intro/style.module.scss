@@ -1,14 +1,14 @@
 @import "@/styles/var.module.scss";
 
-.intro_block{
+.intro_block {
     height: calc(100vh - 67px);
-    background-image: url(/pictures/landing/intro.jpg);
+    background-image: url(https://images.unsplash.com/photo-1502252430442-aac78f397426?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2070&q=80);
     background-position: top;
     background-size: cover;
     background-attachment: fixed;
     position: relative;
 }
-.intro_block__inner{
+.intro_block__inner {
     max-width: 900px;
     margin: 0 auto;
     height: 100%;
@@ -19,7 +19,7 @@
     text-align: center;
 }
 
-.intro_block__title{
+.intro_block__title {
     margin: 0;
     display: flex;
     flex-wrap: wrap;
