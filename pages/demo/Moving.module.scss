@@ -1,0 +1,36 @@
+@import "@/styles/var.module.scss";
+
+.root{
+    border: 2px dashed $green-60;
+    border-radius: 10px;
+    flex-wrap: wrap;
+    display: flex;
+    padding: 8px;
+    width: 100%;
+    gap: 5px;
+}
+
+.draggableItem{
+    padding: 8px 15px;
+    background: $green-100;
+    border-radius: 20px;
+    text-align: center;
+    width: fit-content;
+    color: $gray-0;
+}
+
+.gapsArea{
+    display: flex;
+    flex-wrap: wrap;
+    gap: 5px;
+    justify-content: center;
+    align-items: center;
+
+}
+
+.emptyGap{
+    width: 150px;
+    height: 30px;
+    background-color: $blue-40;
+    border-radius: 20px;
+}
