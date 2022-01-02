@@ -1,13 +1,28 @@
-.tabTitleList{
+@import "@/styles/var.module.scss";
+
+.tabContainer {
+    width: 100%;
+    position: relative;
+    min-height: 200px;
+}
+
+.tabTitleList {
     display: flex;
 }
 
-.tabTitleItem{
-    padding: 8px 15px;
+.tabTitleItem {
+    padding: 10px 15px;
     background-color: #f0f0f0;
-
-    &:hover{
-        background-color: #515151;
+    font-size: $font-size-14;
+    &.activeTab {
+        background-color: $blue-40;
+    }
+    &:hover {
         cursor: pointer;
     }
+}
+
+.tabBody {
+    border: 2px solid $blue-40;
+    padding: 10px;
 }

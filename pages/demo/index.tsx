@@ -1,15 +1,16 @@
-import { Tabs, Tab } from "@/components/UI";
+import { Space, Tab, Tabs } from "@/components/UI";
 import { Layout } from "@/layouts/Layout";
 
 const Demo = () => {
     return <Layout>
         <div className="wrapper">
-            <Tabs>
-                <Tab title="1. Текст">
-                    Проверка 1
+            <Space height={20} />
+            <Tabs accentColor="green">
+                <Tab title="Сопоставление">
+                    Сопоставление
                 </Tab>
-                <Tab title="2. Текст">
-                    Проверка 2
+                <Tab title="Передвижение">
+                    Передвижение
                 </Tab>
             </Tabs>
         </div>
