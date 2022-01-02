@@ -1,5 +1,4 @@
-import { Theory } from "@/components/Cards/Theory";
-import { Card } from "@/core/index";
+import { Card, Theory } from "@/core/index";
 import { Layout } from "@/layouts/Layout";
 import { Task1 } from "./Tasks/1";
 import { Task2 } from "./Tasks/2";
