@@ -69,7 +69,7 @@ const moveFromHub = (destination, source, items, gaps) => {
  * @returns [result, gaps]
  */
 export const reorder = (destination, source, items, gaps, rootContainerId: string) => {
-    // Нужно, чтобы избежать ошибок
+
     if (!destination || !source) return [items, gaps];
 
     if (destination.droppableId === source.droppableId) {
