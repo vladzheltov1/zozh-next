@@ -5,7 +5,7 @@ import { dragItemStyles } from "../styles";
 export interface IDragItemProps {
     draggableId: string,
     index: number,
-    children: Node,
+    children: any,
     isDragDisabled?: boolean
 }
 

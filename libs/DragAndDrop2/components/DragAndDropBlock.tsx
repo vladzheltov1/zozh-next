@@ -2,7 +2,7 @@ import { FC } from "react";
 import { DragDropContext, Responders } from "react-beautiful-dnd";
 
 export interface IDragAndDropBlockProps extends Responders {
-    children: Node | null,
+    children: any,
 }
 
 export const DragAndDropBlock: FC<IDragAndDropBlockProps> = (props) => {

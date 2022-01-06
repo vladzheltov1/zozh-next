@@ -3,18 +3,18 @@ import { Direction, Droppable, DroppableMode } from 'react-beautiful-dnd';
 import { dropAreaStyles } from "../styles";
 
 export interface IDropAreaProps {
-    children: Node,
+    children: any,
     droppableId: string,
-    show: boolean,
+    show?: boolean,
     mode?: DroppableMode,
     direction?: Direction,
     isDropDisabled?: boolean,
-    className: string
+    className?: string
 }
 
 export const DropArea: FC<IDropAreaProps> = (props) => {
 
-    const { children, droppableId, show, mode, direction, isDropDisabled, className } = props;
+    const { children, droppableId, show = true, mode, direction, isDropDisabled, className } = props;
 
     return (
         <Droppable droppableId={droppableId} mode={mode} direction={direction} isDropDisabled={isDropDisabled}>
