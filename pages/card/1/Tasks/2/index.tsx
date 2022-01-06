@@ -29,7 +29,7 @@ export const Task2: FC = () => {
 
     const onDragEnd = (result) => {
         const { destination, source } = result;
-        const [resultItems, resultGaps] = reorder(destination, source, items, gaps, "menu_box");
+        const [resultItems, resultGaps] = reorder(destination, source, items, gaps, "root");
 
         setItems(resultItems);
         setGaps(resultGaps);
@@ -60,7 +60,7 @@ export const Task2: FC = () => {
                 <DragDropContext
                     onDragEnd={onDragEnd}
                 >
-                    <DropArea droppableId="menu_box" direction="horizontal" className={style.word_container}>
+                    <DropArea droppableId="root" direction="horizontal" className={style.word_container}>
                         {items.map((item, index) => (
                             <DragItem
                                 key={item.id}
