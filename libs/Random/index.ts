@@ -13,6 +13,4 @@ class Random {
     }
 }
 
-const random = new Random();
-
-export default random;
+export default Random;
