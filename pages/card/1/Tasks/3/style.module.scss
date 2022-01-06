@@ -17,13 +17,13 @@
 }
 .rootContainer {
     width: 100%;
-    padding: 15px;
+    padding: 10px;
     min-height: 20px;
     margin-top: 20px;
     display: flex;
     gap: 5px;
     border-radius: 10px;
-    background-color: #f0f0f0;
+    border: 2px dashed $green-60;
 }
 .dragItem {
     width: 100px;
