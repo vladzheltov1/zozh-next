@@ -1,6 +1,6 @@
 import { Table, TableColumn, TableRow } from "@/components/UI";
 import { onAnswerSubmit, Task } from "@/core/index";
-import { DragItem, DropArea, reorder } from "@/helpers/DragAndDrop";
+import { DragItem, DropArea, reorder } from "@/libs/DragAndDrop";
 import { useState } from "react";
 import { DragDropContext } from "react-beautiful-dnd";
 import style from "./style.module.scss";
