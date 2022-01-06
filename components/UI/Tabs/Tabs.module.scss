@@ -1,9 +1,10 @@
 @import "@/styles/var.module.scss";
 
 .tabContainer {
-    width: 100%;
+    display: block;
     position: relative;
     min-height: 200px;
+    margin: 0 10px;
 }
 
 .tabTitleList {
