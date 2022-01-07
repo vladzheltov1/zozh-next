@@ -1,9 +1,21 @@
 @import "@/styles/var.module.scss";
 
+.dropAreaRoot{
+    gap: 5px;
+    width: 100%;
+    padding: 8px;
+    display: flex;
+    flex-wrap: wrap;
+    border-radius: 10px;
+    border: 2px dashed $green-60;
+}
+
 .dropArea {
-    width: 150px;
-    min-width: 150px;
-    min-height: 40px;
-    background-color: $gray-blue;
+    background: $gray-blue;
+    display: inline-block;
     border-radius: 30px;
+    width: 200px;
+    height: 40px;
+    margin: 3px 10px;
+    position: relative;
 }

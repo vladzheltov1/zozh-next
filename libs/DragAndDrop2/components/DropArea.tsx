@@ -2,6 +2,7 @@ import { FC } from "react";
 import { Direction, Droppable, DroppableMode } from 'react-beautiful-dnd';
 import { dropAreaStyles } from "../styles";
 
+export type Outlook = "root" | "gap";
 export interface IDropAreaProps {
     children: any,
     droppableId: string,
@@ -9,12 +10,13 @@ export interface IDropAreaProps {
     mode?: DroppableMode,
     direction?: Direction,
     isDropDisabled?: boolean,
-    className?: string
+    className?: string,
+    outLook?: Outlook
 }
 
 export const DropArea: FC<IDropAreaProps> = (props) => {
 
-    const { children, droppableId, show = true, mode, direction, isDropDisabled, className } = props;
+    const { children, droppableId, show = true, mode, direction, isDropDisabled, className, outLook } = props;
 
     return (
         <Droppable droppableId={droppableId} mode={mode} direction={direction} isDropDisabled={isDropDisabled}>
@@ -23,7 +25,7 @@ export const DropArea: FC<IDropAreaProps> = (props) => {
                     {show && (
                         <div
                             ref={provided.innerRef}
-                            className={`${dropAreaStyles.dropArea} ${className}`}
+                            className={`${dropAreaStyles.dropArea}${outLook === "root" && "Root"} ${className || null}`}
                             {...provided.droppableProps}
                         >
                             {children}
