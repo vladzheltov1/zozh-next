@@ -1,11 +1,5 @@
 import { Container, ContainerBundle } from "..";
 
-export type IItems = string;
-
-export type IGaps = {
-    [key: string]: string | null
-}
-
 export class DragAndDrop {
     private result: any;
     private containers: ContainerBundle<Container>;
