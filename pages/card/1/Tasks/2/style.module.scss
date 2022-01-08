@@ -17,10 +17,11 @@
     font-size: 1rem;
 }
 
-.task1_text {
+.task1Text {
     display: flex;
     align-items: center;
     flex-wrap: wrap;
+    gap: 7px;
 }
 
 .intext_droppableArea {
