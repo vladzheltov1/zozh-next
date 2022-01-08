@@ -1,5 +1,6 @@
 import { Space, Tab, Tabs } from "@/components/UI";
 import { Layout } from "@/layouts/Layout";
+import { Matching } from "./Matching";
 import { Moving } from "./Moving";
 
 const Demo = () => {
@@ -11,7 +12,7 @@ const Demo = () => {
                     <Moving />
                 </Tab>
                 <Tab title="Сопоставление">
-                    Сопоставление
+                    <Matching />
                 </Tab>
             </Tabs>
         </div>
