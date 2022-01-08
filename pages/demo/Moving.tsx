@@ -1,11 +1,11 @@
 import { Space, Text } from "@/components/UI";
-import { DragItem, DropArea, DragAndDrop, ContainerBundle, Container } from "@/libs/DragAndDrop2/";
+import { ContainerBundle, DragAndDrop, DragItem, DropArea } from "@/libs/DragAndDrop2/";
 import { FC, useState } from "react";
 import { DragDropContext } from "react-beautiful-dnd";
 import styles from "./Moving.module.scss";
 
 export const Moving: FC = () => {
-    const [containers, setContainers] = useState<ContainerBundle<Container>>({
+    const [containers, setContainers] = useState<ContainerBundle>({
         rootContainer: ["овощи", "фрукты", "фруктовые напитки"],
         gap1: null,
         gap2: null,
@@ -22,40 +22,40 @@ export const Moving: FC = () => {
 
     return <>
         <DragDropContext onDragEnd={onDragEnd}>
-            {/* Root container */}
-            <div>
-                <DropArea direction={"horizontal"} droppableId={ROOT_CONTAINER}>
-                    <div className={styles.root}>
-                        {containers.rootContainer.map((item, index) => (
-                            <DragItem draggableId={`rootItem-${index}`} key={index} index={index} className={styles.draggableItem}>
-                                {item}
-                            </DragItem>
-                        ))}
-                    </div>
-                </DropArea>
-            </div>
+            <Text bold size={21}>
+                Перетащите элементы в подходящие пропуски
+            </Text>
 
             <Space height={10} />
 
-            {/* Gaps area */}
-            <Text className={styles.gapsArea}>
-                Чтобы оставаться здоровым, нужно есть
-                <DropArea droppableId="gap1" direction="vertical" className={styles.emptyGap}>
+            <DropArea direction={"horizontal"} droppableId={ROOT_CONTAINER} outLook="root">
+                {containers.rootContainer.map((item, index) => (
+                    <DragItem draggableId={`rootItem-${index}`} key={index} index={index} className={styles.draggableItem}>
+                        {item}
+                    </DragItem>
+                ))}
+            </DropArea>
+
+            <Space height={10} />
+
+            <Text className={styles.line}>
+                <Text>Чтобы оставаться здоровым, нужно есть</Text>
+                <DropArea droppableId="gap1" direction="vertical" className={styles.emptyGap} isDropDisabled={containers.gap1 !== null}>
                     {containers.gap1 ? (
                         <DragItem draggableId={`gap1`} index={0} className={styles.draggableItem}>
                             {containers.gap1}
                         </DragItem>
                     ) : null}
                 </DropArea>,&nbsp;
-                <DropArea droppableId="gap2" direction="vertical" className={styles.emptyGap}>
+                <DropArea droppableId="gap2" direction="vertical" className={styles.emptyGap} isDropDisabled={containers.gap2 !== null}>
                     {containers.gap2 && (
                         <DragItem draggableId={`gap2`} index={1} className={styles.draggableItem}>
                             {containers.gap2}
                         </DragItem>
                     )}
                 </DropArea>
-                и пить
-                <DropArea droppableId="gap3" direction="vertical" className={styles.emptyGap}>
+                <Text>и пить</Text>
+                <DropArea droppableId="gap3" direction="vertical" className={styles.emptyGap} isDropDisabled={containers.gap3 !== null}>
                     {containers.gap3 ? (
                         <DragItem draggableId={`gap3`} index={2} className={styles.draggableItem}>
                             {containers.gap3}

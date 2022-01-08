@@ -1,10 +1,15 @@
 @import "@/styles/var.module.scss";
 
 .dragItem {
-    padding: 10px 30px;
-    border-radius: 30px;
     background-color: $green-100;
-    color: $gray-0;
+    border-radius: 50px;
     text-align: center;
-    font-size: 1rem;
+    color: $gray-0;
+    padding: 6px 15px;
+    width: fit-content;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    font-size: $font-size-16 !important;
 }

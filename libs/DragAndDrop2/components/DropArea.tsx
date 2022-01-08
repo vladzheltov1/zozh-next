@@ -15,8 +15,9 @@ export interface IDropAreaProps {
 }
 
 export const DropArea: FC<IDropAreaProps> = (props) => {
-
     const { children, droppableId, show = true, mode, direction, isDropDisabled, className, outLook } = props;
+
+    const defaultClassName = `${outLook === "root" ? dropAreaStyles.dropAreaRoot : dropAreaStyles.dropArea}`;
 
     return (
         <Droppable droppableId={droppableId} mode={mode} direction={direction} isDropDisabled={isDropDisabled}>
@@ -25,7 +26,7 @@ export const DropArea: FC<IDropAreaProps> = (props) => {
                     {show && (
                         <div
                             ref={provided.innerRef}
-                            className={`${dropAreaStyles.dropArea}${outLook === "root" && "Root"} ${className || null}`}
+                            className={`${defaultClassName} ${className || null}`}
                             {...provided.droppableProps}
                         >
                             {children}

@@ -4,11 +4,6 @@ import { DragAndDrop, DragAndDropBlock, DragItem, DropArea, IContainerBundle, RO
 import { FC, useState } from "react";
 import style from "./style.module.scss";
 
-export interface IItem {
-    id: number,
-    value: string
-}
-
 export const Task2: FC = () => {
     const [containers, setContainer] = useState<IContainerBundle>({
         rootContainer: ["профилактику", "жизни", "укрепление", "образ", "развитие"],

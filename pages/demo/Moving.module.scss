@@ -1,35 +1,8 @@
 @import "@/styles/var.module.scss";
 
-// .root {
-//     gap: 5px;
-//     width: 100%;
-//     padding: 8px;
-//     display: flex;
-//     flex-wrap: wrap;
-//     border-radius: 10px;
-//     border: 2px dashed $green-60;
-// }
-
-// .draggableItem {
-//     color: $gray-0;
-//     padding: 8px 15px;
-//     text-align: center;
-//     width: fit-content;
-//     border-radius: 20px;
-//     background: $green-100;
-// }
-
-// .gapsArea {
-//     gap: 5px;
-//     display: flex;
-//     flex-wrap: wrap;
-//     align-items: center;
-//     justify-content: center;
-// }
-
-// .emptyGap {
-//     width: 150px;
-//     height: 30px;
-//     border-radius: 20px;
-//     background-color: $gray-blue;
-// }
+.line {
+    gap: 7px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}

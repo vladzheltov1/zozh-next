@@ -6,18 +6,19 @@ export interface IDragItemProps {
     draggableId: string,
     index: number,
     children: any,
-    isDragDisabled?: boolean
+    isDragDisabled?: boolean,
+    className?: string
 }
 
 export const DragItem: FC<IDragItemProps> = (props) => {
 
-    const { draggableId, index, children, isDragDisabled } = props;
+    const { draggableId, index, children, isDragDisabled, className } = props;
 
     return (
         <Draggable draggableId={draggableId} index={index} isDragDisabled={isDragDisabled}>
             {(provided) => (
                 <div
-                    className={dragItemStyles.dragItem}
+                    className={`${dragItemStyles.dragItem} ${className || null}`}
                     ref={provided.innerRef}
                     {...provided.draggableProps}
                     {...provided.dragHandleProps}

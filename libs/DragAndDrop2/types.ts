@@ -1,6 +1,6 @@
+export type ContainerData = string;
 
-export type Container = string | string[];
-
-export type ContainerBundle<Container> = {
-    [key: string]: Container
+export interface IContainerBundle {
+    rootContainer: ContainerData[],
+    [key: string]: ContainerData
 }
