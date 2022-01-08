@@ -1,10 +1,10 @@
-import { Container, ContainerBundle } from "..";
+import { IContainerBundle } from "..";
 
 export class DragAndDrop {
     private result: any;
-    private containers: ContainerBundle<Container>;
+    private containers: IContainerBundle;
 
-    public constructor(result: any, containers: ContainerBundle<Container>) {
+    public constructor(result: any, containers: IContainerBundle) {
         this.result = result;
         this.containers = containers;
     }
