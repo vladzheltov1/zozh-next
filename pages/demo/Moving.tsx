@@ -1,18 +1,16 @@
 import { Space, Text } from "@/components/UI";
-import { ContainerBundle, DragAndDrop, DragItem, DropArea } from "@/libs/DragAndDrop2/";
+import { DragAndDrop, DragItem, DropArea, IContainerBundle, ROOT_CONTAINER } from "@/libs/DragAndDrop2/";
 import { FC, useState } from "react";
 import { DragDropContext } from "react-beautiful-dnd";
 import styles from "./Moving.module.scss";
 
 export const Moving: FC = () => {
-    const [containers, setContainers] = useState<ContainerBundle>({
+    const [containers, setContainers] = useState<IContainerBundle>({
         rootContainer: ["овощи", "фрукты", "фруктовые напитки"],
         gap1: null,
         gap2: null,
         gap3: null
     })
-
-    const ROOT_CONTAINER = "rootContainer";
 
     const onDragEnd = (result) => {
         const dnd = new DragAndDrop(result, containers);
