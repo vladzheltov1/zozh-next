@@ -45,7 +45,7 @@ export const Matcher: FC<IMatcherProps> = (props) => {
     const makePair = () => {
         if (chosen.left === null || chosen.right === null) return;
 
-        const color = random.getColor(0.4);
+        const color = random.getColor(0.7);
         const singlePair = { ...chosen, color };
 
         setPairs([...pairs, singlePair]);

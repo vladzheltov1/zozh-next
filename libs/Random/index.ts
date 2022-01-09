@@ -17,8 +17,8 @@ class Random {
      * @returns random color in RGB format
      */
     public getColor(opacity: number) {
-        const o = Math.round, r = Math.random, s = 255;
-        return `rgba(${o(r() * s)}, ${o(r() * s)}, ${o(r() * s)}, ${opacity})`;
+        const randomInt = () => this.getInt(0, 255);
+        return `rgba(${randomInt()}, ${randomInt()}, ${randomInt()}, ${opacity})`;
     }
 }
 
