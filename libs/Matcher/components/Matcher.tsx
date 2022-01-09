@@ -11,7 +11,7 @@ export interface IMatcherProps {
 /**
  * @todo 1. Менять цвет шарика, когда элемент выбран(находится в паре)/активен
  *       2. Рандомно генерировать цвет фона по клику на левый элемент, чтобы потом поставить его как цвет пары.
- *       3. Сделать цвета из рандомной генерации более яркими, найти способ избегать тусклых цветов.  
+ *       3. Переделать систему обновления состояния (функция вызывается при любом обновлении компонента)
  */
 export const Matcher: FC<IMatcherProps> = (props) => {
     const { leftList, rightList } = props;
@@ -88,7 +88,7 @@ export const Matcher: FC<IMatcherProps> = (props) => {
                         key={item}
                         onClick={() => onRightClick(item)}
                         style={getStyleForItem(item, "right")}
-                        className={`${styles.rightListItem} ${chosen.right === item && styles.chosenItem}`}
+                        className={`${styles.rightListItem}`}
                     >
                         {item}
                     </div>
