@@ -1,3 +1,4 @@
+import { useStateWithCallback } from "@/hooks/useStateWithCallback";
 import Random from "@/libs/Random";
 import { CSSProperties, FC, useState } from "react";
 import { MatcherManager } from "../scripts";
@@ -18,7 +19,7 @@ export const Matcher: FC<IMatcherProps> = (props) => {
 
     const chosenInitialState = { left: null, right: null };
 
-    const [chosen, setChosen] = useState(chosenInitialState);
+    const [chosen, setChosen] = useStateWithCallback(chosenInitialState);
     const [pairs, setPairs] = useState([]);
 
     const manager = new MatcherManager(pairs);
@@ -35,7 +36,7 @@ export const Matcher: FC<IMatcherProps> = (props) => {
         if (!chosen.left) return;
 
         prepareForAction(item);
-        setChosen({ ...chosen, right: item });
+        setChosen({ ...chosen, right: item }, () => makePair());
     }
 
     const prepareForAction = (item) => {
@@ -43,6 +44,7 @@ export const Matcher: FC<IMatcherProps> = (props) => {
     }
 
     const makePair = () => {
+        console.log("Make pair is called");
         if (chosen.left === null || chosen.right === null) return;
 
         const color = random.getColor(0.7);
@@ -64,9 +66,9 @@ export const Matcher: FC<IMatcherProps> = (props) => {
         return style;
     }
 
-    // Вызывается каждый раз, когда происходит перересовка компонента
-    // Должен быть способ сделать это по-другому
-    makePair();
+    // // Вызывается каждый раз, когда происходит перересовка компонента
+    // // Должен быть способ сделать это по-другому
+    // makePair();
 
     return (
         <div className={styles.listWrapper}>
