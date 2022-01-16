@@ -4,12 +4,7 @@ export const useStateWithCallback = (initialState) => {
     const [state, setState] = useState(initialState);
 
     const isFirstLoad = useRef(true);
-    const callbackFunction = useRef(null);
-
-    const setCallbackState = (updatedState, callback?: Function) => {
-        callbackFunction.current = callback;
-        setState(updatedState);
-    }
+    const callbackFunction = useRef<Function>(null);
 
     useEffect(() => {
         if (isFirstLoad.current) {
@@ -20,8 +15,9 @@ export const useStateWithCallback = (initialState) => {
         callbackFunction.current?.(state);
     }, [state]);
 
-    const isFunction = (candidate): Boolean => {
-        return typeof candidate === "function";
+    const setCallbackState = (updatedState: any, callback?: Function) => {
+        callbackFunction.current = callback;
+        setState(updatedState);
     }
 
     return [state, setCallbackState];

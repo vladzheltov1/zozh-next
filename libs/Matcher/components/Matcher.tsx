@@ -10,6 +10,11 @@ export interface IMatcherProps {
 }
 
 /**
+ * Локальный тип
+ */
+type Position = "left" | "right";
+
+/**
  * @todo 1. Менять цвет шарика, когда элемент выбран(находится в паре)/активен
  *       2. Рандомно генерировать цвет фона по клику на левый элемент, чтобы потом поставить его как цвет пары.
  *       3. Переделать систему обновления состояния (функция вызывается при любом обновлении компонента)
@@ -44,8 +49,9 @@ export const Matcher: FC<IMatcherProps> = (props) => {
     }
 
     const makePair = () => {
-        console.log("Make pair is called");
         if (chosen.left === null || chosen.right === null) return;
+
+        console.log("Make pair called!");
 
         const color = random.getColor(0.7);
         const singlePair = { ...chosen, color };
@@ -54,7 +60,7 @@ export const Matcher: FC<IMatcherProps> = (props) => {
         setChosen(chosenInitialState);
     }
 
-    const getStyleForItem = (value: string, position: "left" | "right"): CSSProperties => {
+    const getStyleForItem = (value: string, position: Position): CSSProperties => {
         const style = { backgroundColor: "" };
 
         pairs.forEach((pair) => {
@@ -65,10 +71,6 @@ export const Matcher: FC<IMatcherProps> = (props) => {
 
         return style;
     }
-
-    // // Вызывается каждый раз, когда происходит перересовка компонента
-    // // Должен быть способ сделать это по-другому
-    // makePair();
 
     return (
         <div className={styles.listWrapper}>
