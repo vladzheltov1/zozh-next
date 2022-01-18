@@ -16,9 +16,17 @@ class Random {
      * 
      * @returns random color in RGB format
      */
-    public getColor(opacity: number) {
-        const randomInt = () => this.getInt(0, 255);
-        return `rgba(${randomInt()}, ${randomInt()}, ${randomInt()}, ${opacity})`;
+    public getColor(opacity: number = 1) {
+        const randomColor = (() => {
+            return () => {
+                var h = this.getInt(0, 360);
+                var s = this.getInt(42, 98);
+                var l = this.getInt(40, 90);
+                return `hsla(${h},${s}%,${l}%, ${opacity})`;
+            };
+        })();
+
+        return randomColor();
     }
 }
 
