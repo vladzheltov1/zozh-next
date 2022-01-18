@@ -1,6 +1,5 @@
-import { useStateWithCallback } from "@/hooks/useStateWithCallback";
 import Random from "@/libs/Random";
-import { CSSProperties, FC, useState } from "react";
+import { CSSProperties, FC, useEffect, useState } from "react";
 import { MatcherManager } from "../scripts";
 import styles from "../styles/Matcher.module.scss";
 
@@ -17,14 +16,13 @@ type Position = "left" | "right";
 /**
  * @todo 1. Менять цвет шарика, когда элемент выбран(находится в паре)/активен
  *       2. Рандомно генерировать цвет фона по клику на левый элемент, чтобы потом поставить его как цвет пары.
- *       3. Переделать систему обновления состояния (функция вызывается при любом обновлении компонента)
  */
 export const Matcher: FC<IMatcherProps> = (props) => {
     const { leftList, rightList } = props;
 
     const chosenInitialState = { left: null, right: null };
 
-    const [chosen, setChosen] = useStateWithCallback(chosenInitialState);
+    const [chosen, setChosen] = useState(chosenInitialState);
     const [pairs, setPairs] = useState([]);
 
     const manager = new MatcherManager(pairs);
@@ -41,8 +39,13 @@ export const Matcher: FC<IMatcherProps> = (props) => {
         if (!chosen.left) return;
 
         prepareForAction(item);
-        setChosen({ ...chosen, right: item }, () => makePair());
+        setChosen({ ...chosen, right: item });
     }
+
+    // TODO: найти способ вынести данный функционал в кастомный хук
+    useEffect(() => {
+        makePair();
+    }, [chosen])
 
     const prepareForAction = (item) => {
         setPairs(manager.checkIfExistsAndDeletePair(item));
@@ -50,8 +53,6 @@ export const Matcher: FC<IMatcherProps> = (props) => {
 
     const makePair = () => {
         if (chosen.left === null || chosen.right === null) return;
-
-        console.log("Make pair called!");
 
         const color = random.getColor(0.7);
         const singlePair = { ...chosen, color };
