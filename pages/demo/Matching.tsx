@@ -4,8 +4,8 @@ import { Space, Text } from "@/components/UI";
 
 export const Matching: FC = () => {
     const [lists, setLists] = useState({
-        left: ["Text 1", "Text 2"],
-        right: ["Right 1", "Right 2"]
+        left: ["Правильное", "Утренняя"],
+        right: ["пробежка", "питание"]
     });
 
     return (
