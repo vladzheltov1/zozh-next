@@ -14,7 +14,7 @@ class Random {
 
     /**
      * 
-     * @returns random color in RGB format
+     * @returns random color in HSLA format
      */
     public getColor(opacity: number = 1) {
         const randomColor = (() => {
