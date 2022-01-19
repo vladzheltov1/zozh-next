@@ -39,7 +39,7 @@ export const Footer: FC = () => {
                             <Space height={5} />
                             <Column key={item.title}>
                                 {item.links.map((link) => (
-                                    <a href={link.link} key={link.title} className={footerStyle.itemWithIcon} target="_blank" rel="noreferrer">
+                                    <a href={link.link} key={link.title} className={footerStyle.itemWithIcon} target={link.link.includes("https") ? "_blank" : "_self"} rel="noreferrer">
                                         {link.icon && (link.icon)}
                                         {link.title}
                                     </a>
