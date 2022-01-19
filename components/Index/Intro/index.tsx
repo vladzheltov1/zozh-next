@@ -15,7 +15,7 @@ export const IndexIntro = () => {
             </Text>
 
             {/* Quote */}
-            <Text size={"1.3rem"} color={colors.gray0} italic>
+            <Text size={"1.3rem"} color={colors.gray0} light italic>
                 <Text mode="span" color={colors.extraGreen}>&#171;</Text>
                 Единственный способ сохранить здоровье — это есть то, чего не хочешь, пить то, чего не любишь, и делать то, что не нравится
                 <Text mode="span" color={colors.extraGreen}>&#187;</Text>
