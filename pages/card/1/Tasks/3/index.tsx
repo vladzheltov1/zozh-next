@@ -1,51 +1,37 @@
-import { Table, TableColumn, TableRow } from "@/components/UI";
+import { Space, Table, TableColumn, TableRow } from "@/components/UI";
 import { onAnswerSubmit, Task } from "@/core/index";
-import { DragItem, DropArea, reorder } from "@/helpers/DragAndDrop";
-import { useState } from "react";
-import { DragDropContext } from "react-beautiful-dnd";
+import { DragAndDrop, DragAndDropBlock, DragItem, DropArea, ROOT_CONTAINER, useContainerState } from "@/libs/DragAndDrop2";
 import style from "./style.module.scss";
 
 export const Task3 = () => {
 
-    const [items, setItems] = useState([
-        { id: 0, value: "16:00" },
-        { id: 1, value: "7:30" },
-        { id: 2, value: "22:00" },
-        { id: 3, value: "21:30" },
-        { id: 4, value: "17:00" }
-    ]);
-
-    const [gaps, setGaps] = useState({
-        gap_1: { id: 0, value: null },
-        gap_2: { id: 1, value: null },
-        gap_3: { id: 2, value: null },
-        gap_4: { id: 3, value: null },
-        gap_5: { id: 4, value: null },
+    const [containers, setContainers] = useContainerState({
+        rootContainer: ["16:00", "7:30", "22:00", "21:30", "17:00"],
+        gap1: null,
+        gap2: null,
+        gap3: null,
+        gap4: null,
     });
 
-    const onDragEnd = (result) => {
-        const { destination, source } = result;
-        const [resultItems, resultGaps] = reorder(destination, source, items, gaps, "root");
+    const checkTask = () => onAnswerSubmit(isAnswerCorrect());
 
-        setItems(resultItems);
-        setGaps(resultGaps);
-    };
-
-    const checkTask = () => {
-        if (gaps.gap_1.value === "16:00" || gaps.gap_1.value === "17:00"
-            && gaps.gap_2.value === "21:30"
-            && gaps.gap_3.value === "7:30"
-            && gaps.gap_4.value === "22:00"
-            && gaps.gap_5.value === "16:00" || gaps.gap_5.value === "17:00") {
-            onAnswerSubmit(true);
-            return;
-        }
-        onAnswerSubmit(false);
+    const isAnswerCorrect = () => {
+        return containers.gap1 === "16:00" || containers.gap1 === "17:00"
+            && containers.gap2 === "21:30"
+            && containers.gap3 === "7:30"
+            && containers.gap4 === "22:00"
+            && containers.gap5 === "16:00" || containers.gap5 === "17:00"
     }
+
+    const onDragEnd = (result) => {
+        const dnd = new DragAndDrop(result, containers);
+        const data = dnd.move(ROOT_CONTAINER);
+        setContainers(data);
+    };
 
     return (
         <Task title="3. Составьте расписание так, чтобы всё успеть" action={checkTask}>
-            <DragDropContext onDragEnd={onDragEnd}>
+            <DragAndDropBlock onDragEnd={onDragEnd}>
                 <Table accentColor="green" width="80%">
                     <thead>
                         <TableRow>
@@ -57,53 +43,54 @@ export const Task3 = () => {
                         <TableRow>
                             <TableColumn mode="td">Выполнение домашних заданий</TableColumn>
                             <TableColumn mode="td">
-                                <DropArea droppableId="gap_1" className={style.tableGapArea}>
-                                    {gaps.gap_1.value && <DragItem className={style.dragItem} index={0} draggableId={gaps.gap_1.value}>{gaps.gap_1.value}</DragItem>}
+                                <DropArea droppableId="gap1" className={style.tableGapArea} isDropDisabled={containers.gap1 !== null}>
+                                    {containers.gap1 && <DragItem index={0} draggableId={containers.gap1}>{containers.gap1}</DragItem>}
                                 </DropArea>
                             </TableColumn>
                         </TableRow>
                         <TableRow>
                             <TableColumn mode="td">Чтение книги перед сном</TableColumn>
                             <TableColumn mode="td">
-                                <DropArea droppableId="gap_2" className={style.tableGapArea}>
-                                    {gaps.gap_2.value && <DragItem className={style.dragItem} index={1} draggableId={gaps.gap_2.value}>{gaps.gap_2.value}</DragItem>}
+                                <DropArea droppableId="gap2" className={style.tableGapArea} isDropDisabled={containers.gap2 !== null}>
+                                    {containers.gap2 && <DragItem index={1} draggableId={containers.gap2}>{containers.gap2}</DragItem>}
                                 </DropArea>
                             </TableColumn>
                         </TableRow>
                         <TableRow>
                             <TableColumn mode="td">Прогулка с собакой утром</TableColumn>
                             <TableColumn mode="td">
-                                <DropArea droppableId="gap_3" className={style.tableGapArea}>
-                                    {gaps.gap_3.value && <DragItem className={style.dragItem} index={2} draggableId={gaps.gap_3.value}>{gaps.gap_3.value}</DragItem>}
+                                <DropArea droppableId="gap3" className={style.tableGapArea} isDropDisabled={containers.gap3 !== null}>
+                                    {containers.gap3 && <DragItem index={2} draggableId={containers.gap3}>{containers.gap3}</DragItem>}
                                 </DropArea>
                             </TableColumn>
                         </TableRow>
                         <TableRow>
                             <TableColumn mode="td">Сон</TableColumn>
                             <TableColumn mode="td">
-                                <DropArea droppableId="gap_4" className={style.tableGapArea}>
-                                    {gaps.gap_4.value && <DragItem className={style.dragItem} index={3} draggableId={gaps.gap_4.value}>{gaps.gap_4.value}</DragItem>}
+                                <DropArea droppableId="gap4" className={style.tableGapArea} isDropDisabled={containers.gap4 !== null}>
+                                    {containers.gap4 && <DragItem index={3} draggableId={containers.gap4}>{containers.gap4}</DragItem>}
                                 </DropArea>
                             </TableColumn>
                         </TableRow>
                         <TableRow>
                             <TableColumn mode="td">Спортивная секция</TableColumn>
                             <TableColumn mode="td">
-                                <DropArea droppableId="gap_5" className={style.tableGapArea}>
-                                    {gaps.gap_5.value && <DragItem className={style.dragItem} index={4} draggableId={gaps.gap_5.value}>{gaps.gap_5.value}</DragItem>}
+                                <DropArea droppableId="gap5" className={style.tableGapArea} isDropDisabled={containers.gap5 !== null}>
+                                    {containers.gap5 && <DragItem index={4} draggableId={containers.gap5}>{containers.gap5}</DragItem>}
                                 </DropArea>
                             </TableColumn>
                         </TableRow>
                     </tbody>
                 </Table>
-                <DropArea droppableId="root" direction="horizontal" className={style.rootContainer}>
-                    {items.map((item, index) => (
-                        <DragItem key={item.id} draggableId={"draggable_" + item.id || ""} index={index}>
-                            <div className={style.dragItem}>{item.value}</div>
+                <Space height={25} />
+                <DropArea droppableId={ROOT_CONTAINER} direction="horizontal" outLook="root">
+                    {containers.rootContainer.map((item, index) => (
+                        <DragItem key={item} draggableId={"draggable_" + item || ""} index={index}>
+                            <div className={style.dragItem}>{item}</div>
                         </DragItem>
                     ))}
                 </DropArea>
-            </DragDropContext>
+            </DragAndDropBlock>
         </Task>
     )
 }

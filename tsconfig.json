@@ -31,8 +31,8 @@
             "@/styles/*": [
                 "styles/*"
             ],
-            "@/helpers/*": [
-                "helpers/*"
+            "@/libs/*": [
+                "libs/*"
             ],
             "@/layouts/*": [
                 "layouts/*"
@@ -45,9 +45,6 @@
             ],
             "@/interfaces/*": [
                 "interfaces/*"
-            ],
-            "@/lib/*": [
-                "lib/*"
             ],
             "@/hooks/*": [
                 "hooks/*"

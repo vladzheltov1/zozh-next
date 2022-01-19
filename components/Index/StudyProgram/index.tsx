@@ -25,6 +25,11 @@ export const StudyProgram = () => {
                     ))}
                 </div>
             </div>
+            <Text className={global_style.block__copyright__author}>
+                <a href="https://unsplash.com/@jonnysplsh" target="_blank" rel="noreferrer">
+                    Background photo by @jonnysplsh
+                </a>
+            </Text>
         </div>
     )
 }

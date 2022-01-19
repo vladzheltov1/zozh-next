@@ -1,3 +1,4 @@
+import { Footer } from "@/components/Index/Footer";
 import { InfoBlock } from "@/components/Index/InfoBlock";
 import { IndexIntro } from "@/components/Index/Intro";
 import { StudyProgram } from "@/components/Index/StudyProgram";
@@ -35,6 +36,8 @@ export default function Home() {
                     </>
                 }
             />
+
+            <Footer />
         </Layout>
     )
 }

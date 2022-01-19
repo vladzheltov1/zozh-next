@@ -37,6 +37,11 @@ export interface ITextProps {
     italic?: boolean,
 
     /**
+     * Отображение текста - light
+     */
+    light?: boolean,
+
+    /**
      * Цвет текста
      */
     color?: Color | string,
@@ -61,6 +66,7 @@ export const Text: React.FC<ITextProps> = (props) => {
         italic,
         color,
         size,
+        light,
         ...restProps
     } = props;
 
@@ -68,7 +74,8 @@ export const Text: React.FC<ITextProps> = (props) => {
         style.text,
         {
             [style.text_bold]: bold,
-            [style.text_italic]: italic
+            [style.text_italic]: italic,
+            [style.text_light]: light
         }
     );
 

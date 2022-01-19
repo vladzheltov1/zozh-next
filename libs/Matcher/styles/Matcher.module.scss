@@ -1,0 +1,79 @@
+@import "@/styles/var.module.scss";
+
+.listWrapper{
+    display: flex;
+    gap: 100px;
+    width: 100%;
+    justify-content: center;
+    align-items: center;
+}
+
+.list{
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+    width: 20%;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+}
+
+@mixin listItem {
+    padding: 20px;
+    border-radius: 10px;
+    background-color: #f0f0f0;
+    min-width: 100%;
+    position: relative;
+    transition-duration: 0.3s;
+
+    &:hover{
+        cursor: pointer;
+        background-color: $green-20;
+    }
+}
+
+@mixin name {
+    
+}
+
+@mixin listBubble($position) {
+    &::after{
+        content: "";
+        width: 20px;
+        height: 20px;
+        position: absolute;
+        @if $position == "left"{
+            left: -10px;
+        }
+        @else if $position == "right"{
+            right: -10px;
+        }
+        top: 20px;
+        bottom: 20px;
+        background-color: $gray-60;
+        border-radius: 50%;
+    }
+        
+}
+
+.leftListItem{
+    @include listItem();
+    @include listBubble("right");
+}
+
+.rightListItem{
+    @include listItem();
+    @include listBubble("left");
+}
+
+.listAfterInactive{
+    &::after{
+        background-color: $green-40;
+    }
+}
+
+.chosenItem{
+    box-shadow: 0 0 3px 2px $blue-60;
+    transition-duration: 0.3s;
+    background-color: $green-40 !important;
+}

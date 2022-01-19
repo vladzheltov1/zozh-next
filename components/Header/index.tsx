@@ -1,5 +1,5 @@
 import { Icon } from "@/UI/Icon";
-import { Grid, InfoOutline } from "@rsuite/icons";
+import { AbTest, Grid, InfoOutline } from "@rsuite/icons";
 import Link from "next/link";
 import style from "./style.module.scss";
 
@@ -14,6 +14,13 @@ const Header = () => {
                             <Link href="/hub">
                                 <a>
                                     <Icon icon={Grid} /> Задания
+                                </a>
+                            </Link>
+                        </li>
+                        <li>
+                            <Link href="/demo">
+                                <a>
+                                    <Icon icon={AbTest} /> Демо
                                 </a>
                             </Link>
                         </li>

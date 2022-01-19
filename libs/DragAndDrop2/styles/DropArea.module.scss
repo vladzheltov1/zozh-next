@@ -1,0 +1,30 @@
+@import "@/styles/var.module.scss";
+
+@mixin dropAreaDefault {
+    display: flex;
+    flex-wrap: wrap;
+    position: relative;
+}
+
+.dropAreaRoot {
+    @include dropAreaDefault();
+    border: 2px dashed $green-60;
+    border-radius: 10px;
+    padding: 10px;
+    min-height: 55px;
+    width: 100%;
+    position: relative;
+    gap: 5px;
+    * {
+        width: fit-content;
+    }
+}
+
+.dropArea {
+    @include dropAreaDefault();
+    background-color: $gray-blue;
+    border-radius: 30px;
+    min-width: 150px;
+    min-height: 31px;
+    width: fit-content;
+}

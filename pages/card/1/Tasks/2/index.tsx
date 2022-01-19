@@ -1,144 +1,116 @@
 import { Space, Text } from "@/components/UI";
 import { onAnswerSubmit, Task } from "@/core/index";
-import { DragItem, DropArea, reorder } from "@/helpers/DragAndDrop";
+import { DragAndDrop, DragAndDropBlock, DragItem, DropArea, IContainerBundle, ROOT_CONTAINER } from "@/libs/DragAndDrop2";
 import { FC, useState } from "react";
-import { DragDropContext } from "react-beautiful-dnd";
 import style from "./style.module.scss";
 
-export interface IItem {
-    id: number,
-    value: string
-}
-
 export const Task2: FC = () => {
-    const [items, setItems] = useState<Array<IItem>>([
-        { id: 1, value: "профилактику" },
-        { id: 2, value: "жизни" },
-        { id: 3, value: "укрепление" },
-        { id: 4, value: "образ" },
-        { id: 5, value: "развитие" }
-    ]);
-
-    const [gaps, setGaps] = useState({
-        gap1: { id: 0, value: null },
-        gap2: { id: 0, value: null },
-        gap3: { id: 0, value: null },
-        gap4: { id: 0, value: null },
-        gap5: { id: 0, value: null }
+    const [containers, setContainer] = useState<IContainerBundle>({
+        rootContainer: ["профилактику", "жизни", "укрепление", "образ", "развитие"],
+        gap1: null,
+        gap2: null,
+        gap3: null,
+        gap4: null,
+        gap5: null
     });
 
-    const onDragEnd = (result) => {
-        const { destination, source } = result;
-        const [resultItems, resultGaps] = reorder(destination, source, items, gaps, "menu_box");
-
-        setItems(resultItems);
-        setGaps(resultGaps);
-    };
-
-    const correct = {
-        gap1: "образ",
-        gap2: "жизни",
-        gap3: "укрепление",
-        gap4: "профилактику",
-        gap5: "развитие"
-    };
-
     const checkTask = () => {
-        let isCorrect = true;
-        for (let key in gaps) {
-            if (gaps[key].value !== correct[key]) {
-                isCorrect = false;
-            }
-        }
-        onAnswerSubmit(isCorrect);
+        onAnswerSubmit(isAnswerCorrect());
     }
+
+    const isAnswerCorrect = (): boolean => {
+        return containers.gap1 === "образ"
+            && containers.gap2 === "жизни"
+            && containers.gap3 === "укрепление"
+            && containers.gap4 === "профилактику"
+            && containers.gap5 === "развитие";
+    }
+
+    const onDragEnd = (result) => {
+        const dnd = new DragAndDrop(result, containers);
+        const data = dnd.move(ROOT_CONTAINER);
+        setContainer(data);
+    };
 
     return (
         <Task title={"2. Заполните пропуски, перетаскивая нужные слова"} action={checkTask}>
-            <DragDropContext
-                onDragEnd={onDragEnd}
-            >
-                <DropArea droppableId="menu_box" direction="horizontal" className={style.word_container}>
-                    {items.map((item, index) => (
+            <DragAndDropBlock onDragEnd={onDragEnd}>
+                <Space height={10} />
+                <DropArea droppableId={ROOT_CONTAINER} outLook="root" direction="horizontal">
+                    {containers.rootContainer.map((item, index) => (
                         <DragItem
-                            key={item.id}
-                            draggableId={`task2_option${item.id}`}
+                            key={item}
+                            draggableId={`task2Option${index}`}
                             index={index}
-                            className={style.word}
                         >
-                            {item.value}
+                            {item}
                         </DragItem>
                     ))}
                 </DropArea>
                 <Space height={20} />
-                <Text size={"1.4rem"} className={style.task1_text}>
-                    Здоровый образ жизни -
+                <Text size={"1.4rem"} className={style.task1Text}>
+                    <Text>Здоровый образ жизни -</Text>
                     {/* Образ */}
-                    <DropArea droppableId={"gap1"} direction="horizontal" className={style.intext_droppableArea} isDropDisabled={gaps.gap1.value != null}>
-                        {gaps.gap1.value ? (
+                    <DropArea droppableId={"gap1"} direction="horizontal" isDropDisabled={containers.gap1 != null}>
+                        {containers.gap1 ? (
                             <DragItem
-                                draggableId={"gap1_value"}
+                                draggableId={"gap1Value"}
                                 index={1}
-                                className={style.word}
                             >
-                                {gaps.gap1.value}
+                                {containers.gap1}
                             </DragItem>
                         ) : null}
                     </DropArea>
                     {/* Жизни */}
-                    <DropArea droppableId={"gap2"} direction="horizontal" className={style.intext_droppableArea} isDropDisabled={gaps.gap2.value != null}>
-                        {gaps.gap2.value ? (
+                    <DropArea droppableId={"gap2"} direction="horizontal" isDropDisabled={containers.gap2 != null}>
+                        {containers.gap2 ? (
                             <DragItem
-                                draggableId={"gap2_value"}
+                                draggableId={"gap2Value"}
                                 index={2}
-                                className={style.word}
                             >
-                                {gaps.gap2.value}
+                                {containers.gap2}
                             </DragItem>
                         ) : null}
                     </DropArea>
-                    человека, направленный на
+                    <Text>человека, направленный на</Text>
                     {/* Укрепление */}
-                    <DropArea droppableId={"gap3"} direction="horizontal" className={style.intext_droppableArea} isDropDisabled={gaps.gap3.value != null}>
-                        {gaps.gap3.value ? (
+                    <DropArea droppableId={"gap3"} direction="horizontal" isDropDisabled={containers.gap3 != null}>
+                        {containers.gap3 ? (
                             <DragItem
-                                draggableId={"gap3_value"}
+                                draggableId={"gap3Value"}
                                 index={3}
-                                className={style.word}
                             >
-                                {gaps.gap3.value}
+                                {containers.gap3}
                             </DragItem>
                         ) : null}
                     </DropArea>
-                    здоровья,
+                    <Text>здоровья,</Text>
                     {/* Профилактику */}
-                    <DropArea droppableId={"gap4"} direction="horizontal" className={style.intext_droppableArea} isDropDisabled={gaps.gap4.value != null}>
-                        {gaps.gap4.value ? (
+                    <DropArea droppableId={"gap4"} direction="horizontal" isDropDisabled={containers.gap4 != null}>
+                        {containers.gap4 ? (
                             <DragItem
-                                draggableId={"gap4_value"}
+                                draggableId={"gap4Value"}
                                 index={4}
-                                className={style.word}
                             >
-                                {gaps.gap4.value}
+                                {containers.gap4}
                             </DragItem>
                         ) : null}
                     </DropArea>
-                    болезней и
+                    <Text>болезней и</Text>
                     {/* Развитие */}
-                    <DropArea droppableId={"gap5"} direction="horizontal" className={style.intext_droppableArea} isDropDisabled={gaps.gap5.value != null}>
-                        {gaps.gap5.value ? (
+                    <DropArea droppableId={"gap5"} direction="horizontal" isDropDisabled={containers.gap5 != null}>
+                        {containers.gap5 ? (
                             <DragItem
-                                draggableId={"gap5_value"}
+                                draggableId={"gap5Value"}
                                 index={5}
-                                className={style.word}
                             >
-                                {gaps.gap5.value}
+                                {containers.gap5}
                             </DragItem>
                         ) : null}
                     </DropArea>
-                    организма в целом.
+                    <Text>организма в целом.</Text>
                 </Text>
-            </DragDropContext>
-        </Task >
+            </DragAndDropBlock>
+        </Task>
     )
 }
