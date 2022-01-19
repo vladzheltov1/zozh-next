@@ -1,5 +1,5 @@
 import { onAnswerSubmit, Task } from "@/core/index";
-import { Matcher } from "@/libs/Matcher";
+import { checkIfPairsMatch, Matcher } from "@/libs/Matcher";
 import { useState } from "react";
 
 const lists = {
@@ -15,8 +15,6 @@ const correctPairs = {
     "Диета": "для похудения"
 }
 
-const CORRECT_PAIRS_LENGTH = 5;
-
 export const Task5 = () => {
     const [pairs, setPairs] = useState(null);
 
@@ -25,23 +23,8 @@ export const Task5 = () => {
     }
 
     const handleCheck = () => {
-        const isCorrect = checkIfPairsMatch();
+        const isCorrect = checkIfPairsMatch(pairs, correctPairs);
         onAnswerSubmit(isCorrect);
-    }
-
-    const checkIfPairsMatch = (): boolean => {
-        if (!pairs) return false;
-
-        let isCorrect = true;
-
-        pairs.map((pair) => {
-            if (pair.right != correctPairs[pair.left]) {
-                isCorrect = false;
-                return;
-            }
-        })
-
-        return isCorrect;
     }
 
     return (
