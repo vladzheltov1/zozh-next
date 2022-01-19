@@ -5,7 +5,8 @@ import styles from "../styles/Matcher.module.scss";
 
 export interface IMatcherProps {
     leftList: Array<any>,
-    rightList: Array<any>
+    rightList: Array<any>,
+    onFinish: Function
 }
 
 /**
@@ -18,7 +19,7 @@ type Position = "left" | "right";
  *       2. Рандомно генерировать цвет фона по клику на левый элемент, чтобы потом поставить его как цвет пары.
  */
 export const Matcher: FC<IMatcherProps> = (props) => {
-    const { leftList, rightList } = props;
+    const { leftList, rightList, onFinish } = props;
 
     const chosenInitialState = { left: null, right: null };
 
@@ -59,6 +60,23 @@ export const Matcher: FC<IMatcherProps> = (props) => {
 
         setPairs([...pairs, singlePair]);
         setChosen(chosenInitialState);
+    }
+
+    /**
+     * Отправление полученных данных в функцию, которая поставит все данные в локальный `state` вышестоящего компонента.
+     */
+    useEffect(() => {
+        if (!checkIfFunctionIsCorrect()) {
+            throw new Error("Ошибка события: невозможно вызвать onFinish!");
+        }
+
+        if (pairs.length === leftList.length) {
+            onFinish(pairs);
+        }
+    }, [pairs])
+
+    const checkIfFunctionIsCorrect = (): boolean => {
+        return typeof onFinish === "function";
     }
 
     const getStyleForItem = (value: string, position: Position): CSSProperties => {
