@@ -1,0 +1,12 @@
+@import "@/styles/var.module.scss";
+
+.header {
+    margin-top: 20px;
+    width: 100%;
+    padding: 8px 10px;
+    background-color: $gray-0;
+    border-radius: 10px;
+    * {
+        color: $gray-80;
+    }
+}
