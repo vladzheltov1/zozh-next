@@ -11,6 +11,7 @@ export const Task3 = () => {
         gap2: null,
         gap3: null,
         gap4: null,
+        gap5: null,
     });
 
     const checkTask = () => onAnswerSubmit(isAnswerCorrect());
