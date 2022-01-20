@@ -43,10 +43,10 @@ export const Matcher: FC<IMatcherProps> = (props) => {
         setChosen({ ...chosen, right: item });
     }
 
-    // TODO: найти способ вынести данный функционал в кастомный хук
+    // FIXME: найти способ вынести данный функционал в кастомный хук
     useEffect(() => {
         makePair();
-    }, [chosen])
+    }, [chosen]);
 
     const prepareForAction = (item) => {
         setPairs(manager.checkIfExistsAndDeletePair(item));
