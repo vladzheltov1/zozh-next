@@ -20,7 +20,9 @@ export const StudyProgram = () => {
                     {tiles.map((tile) => (
                         <div className={study_style.info_tile} key={tile.text}>
                             <Icon icon={tile.icon} />
-                            <Text>{tile.text}</Text>
+                            <div className={study_style.tile_text}>
+                                <Text light>{tile.text}</Text>
+                            </div>
                         </div>
                     ))}
                 </div>
