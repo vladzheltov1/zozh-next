@@ -1,6 +1,7 @@
 import { Text } from "@/components/UI";
 import { timerActions, timerStore } from "@/core/redux";
 import React, { useEffect, useRef, useState } from "react";
+import { formatTime } from "../../helpers";
 
 /**
  * Таймер, который используется в заданиях
@@ -27,17 +28,6 @@ export const Timer = () => {
     }, []);
 
     /**
-     * Форматирование числа, записанного в таймере в нормальный вид
-     * @returns строка вида `mm:ss` 
-     */
-    const formatTime = (): string => {
-        const getSeconds: string = `0${(timer % 60)}`.slice(-2);
-        const minutes: string = `${Math.floor(timer / 60)}`;
-        const getMinutes: string = `0${Number(minutes) % 60}`.slice(-2);
-        return `${getMinutes}:${getSeconds}`;
-    }
-
-    /**
      * Нужно, чтобы перерисовывать компонент при обновлении `store`
      */
     timerStore.subscribe(() => {
@@ -46,7 +36,7 @@ export const Timer = () => {
 
     return (
         <Text size={16}>
-            {formatTime()}
+            {formatTime(timer)}
         </Text>
     );
 };

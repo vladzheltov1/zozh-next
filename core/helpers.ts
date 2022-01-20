@@ -1,7 +1,7 @@
 // Данный файл представляет собой набор функций, реализующих некоторый функцианал, который может быть использован внутри множества компонентов.
 // Это нужно для того, чтобы несистемные компоненты как можно реже обращались к функционалу ядра.
 
-import { cardActions, cardStore, taskActions, taskStore } from ".";
+import { cardActions, cardStore, taskActions, taskStore, timerStore } from ".";
 
 const changeNode = (): void => {
     cardStore.dispatch({ type: cardActions.CHANGE_NODE });
@@ -32,7 +32,30 @@ const onAnswerSubmit = (correct: boolean) => {
     return;
 }
 
+/**
+ * Форматирование числа, записанного в таймере в нормальный вид
+ * @returns строка вида `mm:ss` 
+ */
+const formatTime = (timer): string => {
+    const getSeconds: string = `0${(timer % 60)}`.slice(-2);
+    const minutes: string = `${Math.floor(timer / 60)}`;
+    const getMinutes: string = `0${Number(minutes) % 60}`.slice(-2);
+    return `${getMinutes}:${getSeconds}`;
+}
+
+const getTime = (): string => {
+    return formatTime(timerStore.getState());
+}
+
+const getScore = (): number => {
+    return cardStore.getState().score;
+}
+
 export {
     changeNode,
-    onAnswerSubmit
+    onAnswerSubmit,
+    getScore,
+    getTime,
+    formatTime
 };
+
