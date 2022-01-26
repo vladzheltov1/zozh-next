@@ -1,19 +1,23 @@
-import { onAnswerSubmit, Task } from "@/core/index";
+import { Task } from "@/core/index";
+import { useCore } from "@/core/redux/public/scripts";
 import { useState } from "react";
 import style from "./style.module.scss";
 
+const initialState = [
+    { id: 1, value: "Курение", isSelected: false },
+    { id: 2, value: "4-часовой сон", isSelected: false },
+    { id: 3, value: "Закалка", isSelected: false },
+    { id: 4, value: "Молочная диета", isSelected: false },
+    { id: 5, value: "Употребление алкоголя", isSelected: false },
+    { id: 6, value: "Здоровое питание", isSelected: false },
+    { id: 7, value: "Употребление фаст-фуда", isSelected: false },
+    { id: 8, value: "Физическая активность", isSelected: false },
+    { id: 9, value: "Сбитый режим дня", isSelected: false },
+];
+
 export const Task1 = () => {
-    const [options, setOptions] = useState([
-        { id: 1, value: "Курение", isSelected: false },
-        { id: 2, value: "4-часовой сон", isSelected: false },
-        { id: 3, value: "Закалка", isSelected: false },
-        { id: 4, value: "Молочная диета", isSelected: false },
-        { id: 5, value: "Употребление алкоголя", isSelected: false },
-        { id: 6, value: "Здоровое питание", isSelected: false },
-        { id: 7, value: "Употребление фаст-фуда", isSelected: false },
-        { id: 8, value: "Физическая активность", isSelected: false },
-        { id: 9, value: "Сбитый режим дня", isSelected: false },
-    ]);
+    const { onAnswerSubmit } = useCore();
+    const [options, setOptions] = useState(initialState);
 
     const correct_options = [1, 2, 5, 7, 9];
 

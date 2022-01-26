@@ -1,10 +1,10 @@
-// Данный файл представляет собой набор функций, реализующих некоторый функцианал, который может быть использован внутри множества компонентов.
-// Это нужно для того, чтобы несистемные компоненты как можно реже обращались к функционалу ядра.
-
-import { cardActions, cardStore, taskActions, taskStore, timerStore } from ".";
 
 const changeNode = (): void => {
     cardStore.dispatch({ type: cardActions.CHANGE_NODE });
+}
+
+const resetCardData = async () => {
+    await cardStore.dispatch({ type: cardActions.RESET })
 }
 
 const onAnswerSubmit = (correct: boolean) => {
@@ -56,6 +56,7 @@ export {
     onAnswerSubmit,
     getScore,
     getTime,
-    formatTime
+    formatTime,
+    resetCardData
 };
 

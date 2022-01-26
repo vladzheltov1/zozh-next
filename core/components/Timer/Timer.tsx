@@ -1,5 +1,6 @@
 import { Text } from "@/components/UI";
-import { timerActions, timerStore } from "@/core/redux";
+import { useCore } from "@/core/redux/public/scripts";
+// import { timerActions, timerStore } from "@/core/redux";
 import React, { useEffect, useRef, useState } from "react";
 import { formatTime } from "../../helpers";
 
@@ -9,10 +10,11 @@ import { formatTime } from "../../helpers";
 export const Timer = () => {
     const [timer, setTimer] = useState(0);
     const interval = useRef(null);
+    const { incrementTimer, resetTimer } = useCore();
 
     const startTimer = (): void => {
         interval.current = setInterval(() => {
-            timerStore.dispatch({ type: timerActions.INCREMENT });
+            incrementTimer();
         }, 1000);
     }
 
@@ -23,16 +25,16 @@ export const Timer = () => {
         startTimer();
         return () => {
             clearInterval(interval.current);
-            timerStore.dispatch({ type: timerActions.RESET })
+            resetTimer();
         }
     }, []);
 
     /**
      * Нужно, чтобы перерисовывать компонент при обновлении `store`
      */
-    timerStore.subscribe(() => {
-        setTimer(timerStore.getState());
-    })
+    // timerStore.subscribe(() => {
+    //     setTimer(timerStore.getState());
+    // })
 
     return (
         <Text size={16}>

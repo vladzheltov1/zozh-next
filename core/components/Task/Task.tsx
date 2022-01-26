@@ -1,6 +1,6 @@
 import { ButtonAppearance, Text } from "@/components/UI";
 import { NextButton } from "@/core/index";
-import { taskStore } from "@/core/redux";
+import { useCore } from "@/core/redux/public/scripts";
 import { FC, ReactChild, useEffect, useState } from "react";
 
 export interface ITaskComponentProps {
@@ -16,19 +16,16 @@ type ButtonState = {
 
 export const Task: FC<ITaskComponentProps> = (props) => {
     const { children, title = "", action = () => void 0 } = props;
+    const { buttonAppearance, buttonDisabled } = useCore();
 
     const [button, setButton] = useState<ButtonState>({
         appearance: "primary",
         disabled: false
-    })
+    });
 
     useEffect(() => {
-        const unsubscribe = taskStore.subscribe(() => {
-            const { buttonAppearance, buttonDisabled } = taskStore.getState();
-            setButton({ appearance: buttonAppearance, disabled: buttonDisabled });
-        });
-        return () => unsubscribe();
-    })
+        setButton({ appearance: buttonAppearance, disabled: buttonDisabled });
+    }, [buttonAppearance, buttonDisabled])
 
     return (
         <div>

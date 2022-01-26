@@ -1,6 +1,6 @@
 import { Text } from "@/components/UI";
-import { getScore, getTime } from "@/core/helpers";
 import { Task } from "@/core/index";
+import { useCore } from "@/core/redux/public/scripts";
 import colors from "@/styles/var.module.scss";
 import { useRouter } from "next/router";
 import { FC } from "react";
@@ -12,10 +12,11 @@ export interface IResultsProps {
 
 export const Results: FC<IResultsProps> = (props) => {
 
+    const { score, time, formatTime } = useCore();
+
     const { maxScore } = props;
 
-    const userScore = getScore();
-    const userTime = getTime();
+    const userTime = formatTime(time);
 
     const router = useRouter();
 
@@ -26,11 +27,11 @@ export const Results: FC<IResultsProps> = (props) => {
         const quaterScore = maxScore * 0.25;
         const tenPercentScore = maxScore * 0.1;
 
-        if (userScore <= maxScore && userScore > (maxScore - tenPercentScore)) {
+        if (score <= maxScore && score > (maxScore - tenPercentScore)) {
             color = colors.green100;
-        } else if (userScore <= (maxScore - tenPercentScore) && userScore > (maxScore - quaterScore)) {
+        } else if (score <= (maxScore - tenPercentScore) && score > (maxScore - quaterScore)) {
             color = colors.yellow100;
-        } else if (userScore <= (maxScore - quaterScore) && userScore > (maxScore - halfScore + tenPercentScore)) {
+        } else if (score <= (maxScore - quaterScore) && score > (maxScore - halfScore + tenPercentScore)) {
             color = colors.yellow100;
         } else {
             color = colors.red100;
@@ -46,7 +47,7 @@ export const Results: FC<IResultsProps> = (props) => {
                     Набранное количество очков:
                 </Text>
                 <Text>
-                    <Text mode="span" bold color={getScoreColor()}>{userScore}</Text>
+                    <Text mode="span" bold color={getScoreColor()}>{score}</Text>
                     /
                     <Text mode="span" bold color={colors.green100}>{maxScore}</Text>
                 </Text>

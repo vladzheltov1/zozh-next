@@ -1,42 +1,34 @@
-import { Text } from "@/components/UI";
-import { Timer } from "@/core/components/Timer";
-import { cardStore } from "@/core/redux";
-import vars from "@/styles/var.module.scss";
+import { useCore } from "@/core/redux/public/scripts";
 import { useRouter } from "next/router";
-import { useState } from "react";
+import { useEffect } from "react";
+import { resetCardData } from "../..";
 import cardStyle from "./Card.module.scss";
+import { CardHeader } from "./CardHeader";
 
 export const Card = ({ children }) => {
     const router = useRouter();
 
-    // Данная прослойка нужна для того, чтобы React сам перерендеривал компонент, когда меняется состояние в `store`,
-    // иначе перерисовка страницы не произойдёт. Возможно, есть способ сделать это по-другому?
-    const [currentNode, setCurrentNode] = useState<number>(0);
-    const [score, setScore] = useState<number>(0);
+    const { currentNode, score } = useCore();
 
-    cardStore.subscribe(() => {
-        const state = cardStore.getState();
-
-        // Перенаправление в меню, если все компоненты отработали
-        if (children[state.currentNode] == null) {
-            router.push("/hub");
+    useEffect(() => {
+        if (isDone()) {
+            redirectToHubIfDone();
             return;
         }
+    }, [currentNode])
 
-        setCurrentNode(state.currentNode);
-        setScore(state.score);
-    });
+    const isDone = (): boolean => {
+        return children[currentNode] == null;
+    }
+
+    const redirectToHubIfDone = async () => {
+        await resetCardData();
+        router.push("/hub");
+    }
 
     return (
         <div className={cardStyle.card}>
-            <div className={cardStyle.card__header}>
-                <Text bold>Количество очков:&nbsp;
-                    <Text mode="span" color={score >= 0 ? vars.extraGreen : vars.red100}>
-                        {score}
-                    </Text>
-                </Text>
-                <Timer />
-            </div>
+            <CardHeader score={score} />
             {children[currentNode]}
             <style jsx global>{`
                 body{
