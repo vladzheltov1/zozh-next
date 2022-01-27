@@ -1,32 +1,7 @@
-import { useAppDispatch, useAppSelector } from "../hooks/redux";
-import { cardSlice, taskSlice, timerSlice } from "../store/reducers/";
+import { useActions } from "../hooks/redux";
 
 export const useCore = () => {
-    const taskState = useAppSelector(state => state.taskReducer);
-    const cardState = useAppSelector(state => state.cardReducer);
-    const timerState = useAppSelector(state => state.timerReducer);
-
-    const cardActions = cardSlice.actions;
-    const taskActions = taskSlice.actions;
-    const timerActions = timerSlice.actions;
-
-    const dispatch = useAppDispatch();
-
-    const changeNode = () => {
-        dispatch(cardActions.setActiveNode(cardState.currentNode + 1));
-    }
-
-    const resetData = () => {
-        dispatch(cardActions.reset(cardState));
-    }
-
-    const incrementTimer = () => {
-        dispatch(timerActions.increment(timerState));
-    }
-
-    const resetTimer = () => {
-        dispatch(timerActions.reset(timerState));
-    }
+    const { changeNode, setButtonColor, addScore, setButtonDisabled, setButtonEnabled, resetCard, resetTimer } = useActions();
 
     /**
      * Форматирование числа, записанного в таймере в нормальный вид
@@ -41,28 +16,29 @@ export const useCore = () => {
 
     const onAnswerSubmit = (correct: boolean) => {
         if (correct) {
-            dispatch(cardActions.addScore(100));
-            dispatch(taskActions.setButtonDisabled(taskState));
-            dispatch(taskActions.setButtonColor("success"));
+            addScore(100);
+            setButtonDisabled();
+            setButtonColor("success");
 
             setTimeout(() => {
-                dispatch(cardActions.setActiveNode(cardState));
-                dispatch(taskActions.setButtonEnabled(taskState));
-                dispatch(taskActions.setButtonColor("primary"));
+                changeNode();
+                setButtonEnabled();
+                setButtonColor("primary");
             }, 3000);
 
             return;
         }
 
-        dispatch(cardActions.addScore(-10));
-        dispatch(taskActions.setButtonColor("danger"));
+        addScore(-10);
+        setButtonColor("danger");
 
         setTimeout(() => {
-            dispatch(taskActions.setButtonColor("primary"));
+            setButtonColor("primary");
         }, 2000);
+
 
         return;
     }
 
-    return { changeNode, resetData, onAnswerSubmit, incrementTimer, resetTimer, formatTime, currentNode: cardState.currentNode, score: cardState.score, time: timerState, buttonAppearance: cardState.buttonAppearance, buttonDisabled: cardState.buttonDisabled }
+    return { changeNode, onAnswerSubmit, resetTimer, formatTime }
 }

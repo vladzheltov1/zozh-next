@@ -6,13 +6,14 @@ export const timerSlice = createSlice({
     name: "timer",
     initialState,
     reducers: {
-        increment(state, _) {
+        increment(state) {
             return state + 1;
         },
-        reset(state, _) {
-            return 0;
+        resetTimer(state) {
+            return initialState;
         }
     }
 })
 
-export default timerSlice.reducer;
+export const timerReducer = timerSlice.reducer;
+export const timerActions = timerSlice.actions;

@@ -1,30 +1,29 @@
-import { useCore } from "@/core/redux/public/scripts";
+import { useActions, useTypedSelector } from "@/core/redux/hooks/redux";
 import { useRouter } from "next/router";
 import { useEffect } from "react";
-import { resetCardData } from "../..";
 import cardStyle from "./Card.module.scss";
 import { CardHeader } from "./CardHeader";
 
 export const Card = ({ children }) => {
     const router = useRouter();
 
-    const { currentNode, score } = useCore();
+    const { resetCard } = useActions();
+    const { card } = useTypedSelector(state => state);
+    const { currentNode, score } = card;
 
     useEffect(() => {
-        if (isDone()) {
-            redirectToHubIfDone();
+        console.log(currentNode)
+        if (!children[currentNode]) {
+            console.log("RESET");
+            console.log(currentNode)
+            router.push("/hub");
             return;
         }
+
+        return () => {
+            resetCard();
+        }
     }, [currentNode])
-
-    const isDone = (): boolean => {
-        return children[currentNode] == null;
-    }
-
-    const redirectToHubIfDone = async () => {
-        await resetCardData();
-        router.push("/hub");
-    }
 
     return (
         <div className={cardStyle.card}>

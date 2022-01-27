@@ -18,13 +18,14 @@ export const taskSlice = createSlice({
         setButtonColor(state, action: PayloadAction<ButtonAppearance>) {
             state.buttonAppearance = action.payload;
         },
-        setButtonEnabled(state, _) {
+        setButtonEnabled(state) {
             state.buttonDisabled = false;
         },
-        setButtonDisabled(state, _) {
+        setButtonDisabled(state) {
             state.buttonDisabled = true;
         }
     }
 })
 
-export default taskSlice.reducer;
+export const taskReducer = taskSlice.reducer;
+export const taskActions = taskSlice.actions;

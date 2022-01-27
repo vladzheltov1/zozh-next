@@ -1,10 +1,9 @@
-import { setupStore } from '@/core/redux/store/store';
+import { store } from '@/core/redux/store/store';
 import '@/styles/globals.scss';
 import Head from "next/head";
 import { Provider } from 'react-redux';
 
 function Application({ Component, pageProps }) {
-    const store = setupStore();
     return <>
         <Head>
             <meta name="description" content="HealthyLife - проект, созданный в рамках тринадцатого областного конкурса компьютерных программ среди учащихся Тульской области." />

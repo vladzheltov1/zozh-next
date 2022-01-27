@@ -17,13 +17,15 @@ export const cardSlice = createSlice({
         addScore(state, action: PayloadAction<number>) {
             state.score += action.payload;
         },
-        setActiveNode(state, _) {
+        changeNode(state) {
             state.currentNode += 1;
         },
-        reset(state, _) {
-            state = initialState;
+        resetCard(state) {
+            state.currentNode = 0;
+            state.score = 0;
         }
     }
-})
+});
 
-export default cardSlice.reducer;
+export const cardReducer = cardSlice.reducer;
+export const cardActions = cardSlice.actions;
