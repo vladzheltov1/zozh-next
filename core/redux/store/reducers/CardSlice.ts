@@ -20,9 +20,8 @@ export const cardSlice = createSlice({
         changeNode(state) {
             state.currentNode += 1;
         },
-        resetCard(state) {
-            state.currentNode = 0;
-            state.score = 0;
+        resetCard(_) {
+            return initialState;
         }
     }
 });

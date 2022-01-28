@@ -1,27 +1,17 @@
 import { Text } from "@/components/UI";
-import { useActions, useTypedSelector } from "@/core/redux/hooks/redux";
-import { useEffect, useRef } from "react";
+import { useTypedSelector } from "@/core/redux/hooks/redux";
+import { useEffect } from "react";
 import { formatTime } from "../../helpers";
+import { useTimer } from "./script";
 
-/**
- * Таймер, который используется в заданиях
- */
 export const Timer = () => {
-    const interval = useRef(null);
-
-    const { increment, resetTimer } = useActions();
     const { timer } = useTypedSelector(state => state);
-
-    const startTimer = (): void => {
-        interval.current = setInterval(() => {
-            increment();
-        }, 1000);
-    }
+    const { startTimer, stopTimer, resetTimer } = useTimer();
 
     useEffect(() => {
         startTimer();
         return () => {
-            clearInterval(interval.current);
+            stopTimer();
             resetTimer();
         }
     }, []);

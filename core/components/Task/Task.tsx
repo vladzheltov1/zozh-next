@@ -1,7 +1,7 @@
 import { ButtonAppearance, Text } from "@/components/UI";
 import { NextButton } from "@/core/index";
 import { useTypedSelector } from "@/core/redux/hooks/redux";
-import { FC, ReactChild, useState } from "react";
+import { FC, ReactChild } from "react";
 
 export interface ITaskComponentProps {
     children: ReactChild,
@@ -9,24 +9,10 @@ export interface ITaskComponentProps {
     action: Function
 }
 
-type ButtonState = {
-    appearance: ButtonAppearance,
-    disabled: boolean
-}
-
 export const Task: FC<ITaskComponentProps> = (props) => {
     const { children, title = "", action = () => void 0 } = props;
 
     const { task } = useTypedSelector(state => state);
-
-    const [button, setButton] = useState<ButtonState>({
-        appearance: "primary",
-        disabled: false
-    });
-
-    // useEffect(() => {
-    //     setButton({ appearance: buttonAppearance, disabled: buttonDisabled });
-    // }, [buttonAppearance, buttonDisabled])
 
     return (
         <div>

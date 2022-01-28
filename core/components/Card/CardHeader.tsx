@@ -1,28 +1,17 @@
-import { Text } from "@/components/UI";
-import vars from "@/styles/var.module.scss";
-import { FC } from "react";
-import { Timer } from "../Timer";
-import cardStyle from "./Card.module.scss";
+import { Icon } from "@/UI/index";
+import { ArrowLeftLine } from "@rsuite/icons";
+import headerStyle from "./Card.module.scss";
+import { useCard } from "./useCard";
 
-export interface ICardHeaderProps {
-    score: number
-}
-
-export const CardHeader: FC<ICardHeaderProps> = (props) => {
-    const { score } = props;
-
-    const getColor = () => {
-        return score >= 0 ? vars.extraGreen : vars.red100;
-    }
-
+export const CardHeader = () => {
+    const { backToHub } = useCard();
     return (
-        <div className={cardStyle.card__header}>
-            <Text bold>Количество очков:&nbsp;
-                <Text mode="span" color={getColor()}>
-                    {score}
-                </Text>
-            </Text>
-            <Timer />
+        <div className="wrapper">
+            <header className={headerStyle.cardHeader}>
+                <div onClick={backToHub}>
+                    <Icon icon={ArrowLeftLine} />В меню
+                </div>
+            </header>
         </div>
     )
 }

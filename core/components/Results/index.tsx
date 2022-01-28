@@ -1,9 +1,11 @@
 import { Text } from "@/components/UI";
 import { Task } from "@/core/index";
+import { useTypedSelector } from "@/core/redux/hooks/redux";
 import { useCore } from "@/core/redux/public/scripts";
 import colors from "@/styles/var.module.scss";
 import { useRouter } from "next/router";
 import { FC } from "react";
+import { useCard } from "../Card/useCard";
 import style from "./style.module.scss";
 
 export interface IResultsProps {
@@ -12,13 +14,15 @@ export interface IResultsProps {
 
 export const Results: FC<IResultsProps> = (props) => {
 
-    const { score, time, formatTime } = useCore();
+    const { formatTime } = useCore();
+    const { timer, card } = useTypedSelector(state => state);
+    const { backToHub } = useCard();
 
     const { maxScore } = props;
 
-    const userTime = formatTime(time);
+    const score = card.score;
 
-    const router = useRouter();
+    const userTime = formatTime(timer);
 
     const getScoreColor = (): string => {
         let color = null;
@@ -40,7 +44,7 @@ export const Results: FC<IResultsProps> = (props) => {
         return color;
     }
 
-    return <Task title={""} action={() => router.push("/hub")}>
+    return <Task title={""} action={backToHub}>
         <div className={style.result}>
             <div className={style.resultSubcontainer}>
                 <Text className={style.resultSubtitle} mode="h3">

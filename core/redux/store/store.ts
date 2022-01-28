@@ -3,12 +3,6 @@ import { cardReducer } from "./reducers/CardSlice";
 import { taskReducer } from "./reducers/TaskSlice";
 import { timerReducer } from "./reducers/TimerSlice";
 
-// export const rootReducer = combineReducers({
-//     taskReducer,
-//     cardReducer,
-//     timerReducer
-// });
-
 export const store = configureStore({
     reducer: {
         card: cardReducer,

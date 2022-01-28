@@ -1,7 +1,7 @@
 import { useActions } from "../hooks/redux";
 
 export const useCore = () => {
-    const { changeNode, setButtonColor, addScore, setButtonDisabled, setButtonEnabled, resetCard, resetTimer } = useActions();
+    const { changeNode, setButtonColor, addScore, setButtonDisabled, setButtonEnabled, resetTimer } = useActions();
 
     /**
      * Форматирование числа, записанного в таймере в нормальный вид
@@ -40,5 +40,5 @@ export const useCore = () => {
         return;
     }
 
-    return { changeNode, onAnswerSubmit, resetTimer, formatTime }
+    return { onAnswerSubmit, changeNode, resetTimer, formatTime }
 }

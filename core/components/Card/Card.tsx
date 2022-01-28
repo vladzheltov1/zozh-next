@@ -1,33 +1,38 @@
-import { useActions, useTypedSelector } from "@/core/redux/hooks/redux";
-import { useRouter } from "next/router";
-import { useEffect } from "react";
+import { useTypedSelector } from "@/core/redux/hooks/redux";
+import { FC, ReactChild, ReactNode, useEffect } from "react";
 import cardStyle from "./Card.module.scss";
-import { CardHeader } from "./CardHeader";
+import { CardTopData } from "./CardTopData";
+import { useTimer } from "../Timer/script";
+import { useCard } from "./useCard";
 
-export const Card = ({ children }) => {
-    const router = useRouter();
+export interface ICardProps {
+    children: ReactNode[]
+}
 
-    const { resetCard } = useActions();
+export const Card: FC<ICardProps> = (props) => {
+    const { children } = props;
+
     const { card } = useTypedSelector(state => state);
     const { currentNode, score } = card;
 
+    const { backToHub } = useCard();
+    const { stopTimer } = useTimer();
+
     useEffect(() => {
-        console.log(currentNode)
-        if (!children[currentNode]) {
-            console.log("RESET");
-            console.log(currentNode)
-            router.push("/hub");
-            return;
+        if (currentNode === children.length - 1) {
+            stopTimer();
         }
 
         return () => {
-            resetCard();
-        }
-    }, [currentNode])
+            if (currentNode == children.length - 1) {
+                backToHub();
+            }
+        };
+    }, [currentNode]);
 
     return (
         <div className={cardStyle.card}>
-            <CardHeader score={score} />
+            <CardTopData score={score} />
             {children[currentNode]}
             <style jsx global>{`
                 body{
