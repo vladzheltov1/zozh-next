@@ -16,12 +16,12 @@ export const Card: FC<ICardProps> = (props) => {
     const { currentNode, score } = card;
 
     const { backToHub } = useCard();
-    const { stopTimer } = useTimer();
+    // const { stopTimer } = useTimer();
 
     useEffect(() => {
-        if (currentNode === children.length - 1) {
-            stopTimer();
-        }
+        // if (currentNode === children.length - 1) {
+        //     stopTimer();
+        // }
 
         return () => {
             if (currentNode == children.length - 1) {
