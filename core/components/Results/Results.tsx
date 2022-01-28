@@ -1,41 +1,37 @@
 import { Text } from "@/components/UI";
 import { Task } from "@/core/index";
 import { useTypedSelector } from "@/core/redux/hooks/redux";
-import { useCore } from "@/core/redux/public/scripts";
+import { useCore } from "@/core/redux/public/useCore";
 import colors from "@/styles/var.module.scss";
-import { useRouter } from "next/router";
 import { FC } from "react";
 import { useCard } from "../Card/useCard";
-import style from "./style.module.scss";
+import style from "./Results.module.scss";
 
 export interface IResultsProps {
     maxScore: number
 }
 
 export const Results: FC<IResultsProps> = (props) => {
-
-    const { formatTime } = useCore();
     const { timer, card } = useTypedSelector(state => state);
+    const { formatTime } = useCore();
     const { backToHub } = useCard();
 
     const { maxScore } = props;
-
     const score = card.score;
-
-    const userTime = formatTime(timer);
+    const userTime = formatTime(timer.time);
 
     const getScoreColor = (): string => {
         let color = null;
 
         const halfScore = maxScore * 0.5;
-        const quaterScore = maxScore * 0.25;
+        const quarterScore = maxScore * 0.25;
         const tenPercentScore = maxScore * 0.1;
 
         if (score <= maxScore && score > (maxScore - tenPercentScore)) {
             color = colors.green100;
-        } else if (score <= (maxScore - tenPercentScore) && score > (maxScore - quaterScore)) {
+        } else if (score <= (maxScore - tenPercentScore) && score > (maxScore - quarterScore)) {
             color = colors.yellow100;
-        } else if (score <= (maxScore - quaterScore) && score > (maxScore - halfScore + tenPercentScore)) {
+        } else if (score <= (maxScore - quarterScore) && score > (maxScore - halfScore + tenPercentScore)) {
             color = colors.yellow100;
         } else {
             color = colors.red100;

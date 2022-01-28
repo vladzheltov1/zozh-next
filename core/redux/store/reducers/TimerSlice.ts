@@ -1,16 +1,30 @@
 import { createSlice } from "@reduxjs/toolkit";
 
-const initialState: number = 0;
+type Timer = {
+    time: number,
+    isActive: boolean
+}
+
+const initialState: Timer = {
+    time: 0,
+    isActive: false
+};
 
 export const timerSlice = createSlice({
     name: "timer",
     initialState,
     reducers: {
         increment(state) {
-            return state + 1;
+            state.time += 1;
         },
         resetTimer(state) {
             return initialState;
+        },
+        startTimer(state) {
+            state.isActive = true;
+        },
+        stopTimer(state) {
+            state.isActive = false;
         }
     }
 })

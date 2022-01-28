@@ -2,7 +2,7 @@ import { Text } from "@/components/UI";
 import { useTypedSelector } from "@/core/redux/hooks/redux";
 import { useEffect } from "react";
 import { formatTime } from "../../helpers";
-import { useTimer } from "./script";
+import { useTimer } from "./useTimer";
 
 export const Timer = () => {
     const { timer } = useTypedSelector(state => state);
@@ -18,7 +18,7 @@ export const Timer = () => {
 
     return (
         <Text size={16}>
-            {formatTime(timer)}
+            {formatTime(timer.time)}
         </Text>
     );
 };

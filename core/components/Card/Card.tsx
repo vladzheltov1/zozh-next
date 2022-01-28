@@ -1,8 +1,8 @@
 import { useTypedSelector } from "@/core/redux/hooks/redux";
-import { FC, ReactChild, ReactNode, useEffect } from "react";
+import { FC, ReactNode, useEffect } from "react";
 import cardStyle from "./Card.module.scss";
 import { CardTopData } from "./CardTopData";
-import { useTimer } from "../Timer/script";
+import { useTimer } from "../Timer/useTimer";
 import { useCard } from "./useCard";
 
 export interface ICardProps {
