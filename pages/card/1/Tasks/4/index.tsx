@@ -1,8 +1,7 @@
 import { Radio, Select } from "@/components/UI";
-import { Task } from "@/core/index";
+import { Task, useCore } from "@/core/public";
 import { useState } from "react";
 import style from "./style.module.scss";
-import { onAnswerSubmit } from "@/core/helpers";
 
 const options = {
     misha: "misha",
@@ -12,6 +11,8 @@ const options = {
 export const Task4 = () => {
     const [check, setCheck] = useState<null | string>(null);
 
+    const { onAnswerSubmit } = useCore();
+
     const [values, setValues] = useState({
         value1: null,
         value2: null,
@@ -19,7 +20,7 @@ export const Task4 = () => {
         value4: null
     });
 
-    const [items, setItems] = useState({
+    const [items, _] = useState({
         group1: [{ id: 0, value: "---" }, { id: 1, value: "овощи" }, { id: 2, value: "чипсы" }],
         group2: [{ id: 0, value: "---" }, { id: 1, value: "сухарики" }, { id: 2, value: "фрукты" }],
         group3: [{ id: 0, value: "---" }, { id: 1, value: "каши" }, { id: 2, value: "лемонад" }],

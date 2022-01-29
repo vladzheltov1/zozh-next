@@ -1,9 +1,8 @@
+import { useCard, useTimer } from "@/core/public";
 import { useTypedSelector } from "@/core/redux/hooks/redux";
 import { FC, ReactNode, useEffect } from "react";
 import cardStyle from "./Card.module.scss";
 import { CardTopData } from "./CardTopData";
-import { useTimer } from "../Timer/useTimer";
-import { useCard } from "./useCard";
 
 export interface ICardProps {
     children: ReactNode[]
@@ -16,12 +15,12 @@ export const Card: FC<ICardProps> = (props) => {
     const { currentNode, score } = card;
 
     const { backToHub } = useCard();
-    // const { stopTimer } = useTimer();
+    const { stopTimer } = useTimer();
 
     useEffect(() => {
-        // if (currentNode === children.length - 1) {
-        //     stopTimer();
-        // }
+        if (currentNode === children.length - 1) {
+            stopTimer();
+        }
 
         return () => {
             if (currentNode == children.length - 1) {

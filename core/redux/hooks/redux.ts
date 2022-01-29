@@ -1,7 +1,7 @@
 import { bindActionCreators } from "@reduxjs/toolkit";
 import { TypedUseSelectorHook, useDispatch, useSelector } from "react-redux";
-import { cardActions, taskActions, timerActions } from "../store/reducers";
-import { TypeRootState } from "../store/store";
+import { cardActions, taskActions, timerActions } from "../reducers";
+import { TypeRootState } from "../store";
 
 const ACTIONS = {
     ...taskActions,

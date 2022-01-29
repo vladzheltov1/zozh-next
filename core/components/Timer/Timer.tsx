@@ -1,12 +1,11 @@
 import { Text } from "@/components/UI";
-import { useActions, useTypedSelector } from "@/core/redux/hooks/redux";
+import { formatTime, useTimer } from "@/core/public";
+import { useTypedSelector } from "@/core/redux/hooks/redux";
 import { useEffect } from "react";
-import { formatTime } from "../../helpers";
-import { useTimer } from "./useTimer";
 
-const useStartTimer = () => {
+export const Timer = () => {
+    const { startTimer, stopTimer, resetTimer, increment } = useTimer();
     const { timer } = useTypedSelector(state => state);
-    const { increment } = useActions();
 
     useEffect(() => {
         let interval = null;
@@ -20,15 +19,7 @@ const useStartTimer = () => {
         return () => {
             clearInterval(interval)
         };
-    }, [timer.isActive, increment]);
-}
-
-/**
- * @todo FIX THE FKN TIMER
- */
-export const Timer = () => {
-    const { timer } = useTypedSelector(state => state);
-    const { startTimer, stopTimer, resetTimer } = useTimer();
+    }, [timer.isActive]);
 
     useEffect(() => {
         startTimer();
@@ -40,7 +31,7 @@ export const Timer = () => {
 
     return (
         <Text size={16}>
-            {formatTime(timer.time)}
+            {formatTime(timer)}
         </Text>
     );
 };

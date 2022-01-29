@@ -1,4 +1,4 @@
-import { store } from '@/core/redux/store/store';
+import { store } from '@/core/redux/store';
 import '@/styles/globals.scss';
 import Head from "next/head";
 import { Provider } from 'react-redux';

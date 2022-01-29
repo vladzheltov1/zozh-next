@@ -1,5 +1,4 @@
-import { Task } from "@/core/index";
-import { useCore } from "@/core/redux/public/useCore";
+import { Task, useCore } from "@/core/public";
 import { useState } from "react";
 import style from "./style.module.scss";
 

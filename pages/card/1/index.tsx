@@ -1,4 +1,4 @@
-import { Card, Results, Theory } from "@/core/index";
+import { Card, Results, Theory } from "@/core/public";
 import { CardLayout } from "@/layouts/index";
 import { Task1 } from "./Tasks/1";
 

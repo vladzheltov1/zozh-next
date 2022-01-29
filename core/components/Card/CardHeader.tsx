@@ -1,7 +1,7 @@
+import { useCard } from "@/core/public";
 import { Icon } from "@/UI/index";
 import { ArrowLeftLine } from "@rsuite/icons";
 import headerStyle from "./Card.module.scss";
-import { useCard } from "./useCard";
 
 export const CardHeader = () => {
     const { backToHub } = useCard();

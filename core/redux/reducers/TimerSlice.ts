@@ -1,11 +1,11 @@
 import { createSlice } from "@reduxjs/toolkit";
 
-type Timer = {
+export interface ITimer {
     time: number,
     isActive: boolean
 }
 
-const initialState: Timer = {
+const initialState: ITimer = {
     time: 0,
     isActive: false
 };

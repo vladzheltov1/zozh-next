@@ -1,5 +1,5 @@
-import { ButtonAppearance, Text } from "@/components/UI";
-import { NextButton } from "@/core/index";
+import { Text } from "@/components/UI";
+import { NextButton } from "@/core/public";
 import { useTypedSelector } from "@/core/redux/hooks/redux";
 import { FC, ReactChild } from "react";
 

@@ -1,11 +1,11 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 
-interface CardState {
+export interface ICard {
     currentNode: number,
     score: number
 }
 
-const initialState: CardState = {
+const initialState: ICard = {
     currentNode: 0,
     score: 0
 }

@@ -1,12 +1,12 @@
 import { ButtonAppearance } from "@/components/UI/Button";
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 
-interface TaskState {
+export interface ITask {
     buttonAppearance: ButtonAppearance,
     buttonDisabled: boolean
 }
 
-const initialState: TaskState = {
+const initialState: ITask = {
     buttonAppearance: "primary",
     buttonDisabled: false
 }

@@ -1,10 +1,13 @@
 import { Space, Text } from "@/components/UI";
-import { onAnswerSubmit, Task } from "@/core/index";
+import { Task, useCore } from "@/core/public";
 import { DragAndDrop, DragAndDropBlock, DragItem, DropArea, IContainerBundle, ROOT_CONTAINER } from "@/libs/DragAndDrop2";
 import { FC, useState } from "react";
 import style from "./style.module.scss";
 
 export const Task2: FC = () => {
+
+    const { onAnswerSubmit } = useCore();
+
     const [containers, setContainer] = useState<IContainerBundle>({
         rootContainer: ["профилактику", "жизни", "укрепление", "образ", "развитие"],
         gap1: null,

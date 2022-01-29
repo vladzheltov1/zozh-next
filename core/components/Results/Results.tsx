@@ -1,10 +1,8 @@
 import { Text } from "@/components/UI";
-import { Task } from "@/core/index";
+import { formatTime, Task, useCard } from "@/core/public";
 import { useTypedSelector } from "@/core/redux/hooks/redux";
-import { useCore } from "@/core/redux/public/useCore";
 import colors from "@/styles/var.module.scss";
 import { FC } from "react";
-import { useCard } from "../Card/useCard";
 import style from "./Results.module.scss";
 
 export interface IResultsProps {
@@ -13,12 +11,11 @@ export interface IResultsProps {
 
 export const Results: FC<IResultsProps> = (props) => {
     const { timer, card } = useTypedSelector(state => state);
-    const { formatTime } = useCore();
     const { backToHub } = useCard();
 
     const { maxScore } = props;
     const score = card.score;
-    const userTime = formatTime(timer.time);
+    const userTime = formatTime(timer);
 
     const getScoreColor = (): string => {
         let color = null;

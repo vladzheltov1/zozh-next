@@ -1,6 +1,5 @@
 import { Text } from "@/components/UI";
-import { Task } from "@/core/index";
-import { useCore } from "@/core/redux/public/useCore";
+import { Task, useCore } from "@/core/public";
 
 export const Theory = ({ children }) => {
     const { changeNode } = useCore();

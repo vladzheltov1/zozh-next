@@ -1,4 +1,4 @@
-import { onAnswerSubmit, Task } from "@/core/index";
+import { Task, useCore } from "@/core/public";
 import { checkIfPairsMatch, Matcher } from "@/libs/Matcher";
 import { useState } from "react";
 
@@ -16,6 +16,9 @@ const correctPairs = {
 }
 
 export const Task5 = () => {
+
+    const { onAnswerSubmit } = useCore();
+
     const [pairs, setPairs] = useState(null);
 
     const getPairs = (updatedPairs) => {

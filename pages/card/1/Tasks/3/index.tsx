@@ -1,9 +1,11 @@
 import { Space, Table, TableColumn, TableRow } from "@/components/UI";
-import { onAnswerSubmit, Task } from "@/core/index";
+import { Task, useCore } from "@/core/public";
 import { DragAndDrop, DragAndDropBlock, DragItem, DropArea, ROOT_CONTAINER, useContainerState } from "@/libs/DragAndDrop2";
 import style from "./style.module.scss";
 
 export const Task3 = () => {
+
+    const { onAnswerSubmit } = useCore();
 
     const [containers, setContainers] = useContainerState({
         rootContainer: ["16:00", "7:30", "22:00", "21:30", "17:00"],
