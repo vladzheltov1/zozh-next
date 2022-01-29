@@ -1,12 +1,11 @@
-import Random from "@/libs/Random";
 import { CSSProperties, FC, useEffect, useState } from "react";
 import { MatcherManager } from "../scripts";
 import styles from "../styles/Matcher.module.scss";
-
 export interface IMatcherProps {
     leftList: Array<any>,
     rightList: Array<any>,
-    onFinish: Function
+    onFinish: Function,
+    colors?: "default" | Array<string>
 }
 
 /**
@@ -14,12 +13,20 @@ export interface IMatcherProps {
  */
 type Position = "left" | "right";
 
+const DEFAULT_COLORS = [
+    "#F04728CC",
+    "#F5950ACC",
+    "#EDD562",
+    "#35CC63CC",
+    "#3496E1CC",
+    "#9C5ABBCC",
+]
+
 /**
  * @todo 1. Менять цвет шарика, когда элемент выбран(находится в паре)/активен
- *       2. Рандомно генерировать цвет фона по клику на левый элемент, чтобы потом поставить его как цвет пары.
  */
 export const Matcher: FC<IMatcherProps> = (props) => {
-    const { leftList, rightList, onFinish } = props;
+    const { leftList, rightList, onFinish, colors = "default" } = props;
 
     const chosenInitialState = { left: null, right: null };
 
@@ -27,7 +34,6 @@ export const Matcher: FC<IMatcherProps> = (props) => {
     const [pairs, setPairs] = useState([]);
 
     const manager = new MatcherManager(pairs);
-    const random = new Random();
 
     const onLeftClick = (item: string) => {
         prepareForAction(item);
@@ -55,11 +61,16 @@ export const Matcher: FC<IMatcherProps> = (props) => {
     const makePair = () => {
         if (chosen.left === null || chosen.right === null) return;
 
-        const color = random.getColor(0.7);
+        const color = getColor(chosen.left);
         const singlePair = { ...chosen, color };
 
         setPairs([...pairs, singlePair]);
         setChosen(chosenInitialState);
+    }
+
+    const getColor = (item: string) => {
+        const availableColors = colors === "default" ? DEFAULT_COLORS : colors;
+        return availableColors[leftList.indexOf(item) % leftList.length];
     }
 
     /**
