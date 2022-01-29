@@ -1,7 +1,9 @@
+import { Color } from "@/types/Color";
+
 export type Pair = {
     left: string,
     right: string,
-    color: string
+    color: Color | string
 }
 
 export class MatcherManager {
@@ -11,7 +13,7 @@ export class MatcherManager {
         this.pairs = pairs;
     }
 
-    public checkIfExistsAndDeletePair(item) {
+    public checkIfExistsAndDeletePair(item): Pair[] {
         const candidate = this.findPairWithItem(item)
         if (candidate !== -1) {
             const updatedPairsList = this.deletePair(candidate);

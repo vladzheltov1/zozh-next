@@ -1,17 +1,7 @@
 import { CSSProperties, FC, useEffect, useState } from "react";
-import { MatcherManager } from "../scripts";
+import { MatcherManager, Pair } from "../scripts";
 import styles from "../styles/Matcher.module.scss";
-export interface IMatcherProps {
-    leftList: Array<any>,
-    rightList: Array<any>,
-    onFinish: Function,
-    colors?: "default" | Array<string>
-}
 
-/**
- * Локальный тип
- */
-type Position = "left" | "right";
 
 const DEFAULT_COLORS = [
     "#F04728CC",
@@ -22,16 +12,35 @@ const DEFAULT_COLORS = [
     "#9C5ABBCC",
 ]
 
-/**
- * @todo 1. Менять цвет шарика, когда элемент выбран(находится в паре)/активен
- */
+const chosenInitialState = { left: null, right: null };
+
+type Position = "left" | "right";
+
+export interface IMatcherProps {
+    /**
+     * Список, с которого начинается действие
+     */
+    leftList: Array<any>,
+    /**
+     * Список, с котором происходит сопоставление
+     */
+    rightList: Array<any>,
+    /**
+     * Функция, которая будет вызвана, когда все элементы распределены по парам
+     * @param pairs Pair
+     */
+    onFinish: Function,
+    /**
+     * Цвета активных элементов 
+     */
+    colors?: "default" | Array<string>
+}
+
 export const Matcher: FC<IMatcherProps> = (props) => {
     const { leftList, rightList, onFinish, colors = "default" } = props;
 
-    const chosenInitialState = { left: null, right: null };
-
     const [chosen, setChosen] = useState(chosenInitialState);
-    const [pairs, setPairs] = useState([]);
+    const [pairs, setPairs] = useState<Pair[]>([]);
 
     const manager = new MatcherManager(pairs);
 
