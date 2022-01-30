@@ -11,6 +11,9 @@ export interface IDropAreaProps {
     isDropDisabled?: boolean
 }
 
+/**
+ * @deprecated
+ */
 export const DropArea: FC<IDropAreaProps> = (props) => {
     const { children, className = "", direction = "vertical", droppableId, isDropDisabled = false, ...restProps } = props;
     return (

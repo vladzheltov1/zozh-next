@@ -49,6 +49,7 @@ const moveBetweenGaps = (destination, source, items, gaps) => {
  * @param source 
  * @param items 
  * @param gaps 
+ * @deprecated
  * @returns [result, gaps]
  */
 const moveFromHub = (destination, source, items, gaps) => {
@@ -66,6 +67,7 @@ const moveFromHub = (destination, source, items, gaps) => {
  * @param source 
  * @param items 
  * @param gaps 
+ * @deprecated
  * @returns [result, gaps]
  */
 export const reorder = (destination, source, items, gaps, rootContainerId: string) => {

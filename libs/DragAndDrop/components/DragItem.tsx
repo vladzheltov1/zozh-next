@@ -8,6 +8,9 @@ export interface IDragItemProps {
     index: number
 }
 
+/**
+ * @deprecated
+ */
 export const DragItem: FC<IDragItemProps> = (props) => {
     const { children = "", className, draggableId, index, ...restProps } = props;
     return (
