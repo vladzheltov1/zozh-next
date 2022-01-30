@@ -1,8 +1,7 @@
 import { Space, Text } from "@/components/UI";
 import { Task, useCore } from "@/core/public";
-import { DragAndDrop, DragAndDropBlock, DragItem, DropArea, IContainerBundle, ROOT_CONTAINER } from "@/libs/DragAndDrop2";
+import { DragAndDrop, DragAndDropBlock, DragItem, DropArea, IContainerBundle, ROOT_CONTAINER, TextWithGaps } from "@/libs/DragAndDrop2";
 import { FC, useState } from "react";
-import style from "./style.module.scss";
 
 export const Task2: FC = () => {
 
@@ -51,7 +50,7 @@ export const Task2: FC = () => {
                     ))}
                 </DropArea>
                 <Space height={20} />
-                <Text size={"1.4rem"} className={style.task1Text}>
+                <Text size={"1.4rem"} style={TextWithGaps}>
                     <Text>Здоровый образ жизни -</Text>
                     {/* Образ */}
                     <DropArea droppableId={"gap1"} direction="horizontal" isDropDisabled={containers.gap1 != null}>
