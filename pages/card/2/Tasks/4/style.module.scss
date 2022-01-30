@@ -1,0 +1,70 @@
+@import "@/styles/var.module.scss";
+
+.questionBlock {
+    font-size: $font-size-20;
+}
+.options {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    font-size: 24px;
+    gap: 10px;
+    margin: 20px 0;
+
+    input[type="radio"] {
+        width: 18px;
+        height: 18px;
+    }
+}
+.dropArea {
+    position: relative;
+    width: max-content;
+    display: inline-block;
+    margin: 2px 0;
+}
+.dropItem {
+    background-color: $green-40;
+    padding: 5px 15px;
+    border-radius: 20px;
+}
+.bottomWordRow {
+    display: flex;
+    gap: 5px;
+    justify-content: center;
+    align-items: center;
+    font-size: $font-size-20;
+}
+.wordRowArea {
+    width: max-content;
+    min-width: 100px;
+    background: $gray-blue;
+    border-radius: 30px;
+    height: 30px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+// ChooseList
+
+.chooseListContainer {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    justify-content: center;
+    align-items: center;
+    transition-duration: 0.5s;
+    background-color: #f0f0f0;
+    padding: 8px;
+    border-radius: 10px;
+}
+.chooseListItem {
+    display: block;
+    padding: 6px 20px;
+    border-radius: 30px;
+    background-color: $green-40;
+    width: fit-content;
+    &:hover {
+        cursor: pointer;
+    }
+}
