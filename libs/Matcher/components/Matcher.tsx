@@ -86,18 +86,10 @@ export const Matcher: FC<IMatcherProps> = (props) => {
      * Отправление полученных данных в функцию, которая поставит все данные в локальный `state` вышестоящего компонента.
      */
     useEffect(() => {
-        if (!checkIfFunctionIsCorrect()) {
-            throw new Error("Ошибка события: невозможно вызвать onFinish!");
-        }
-
         if (pairs.length === leftList.length) {
             onFinish(pairs);
         }
     }, [pairs])
-
-    const checkIfFunctionIsCorrect = (): boolean => {
-        return typeof onFinish === "function";
-    }
 
     const getStyleForItem = (value: string, position: Position): CSSProperties => {
         const style = { backgroundColor: "" };
