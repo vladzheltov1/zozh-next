@@ -4,6 +4,7 @@
     display: flex;
     gap: 10px;
     flex-grow: 1;
+    margin-top: 15px;
 }
 
 @mixin container {
@@ -11,8 +12,9 @@
     padding: 10px;
     border-radius: 10px;
     border: 2px dashed $blue-80;
-    min-height: 50px;
     background-color: $gray-0;
+    gap: 10px;
+    min-height: 152px;
 }
 
 .containerDefault {
@@ -22,10 +24,22 @@
 
 .containerGood {
     @include container();
+    justify-content: center;
     border-color: $green-80;
 }
 
 .containerBad {
     @include container();
+    justify-content: center;
     border-color: $red-80;
+}
+
+.blockWithPicture{
+    width: 128px;
+    height: 128px;
+    position: relative;
+    background-color: $gray-0;
+    border: 2px solid $violet-80;
+    border-radius: 5px;
+    overflow: hidden;
 }

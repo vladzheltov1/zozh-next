@@ -31,7 +31,6 @@ export const Task2 = () => {
     return (
         <Task title="2. Заполните пропуски, перетаскивая нужные слова" action={checkTask}>
             <>
-                <small>В данном задании присутствуют лишние слова, которые не должны быть использованы в тексте.</small>
                 <DragAndDropBlock onDragEnd={result => onDragEnd(result, containers, setContainers)}>
                     <Space height={10} />
                     <DropArea droppableId={ROOT_CONTAINER} outLook="root" direction="horizontal">
