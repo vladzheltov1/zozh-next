@@ -1,0 +1,31 @@
+@import "@/styles/var.module.scss";
+
+.containerPair {
+    display: flex;
+    gap: 10px;
+    flex-grow: 1;
+}
+
+@mixin container {
+    width: 100%;
+    padding: 10px;
+    border-radius: 10px;
+    border: 2px dashed $blue-80;
+    min-height: 50px;
+    background-color: $gray-0;
+}
+
+.containerDefault {
+    @include container();
+    border-color: $blue-80;
+}
+
+.containerGood {
+    @include container();
+    border-color: $green-80;
+}
+
+.containerBad {
+    @include container();
+    border-color: $red-80;
+}
