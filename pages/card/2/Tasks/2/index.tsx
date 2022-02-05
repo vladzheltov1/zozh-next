@@ -3,7 +3,7 @@ import { Task, useCore } from "@/core/public";
 import { DragAndDropBlock, DragItem, DropArea, IContainerBundle, onDragEnd, ROOT_CONTAINER, TextWithGaps } from "@/libs/DragAndDrop2";
 import { useState } from "react";
 
-const initalState: IContainerBundle = {
+const initialState: IContainerBundle = {
     rootContainer: ["профилактике", "жизнедеятельность", "развитие", "пищи", "рост"],
     gap1: [],
     gap2: [],
@@ -13,7 +13,7 @@ const initalState: IContainerBundle = {
 }
 
 export const Task2 = () => {
-    const [containers, setContainers] = useState(initalState);
+    const [containers, setContainers] = useState(initialState);
     const { onAnswerSubmit } = useCore();
 
     const checkTask = () => {
