@@ -2,6 +2,7 @@
 
 .questionBlock {
     font-size: $font-size-20;
+    padding: 15px;
 }
 .options {
     width: 100%;
@@ -47,7 +48,7 @@
 
 // ChooseList
 
-.chooseListContainer{
+.chooseListContainer {
     display: flex;
     flex-direction: column;
     gap: 10px;
@@ -58,13 +59,13 @@
     padding: 8px;
     border-radius: 10px;
 }
-.chooseListItem{
+.chooseListItem {
     display: block;
     padding: 6px 20px;
     border-radius: 30px;
     background-color: $green-40;
     width: fit-content;
-    &:hover{
+    &:hover {
         cursor: pointer;
     }
 }

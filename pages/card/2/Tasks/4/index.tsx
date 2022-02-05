@@ -10,33 +10,20 @@ export const Task4 = () => {
 
     const { onAnswerSubmit } = useCore();
 
-    const [value, setValue] = useState(null);
-
-    const groups = ["овощи", "фрукты"]
-
     const handleCheck = (event) => setCheck(event.target.defaultValue);
 
-    const handleClick = (event, value) => setValue(event.target.value);
-
     const checkTask = () => {
-        const correct = ["чипсы", "сухарики", "лемонад", "конфеты"];
-        let isCorrect = true;
-        for (let key in values) {
-            if (correct.indexOf(values[key]) === -1 || check === "no") isCorrect = false;
-        }
-        onAnswerSubmit(isCorrect);
+        onAnswerSubmit(check === "yes");
     };
 
     return (
         <Task title="4. Ответьте на вопрос" action={checkTask}>
             <>
                 <div className={style.questionBlock}>
-                    Четвероклассник Миша со своим другом Колей составляют меню.
-                    Каждый из них решил &quot;укомплектовать&quot; корзину с продуктам.
-                    Миша включил в список овощи, фрукты, каши и молочные продукты.
-                    Коля в свою очередь решил, что такое меню неправильное, и помимо этого
-                    решил добавить чипсы, сухарики, лимонад и конфеты. Как ты думаешь, кто
-                    из ребят правильно составил меню и почему?
+                    Четвероклассник Миша прочитал в интернете, что соблюдение диеты
+                    помогает людям стать стройными и здоровыми. Он решил проверить это.
+                    Миша решил, что целую неделю будет питаться только фруктами и овощами,
+                    а перед сном съедать творожок. Правильную ли диету выбрал Мишу?
                 </div>
                 <div className={style.options}>
                     <Radio
@@ -52,14 +39,15 @@ export const Task4 = () => {
                         title="Нет"
                     />
                 </div>
-                {check == "yes" ? (
+                {check == "yes" && (
                     <div className={style.bottomWordRow}>
                         <div style={{ fontSize: 20 }}>потому что фрукты и овощи полезны для здоровья.</div>
                     </div>
-                ) : (
+                )}
+                {check == "no" && (
                     <div className={style.bottomWordRow}>
                         <div style={{ fontSize: 20 }}>потому что</div>
-                        <Select list={groups} onChange={() => handleClick(event, "value1")} />,
+                        <Select list={["овощи", "фрукты"]} />&nbsp;
                         <div style={{ fontSize: 20 }}> - вредные для здоровья продукты.</div>
                     </div>
                 )}

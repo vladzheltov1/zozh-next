@@ -1,13 +1,13 @@
 @import "@/styles/var.module.scss";
 
-.select{
+.select {
     padding: 4px 8px;
     box-shadow: 0 0 1px 2px $gray-20;
     border: none;
     border-radius: 5px;
     outline: none;
 
-    &:focus{
+    &:focus {
         box-shadow: 0 0 1px 2px $blue-60;
     }
 }
