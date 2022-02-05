@@ -14,7 +14,7 @@ export const Matching: FC = () => {
                 Составьте осмысленные пары слов
             </Text>
             <Space height={10} />
-            <Matcher leftList={lists.left} rightList={lists.right} onFinish={() => { }} />
+            <Matcher leftList={lists.left} rightList={lists.right} />
         </>
     )
 }

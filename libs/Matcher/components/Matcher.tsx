@@ -29,7 +29,7 @@ export interface IMatcherProps {
      * Функция, которая будет вызвана, когда все элементы распределены по парам
      * @param pairs Pair
      */
-    onFinish: Function,
+    onFinish?: Function,
     /**
      * Цвета активных элементов 
      */
@@ -37,7 +37,7 @@ export interface IMatcherProps {
 }
 
 export const Matcher: FC<IMatcherProps> = (props) => {
-    const { leftList, rightList, onFinish, colors = "default" } = props;
+    const { leftList, rightList, onFinish = () => { }, colors = "default" } = props;
 
     const [chosen, setChosen] = useState(chosenInitialState);
     const [pairs, setPairs] = useState<Pair[]>([]);
