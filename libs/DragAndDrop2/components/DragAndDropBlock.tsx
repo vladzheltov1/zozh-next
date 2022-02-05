@@ -6,7 +6,6 @@ export interface IDragAndDropBlockProps extends Responders {
 }
 
 export const DragAndDropBlock: FC<IDragAndDropBlockProps> = (props) => {
-
     const { children, onDragEnd } = props;
 
     return (

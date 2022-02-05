@@ -1,26 +1,30 @@
-import Random from "@/libs/Random";
-import { FC } from "react";
+import { random } from "@/libs/Random";
+import classNames from "classnames";
+import { CSSProperties, FC } from "react";
 import { Draggable } from 'react-beautiful-dnd';
 import { dragItemStyles } from "../styles";
 
 export interface IDragItemProps {
-    draggableId?: string,
-    index?: number,
     children: any,
     isDragDisabled?: boolean,
-    className?: string
+    draggableId?: string,
+    className?: string,
+    index?: number,
 }
 
 export const DragItem: FC<IDragItemProps> = (props) => {
-    const { draggableId, index = 0, children, isDragDisabled, className } = props;
+    const { children, isDragDisabled, draggableId, className, index = 0 } = props;
 
-    const rand = new Random();
+    const classNameList = classNames({
+        [dragItemStyles.dragItem]: true,
+        [className]: className
+    })
 
     return (
-        <Draggable draggableId={draggableId || `draggable${rand.getInt(0, 10000)}`} index={index} isDragDisabled={isDragDisabled}>
-            {(provided) => (
+        <Draggable draggableId={draggableId || `draggable-${random.getInt(0, 10000)}`} index={index} isDragDisabled={isDragDisabled}>
+            {provided => (
                 <div
-                    className={`${dragItemStyles.dragItem} ${className || null}`}
+                    className={classNameList}
                     ref={provided.innerRef}
                     {...provided.draggableProps}
                     {...provided.dragHandleProps}

@@ -1,3 +1,4 @@
+import classNames from "classnames";
 import { FC } from "react";
 import { Direction, Droppable, DroppableMode } from 'react-beautiful-dnd';
 import { dropAreaStyles } from "../styles";
@@ -15,9 +16,13 @@ export interface IDropAreaProps {
 }
 
 export const DropArea: FC<IDropAreaProps> = (props) => {
-    const { children, droppableId, show = true, mode, direction, isDropDisabled, className, outLook } = props;
+    const { children, droppableId, show = true, mode, direction, isDropDisabled, className, outLook = "gap" } = props;
 
-    const defaultClassName = `${outLook === "root" ? dropAreaStyles.dropAreaRoot : dropAreaStyles.dropArea}`;
+    const classNameList = classNames({
+        [dropAreaStyles.dropAreaRoot]: outLook === "root",
+        [dropAreaStyles.dropArea]: outLook === "gap",
+        [className]: className
+    });
 
     return (
         <Droppable droppableId={droppableId} mode={mode} direction={direction} isDropDisabled={isDropDisabled}>
@@ -26,7 +31,7 @@ export const DropArea: FC<IDropAreaProps> = (props) => {
                     {show && (
                         <div
                             ref={provided.innerRef}
-                            className={`${defaultClassName} ${className || null}`}
+                            className={classNameList}
                             {...provided.droppableProps}
                         >
                             {children}

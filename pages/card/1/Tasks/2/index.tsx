@@ -39,7 +39,7 @@ export const Task2: FC = () => {
                     ))}
                 </DropArea>
                 <Space height={20} />
-                <Text size={"1.4rem"} style={TextWithGaps}>
+                <Text style={TextWithGaps}>
                     <Text>Здоровый образ жизни -</Text>
                     {/* Образ */}
                     <DropArea droppableId={"gap1"} direction="horizontal" isDropDisabled={containers.gap1.length > 0}>

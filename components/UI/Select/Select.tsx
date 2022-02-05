@@ -10,11 +10,9 @@ export interface ISelectProps {
 
 export const Select: FC<ISelectProps> = (props) => {
     const { list = [], onChange = () => { } } = props;
-    return <select className={selectStyle.select}>
+    return <select className={selectStyle.select} onChange={(event) => onChange(event)}>
         {list.map(item => (
-            <>
-                <option key={item} className={selectStyle.selectItem} onChange={() => onChange()}>{item}</option>
-            </>
+            <option key={item} className={selectStyle.selectItem}>{item}</option>
         ))}
     </select>
 }
