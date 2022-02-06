@@ -4,7 +4,7 @@ import { useTypedSelector } from "@/core/redux/hooks/redux";
 import { FC, ReactChild } from "react";
 
 export interface ITaskComponentProps {
-    children: ReactChild,
+    children: ReactChild | ReactChild[],
     title: string,
     action: Function
 }

@@ -7,6 +7,7 @@ export type TextModes =
     | "div"
     | "span"
     | "label"
+    | "small"
     | "h1"
     | "h2"
     | "h3"
