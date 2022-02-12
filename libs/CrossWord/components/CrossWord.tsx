@@ -1,49 +1,68 @@
 import { Text } from "@/components/UI";
-import { FC, useState } from "react";
+import { FC, useState, useEffect } from "react";
 import crossWordStyle from "../styles/CrossWord.module.scss";
 
 export interface ICrossWord {
     question: string,
-    letters: number
+    letters: number,
+    onFinish: Function
 }
 
 const regex = /[А-Яа-я]/;
 
 export const CrossWord: FC<ICrossWord> = (props) => {
-    const { question, letters } = props;
+    const { question, letters, onFinish = () => { } } = props;
 
     const [gaps, setGaps] = useState([]);
 
+    const checkCondition = (event) => {
+        return !regex.test(event.key) && event.key !== "Backspace";
+    }
+
+    const onKeyDown = (event) => {
+        if (checkCondition(event)) {
+            event.preventDefault();
+        }
+    }
+
     const onChange = (event) => {
         event.preventDefault();
+        const { index } = getFormData(event);
+        const updatedGaps = [...gaps];
+        updatedGaps[index] = regex.test(event.target.value) ? event.target.value : "";
+        setGaps([...updatedGaps]);
+    }
 
-        if (!regex.test(event.target.value) && event.key !== "Backspace") return;
+    const onKeyUp = (event) => {
+        if (checkCondition(event)) {
+            event.preventDefault();
+            return;
+        }
 
-        const form = event.target.form;
-        const index = [...form].indexOf(event.target);
+        const { form, index } = getFormData(event);
 
-        const offset = event.key === "Backspace" ? -1 : 1;
-
-        setGaps(
-            gaps.map((gap, i) => {
-                if (event.key === "Backspace") {
-                    gap = "";
-                } else if (i === index) {
-                    gap = event.target.value;
-                }
-                console.log(`${i} set to ${gap}`)
-                return gap;
-            })
-        );
+        const offset = event.key !== "Backspace" ? 1 : -1;
 
         const focusElement = form.elements[index + offset];
         if (!focusElement) return;
         form.elements[index + offset].focus();
     }
 
-    // useEffect(() => {
-    //     console.log(gaps);
-    // }, [gaps])
+    const getFormData = (event) => {
+        const form = event.target.form;
+        const index = [...form].indexOf(event.target);
+        return { form, index };
+    }
+
+    useEffect(() => {
+        for (let i = 0; i < gaps.length; i++) {
+            if (gaps[i] === "") {
+                return;
+            }
+        }
+        const line = gaps.join("");
+        onFinish(line);
+    }, [gaps]);
 
     return (
         <div className={crossWordStyle.crossWordWrapper}>
@@ -52,8 +71,14 @@ export const CrossWord: FC<ICrossWord> = (props) => {
             </div>
             <div className={crossWordStyle.bottomBlock}>
                 <form>
-                    {[...Array(letters)].map((x, i) => (
-                        <Letter key={i} value={gaps[i]} onChange={onChange} />
+                    {[...Array(letters)].map((_, index) => (
+                        <Letter
+                            key={index}
+                            value={gaps[index]}
+                            onChange={onChange}
+                            onKeyDown={onKeyDown}
+                            onKeyUp={onKeyUp}
+                        />
                     ))}
                 </form>
             </div>
@@ -63,15 +88,19 @@ export const CrossWord: FC<ICrossWord> = (props) => {
 
 interface ILetterProps {
     onChange?: Function,
+    onKeyDown?: Function,
+    onKeyUp?: Function,
     value?: string
 }
 
 const Letter: FC<ILetterProps> = (props) => {
-    const { onChange = () => { }, value = "" } = props;
+    const { onChange = () => { }, onKeyDown = () => { }, onKeyUp = () => { }, value = "" } = props;
     return <input
         className={crossWordStyle.letter}
         maxLength={1}
         value={value}
         onChange={event => onChange(event)}
+        onKeyDown={event => onKeyDown(event)}
+        onKeyUp={event => onKeyUp(event)}
     />
 }
