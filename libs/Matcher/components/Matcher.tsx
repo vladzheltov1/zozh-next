@@ -1,7 +1,7 @@
+import { useStateWithCallback } from "@/hooks/useStateWithCallback";
 import { CSSProperties, FC, useEffect, useState } from "react";
-import { MatcherManager, Pair } from "../scripts";
+import { MatcherData, Pair } from "../scripts";
 import styles from "../styles/Matcher.module.scss";
-
 
 const DEFAULT_COLORS = [
     "#F04728CC",
@@ -39,10 +39,10 @@ export interface IMatcherProps {
 export const Matcher: FC<IMatcherProps> = (props) => {
     const { leftList, rightList, onFinish = () => { }, colors = "default" } = props;
 
-    const [chosen, setChosen] = useState(chosenInitialState);
+    const [chosen, setChosen] = useStateWithCallback(chosenInitialState);
     const [pairs, setPairs] = useState<Pair[]>([]);
 
-    const manager = new MatcherManager(pairs);
+    const manager = new MatcherData(pairs);
 
     const onLeftClick = (item: string) => {
         prepareForAction(item);
@@ -55,24 +55,18 @@ export const Matcher: FC<IMatcherProps> = (props) => {
         if (!chosen.left) return;
 
         prepareForAction(item);
-        setChosen({ ...chosen, right: item });
+        setChosen({ ...chosen, right: item }, chosenPair => makePair(chosenPair));
     }
-
-    // FIXME: найти способ вынести данный функционал в кастомный хук
-    // @use hooks/useStateWithCallback()
-    useEffect(() => {
-        makePair();
-    }, [chosen]);
 
     const prepareForAction = (item) => {
         setPairs(manager.checkIfExistsAndDeletePair(item));
     }
 
-    const makePair = () => {
-        if (chosen.left === null || chosen.right === null) return;
+    const makePair = (chosenPair: Pair) => {
+        if (chosenPair.left === null || chosenPair.right === null) return;
 
         const color = getColor(chosen.left);
-        const singlePair = { ...chosen, color };
+        const singlePair = { ...chosenPair, color };
 
         setPairs([...pairs, singlePair]);
         setChosen(chosenInitialState);
