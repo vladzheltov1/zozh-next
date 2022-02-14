@@ -1,6 +1,6 @@
 import { Space, Text } from "@/components/UI";
 import { Task, useCore } from "@/core/public";
-import { DragAndDropBlock, DragItem, DropArea, IContainerBundle, onDragEnd, ROOT_CONTAINER, TextWithGaps } from "@/libs/DragAndDrop2";
+import { DragAndDropBlock, DragItem, DropArea, IContainerBundle, onDragEnd, TextWithGaps } from "@/libs/DragAndDrop2";
 import { useState } from "react";
 
 const initialState: IContainerBundle = {
