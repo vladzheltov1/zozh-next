@@ -21,9 +21,6 @@ export const useStateWithCallback = (initialState) => {
             isFirstLoad.current = false;
             return;
         }
-
-        console.log(callbackFunction.current);
-
         callbackFunction.current?.(state);
     }, [state]);
 

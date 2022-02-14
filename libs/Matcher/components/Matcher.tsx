@@ -59,6 +59,7 @@ export const Matcher: FC<IMatcherProps> = (props) => {
     }
 
     // FIXME: найти способ вынести данный функционал в кастомный хук
+    // @use hooks/useStateWithCallback()
     useEffect(() => {
         makePair();
     }, [chosen]);
