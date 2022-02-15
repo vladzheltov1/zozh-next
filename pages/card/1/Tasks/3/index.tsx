@@ -1,6 +1,6 @@
 import { Space, Table, TableColumn, TableRow } from "@/components/UI";
 import { Task, useCore } from "@/core/public";
-import { onDragEnd, DragAndDropBlock, DragItem, DropArea, IContainerBundle } from "@/libs/DragAndDrop2";
+import { DragAndDropBlock, DragItem, DropArea, IContainerBundle, onDragEnd } from "@/libs/DragAndDrop2";
 import { useState } from "react";
 import style from "./style.module.scss";
 
@@ -43,7 +43,7 @@ export const Task3 = () => {
                             <TableColumn mode="td">Выполнение домашних заданий</TableColumn>
                             <TableColumn mode="td">
                                 <DropArea droppableId="gap1" className={style.tableGapArea} isDropDisabled={containers.gap1.length > 0}>
-                                    {containers.gap1.length > 0 && <DragItem>{containers.gap1[0]}</DragItem>}
+                                    {containers.gap1.length > 0 && <DragItem draggableId={`draggable-1`}>{containers.gap1[0]}</DragItem>}
                                 </DropArea>
                             </TableColumn>
                         </TableRow>
@@ -51,7 +51,7 @@ export const Task3 = () => {
                             <TableColumn mode="td">Чтение книги перед сном</TableColumn>
                             <TableColumn mode="td">
                                 <DropArea droppableId="gap2" className={style.tableGapArea} isDropDisabled={containers.gap2.length > 0}>
-                                    {containers.gap2.length > 0 && <DragItem>{containers.gap2[0]}</DragItem>}
+                                    {containers.gap2.length > 0 && <DragItem draggableId={`draggable-2`}>{containers.gap2[0]}</DragItem>}
                                 </DropArea>
                             </TableColumn>
                         </TableRow>
@@ -59,7 +59,7 @@ export const Task3 = () => {
                             <TableColumn mode="td">Прогулка с собакой утром</TableColumn>
                             <TableColumn mode="td">
                                 <DropArea droppableId="gap3" className={style.tableGapArea} isDropDisabled={containers.gap3.length > 0}>
-                                    {containers.gap3.length > 0 && <DragItem>{containers.gap3[0]}</DragItem>}
+                                    {containers.gap3.length > 0 && <DragItem draggableId={`draggable-3`}>{containers.gap3[0]}</DragItem>}
                                 </DropArea>
                             </TableColumn>
                         </TableRow>
@@ -67,7 +67,7 @@ export const Task3 = () => {
                             <TableColumn mode="td">Сон</TableColumn>
                             <TableColumn mode="td">
                                 <DropArea droppableId="gap4" className={style.tableGapArea} isDropDisabled={containers.gap4.length > 0}>
-                                    {containers.gap4.length > 0 && <DragItem>{containers.gap4[0]}</DragItem>}
+                                    {containers.gap4.length > 0 && <DragItem draggableId={`draggable-4`}>{containers.gap4[0]}</DragItem>}
                                 </DropArea>
                             </TableColumn>
                         </TableRow>
@@ -75,7 +75,7 @@ export const Task3 = () => {
                             <TableColumn mode="td">Спортивная секция</TableColumn>
                             <TableColumn mode="td">
                                 <DropArea droppableId="gap5" className={style.tableGapArea} isDropDisabled={containers.gap5.length > 0}>
-                                    {containers.gap5.length > 0 && <DragItem>{containers.gap5[0]}</DragItem>}
+                                    {containers.gap5.length > 0 && <DragItem draggableId={`draggable-5`}>{containers.gap5[0]}</DragItem>}
                                 </DropArea>
                             </TableColumn>
                         </TableRow>
@@ -84,7 +84,7 @@ export const Task3 = () => {
                 <Space height={25} />
                 <DropArea droppableId="root" direction="horizontal" outLook="root">
                     {containers.root.map((item, index) => (
-                        <DragItem key={item} index={index} className={style.draggableItemInRootContainer}>
+                        <DragItem draggableId={`draggable-${index}`} key={item} index={index} className={style.draggableItemInRootContainer}>
                             <div className={style.dragItem}>{item}</div>
                         </DragItem>
                     ))}
