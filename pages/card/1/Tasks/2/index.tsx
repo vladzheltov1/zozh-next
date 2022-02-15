@@ -33,7 +33,7 @@ export const Task2: FC = () => {
                 <Space height={10} />
                 <DropArea droppableId={"root"} outLook="root" direction="horizontal">
                     {containers.root.map((item, index) => (
-                        <DragItem draggableId={`draggable-${index}`} key={item} index={index}>
+                        <DragItem key={item} index={index}>
                             {item}
                         </DragItem>
                     ))}
@@ -44,7 +44,7 @@ export const Task2: FC = () => {
                     {/* Образ */}
                     <DropArea droppableId={"gap1"} direction="horizontal" isDropDisabled={containers.gap1.length > 0}>
                         {containers.gap1.length > 0 ? (
-                            <DragItem draggableId={`draggable-1`}>
+                            <DragItem>
                                 {containers.gap1[0]}
                             </DragItem>
                         ) : null}
@@ -52,7 +52,7 @@ export const Task2: FC = () => {
                     {/* Жизни */}
                     <DropArea droppableId={"gap2"} direction="horizontal" isDropDisabled={containers.gap2.length > 0}>
                         {containers.gap2.length > 0 ? (
-                            <DragItem draggableId={`draggable-2`}>
+                            <DragItem>
                                 {containers.gap2[0]}
                             </DragItem>
                         ) : null}
@@ -61,7 +61,7 @@ export const Task2: FC = () => {
                     {/* Укрепление */}
                     <DropArea droppableId={"gap3"} direction="horizontal" isDropDisabled={containers.gap3.length > 0}>
                         {containers.gap3.length > 0 ? (
-                            <DragItem draggableId={`draggable-3`}>
+                            <DragItem>
                                 {containers.gap3[0]}
                             </DragItem>
                         ) : null}
@@ -70,7 +70,7 @@ export const Task2: FC = () => {
                     {/* Профилактику */}
                     <DropArea droppableId={"gap4"} direction="horizontal" isDropDisabled={containers.gap4.length > 0}>
                         {containers.gap4.length > 0 ? (
-                            <DragItem draggableId={`draggable-4`}>
+                            <DragItem>
                                 {containers.gap4[0]}
                             </DragItem>
                         ) : null}
@@ -79,7 +79,7 @@ export const Task2: FC = () => {
                     {/* Развитие */}
                     <DropArea droppableId={"gap5"} direction="horizontal" isDropDisabled={containers.gap5.length > 0}>
                         {containers.gap5.length > 0 ? (
-                            <DragItem draggableId={`draggable-5`}>
+                            <DragItem>
                                 {containers.gap5[0]}
                             </DragItem>
                         ) : null}

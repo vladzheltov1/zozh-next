@@ -71,7 +71,6 @@ const DraggablePicture = ({ path, index }) => {
     return (
         <DragItem
             index={index}
-            draggableId={`draggable-${index}`}
             className={style.blockWithPicture}
         >
             <Image src={`/pictures/cards/card2/task3/${path}.jpg`} layout="fill" alt="" />
