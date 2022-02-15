@@ -11,8 +11,6 @@ export interface IDragItemProps {
     index?: number,
 }
 
-// FIXME: При обновлении страницы появляются ошибки о том, что `draggbleId` на клиенте не сходится с сервером.
-// Вследствие этого перестаёт работать система.
 export const DragItem: FC<IDragItemProps> = (props) => {
     const { children, isDragDisabled, draggableId, className, index = 0 } = props;
 
