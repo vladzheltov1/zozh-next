@@ -1,20 +1,18 @@
+import { FC } from "react";
 import selectStyle from "./Select.module.scss";
 
-export type List = {
-    id: number,
-    value: string
-}
+export type List = Array<any>;
 
 export interface ISelectProps {
     list: List,
-    onChange: Function
+    onChange?: Function
 }
 
-export const Select = (props) => {
+export const Select: FC<ISelectProps> = (props) => {
     const { list = [], onChange = () => { } } = props;
-    return <select className={selectStyle.select} onChange={onChange}>
+    return <select className={selectStyle.select} onChange={(event) => onChange(event)}>
         {list.map(item => (
-            <option key={item.id}>{item.value}</option>
+            <option key={item} className={selectStyle.selectItem}>{item}</option>
         ))}
     </select>
 }

@@ -8,7 +8,7 @@ export const IndexIntro = () => {
     return <div className={`${global_style.block} ${intro_style.intro_block}`}>
         <div className={intro_style.intro_block__inner}>
             {/* Main title */}
-            <Text mode="h1" color="#fff" size={72} className={intro_style.intro_block__title}>
+            <Text mode="h1" color="#fff" className={intro_style.intro_block__title}>
                 <span><Text mode="span" color={colors.extraGreen}>З</Text>доровый&nbsp;</span>
                 <span><Text mode="span" color={colors.extraGreen}>О</Text>браз&nbsp;</span>
                 <span><Text mode="span" color={colors.extraGreen}>Ж</Text>изни</span>

@@ -1,13 +1,13 @@
-import { FC, useState } from "react";
-import { Matcher } from "@/libs/Matcher";
 import { Space, Text } from "@/components/UI";
+import { Matcher } from "@/libs/Matcher";
+import { FC } from "react";
+
+const lists = {
+    left: ["Правильное", "Утренняя"],
+    right: ["пробежка", "питание"]
+}
 
 export const Matching: FC = () => {
-    const [lists, setLists] = useState({
-        left: ["Правильное", "Утренняя"],
-        right: ["пробежка", "питание"]
-    });
-
     return (
         <>
             <Text bold size={21}>

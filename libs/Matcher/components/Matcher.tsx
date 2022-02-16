@@ -1,32 +1,48 @@
-import Random from "@/libs/Random";
+import { useStateWithCallback } from "@/hooks/useStateWithCallback";
 import { CSSProperties, FC, useEffect, useState } from "react";
-import { MatcherManager } from "../scripts";
+import { MatcherData, Pair } from "../scripts";
 import styles from "../styles/Matcher.module.scss";
 
-export interface IMatcherProps {
-    leftList: Array<any>,
-    rightList: Array<any>
-}
+const DEFAULT_COLORS = [
+    "#F04728CC",
+    "#F5950ACC",
+    "#EDD562",
+    "#35CC63CC",
+    "#3496E1CC",
+    "#9C5ABBCC",
+]
 
-/**
- * Локальный тип
- */
+const chosenInitialState = { left: null, right: null };
+
 type Position = "left" | "right";
 
-/**
- * @todo 1. Менять цвет шарика, когда элемент выбран(находится в паре)/активен
- *       2. Рандомно генерировать цвет фона по клику на левый элемент, чтобы потом поставить его как цвет пары.
- */
+export interface IMatcherProps {
+    /**
+     * Список, с которого начинается действие
+     */
+    leftList: Array<any>,
+    /**
+     * Список, с котором происходит сопоставление
+     */
+    rightList: Array<any>,
+    /**
+     * Функция, которая будет вызвана, когда все элементы распределены по парам
+     * @param pairs Pair
+     */
+    onFinish?: Function,
+    /**
+     * Цвета активных элементов 
+     */
+    colors?: "default" | Array<string>
+}
+
 export const Matcher: FC<IMatcherProps> = (props) => {
-    const { leftList, rightList } = props;
+    const { leftList, rightList, onFinish = () => { }, colors = "default" } = props;
 
-    const chosenInitialState = { left: null, right: null };
+    const [chosen, setChosen] = useStateWithCallback(chosenInitialState);
+    const [pairs, setPairs] = useState<Pair[]>([]);
 
-    const [chosen, setChosen] = useState(chosenInitialState);
-    const [pairs, setPairs] = useState([]);
-
-    const manager = new MatcherManager(pairs);
-    const random = new Random();
+    const manager = new MatcherData(pairs);
 
     const onLeftClick = (item: string) => {
         prepareForAction(item);
@@ -39,27 +55,36 @@ export const Matcher: FC<IMatcherProps> = (props) => {
         if (!chosen.left) return;
 
         prepareForAction(item);
-        setChosen({ ...chosen, right: item });
+        setChosen({ ...chosen, right: item }, chosenPair => makePair(chosenPair));
     }
-
-    // TODO: найти способ вынести данный функционал в кастомный хук
-    useEffect(() => {
-        makePair();
-    }, [chosen])
 
     const prepareForAction = (item) => {
         setPairs(manager.checkIfExistsAndDeletePair(item));
     }
 
-    const makePair = () => {
-        if (chosen.left === null || chosen.right === null) return;
+    const makePair = (chosenPair: Pair) => {
+        if (chosenPair.left === null || chosenPair.right === null) return;
 
-        const color = random.getColor(0.7);
-        const singlePair = { ...chosen, color };
+        const color = getColor(chosen.left);
+        const singlePair = { ...chosenPair, color };
 
         setPairs([...pairs, singlePair]);
         setChosen(chosenInitialState);
     }
+
+    const getColor = (item: string) => {
+        const availableColors = colors === "default" ? DEFAULT_COLORS : colors;
+        return availableColors[leftList.indexOf(item) % leftList.length];
+    }
+
+    /**
+     * Отправление полученных данных в функцию, которая поставит все данные в локальный `state` вышестоящего компонента.
+     */
+    useEffect(() => {
+        if (pairs.length === leftList.length) {
+            onFinish(pairs);
+        }
+    }, [pairs])
 
     const getStyleForItem = (value: string, position: Position): CSSProperties => {
         const style = { backgroundColor: "" };

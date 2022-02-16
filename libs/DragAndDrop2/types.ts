@@ -1,7 +1,5 @@
-export type ContainerData = string;
+export type ContainerData = Array<any>;
 
 export type IContainerBundle = {
-    rootContainer: ContainerData[]
-} & {
-        [key in string]: ContainerData
-    }
+    [key in string]: ContainerData
+}

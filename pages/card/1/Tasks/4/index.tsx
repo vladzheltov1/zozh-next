@@ -1,16 +1,24 @@
 import { Radio, Select } from "@/components/UI";
-import { Task } from "@/core/index";
+import { Task, useCore } from "@/core/public";
 import { useState } from "react";
 import style from "./style.module.scss";
-import { onAnswerSubmit } from "@/core/helpers";
 
-const options = {
-    misha: "misha",
-    kola: "kola"
+enum Options {
+    misha = "misha",
+    kola = "kola"
+}
+
+const items = {
+    group1: ["", "овощи", "чипсы"],
+    group2: ["", "сухарики", "фрукты"],
+    group3: ["", "каши", "лемонад"],
+    group4: ["", "конфеты", "молочные продукты"]
 }
 
 export const Task4 = () => {
-    const [check, setCheck] = useState<null | string>(null);
+    const [check, setCheck] = useState<string>(null);
+
+    const { onAnswerSubmit } = useCore();
 
     const [values, setValues] = useState({
         value1: null,
@@ -19,25 +27,27 @@ export const Task4 = () => {
         value4: null
     });
 
-    const [items, setItems] = useState({
-        group1: [{ id: 0, value: "---" }, { id: 1, value: "овощи" }, { id: 2, value: "чипсы" }],
-        group2: [{ id: 0, value: "---" }, { id: 1, value: "сухарики" }, { id: 2, value: "фрукты" }],
-        group3: [{ id: 0, value: "---" }, { id: 1, value: "каши" }, { id: 2, value: "лемонад" }],
-        group4: [{ id: 0, value: "---" }, { id: 1, value: "конфеты" }, { id: 2, value: "молочные продукты" }]
-    })
+    const handleChange = (event, key) => {
+        setValues({ ...values, [key]: event.target.value });
+    }
 
-    const handleCheck = (event) => setCheck(event.target.defaultValue);
-
-    const handleClick = (event, value) => setValues({ ...values, [value]: event.target.value });
+    const handleCheck = (event) => {
+        setCheck(event.target.defaultValue);
+    }
 
     const checkTask = () => {
-        const correct = ["чипсы", "сухарики", "лемонад", "конфеты"];
-        let isCorrect = true;
-        for (let key in values) {
-            if (correct.indexOf(values[key]) === -1 || check === options.kola) isCorrect = false;
-        }
-        onAnswerSubmit(isCorrect);
+        onAnswerSubmit(isCorrect());
     };
+
+    const isCorrect = () => {
+        const correct = ["чипсы", "сухарики", "лемонад", "конфеты"];
+        for (let key in values) {
+            if ((!correct.includes(values[key])) || (check === Options.kola)) {
+                return false;
+            }
+        }
+        return true;
+    }
 
     return (
         <Task title="4. Ответьте на вопрос" action={checkTask}>
@@ -52,14 +62,14 @@ export const Task4 = () => {
                 </div>
                 <div className={style.options}>
                     <Radio
-                        value={options.misha}
-                        checked={check === options.misha}
+                        value={Options.misha}
+                        checked={check === Options.misha}
                         onChange={handleCheck}
                         title="Миша"
                     />
                     <Radio
-                        value={options.kola}
-                        checked={check === options.kola}
+                        value={Options.kola}
+                        checked={check === Options.kola}
                         onChange={handleCheck}
                         title="Коля"
                     />
@@ -67,10 +77,10 @@ export const Task4 = () => {
                 {check && (
                     <div className={style.bottomWordRow}>
                         <div style={{ fontSize: 20 }}>потому что</div>
-                        <Select list={items.group1} onChange={() => handleClick(event, "value1")} />,
-                        <Select list={items.group2} onChange={() => handleClick(event, "value2")} />,
-                        <Select list={items.group3} onChange={() => handleClick(event, "value3")} /> и
-                        <Select list={items.group4} onChange={() => handleClick(event, "value4")} />
+                        <Select list={items.group1} onChange={event => handleChange(event, "value1")} />,
+                        <Select list={items.group2} onChange={event => handleChange(event, "value2")} />,
+                        <Select list={items.group3} onChange={event => handleChange(event, "value3")} /> и
+                        <Select list={items.group4} onChange={event => handleChange(event, "value4")} />
                         <div style={{ fontSize: 20 }}> - вредные для здоровья продукты.</div>
                     </div>
                 )}

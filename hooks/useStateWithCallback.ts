@@ -1,11 +1,21 @@
 import { useEffect, useRef, useState } from "react";
 
 /**
- * @todo починить баг: обновление состояния внутри хука не приводит в обновлению компонента, где этот хук используется
- * @see https://ru.stackoverflow.com/questions/1371961/%d0%a5%d1%83%d0%ba-usestate-%d1%81-callback%d0%be%d0%bc
+ * @description Является полной копией стандартного хука `useState`, однако помимо этого может принимать
+ * функцию-callback вторым параметром в функции изменения состояния. Функция-callback принимает в качестве
+ * одинственного параметра новое состояние.
+ * 
+ * @example 
+ * const [state, setState] = useStateWithCallback(0);
+ * useEffect(() => {
+ *     setTimeout(() => setState(
+ *          state => state + 1, 
+ *          (updatedState) => console.log(`Now state is ${updatedState}!`)
+ *     ));
+ * });  
  */
-export const useStateWithCallback = (initialState) => {
-    const [state, setState] = useState(initialState);
+export const useStateWithCallback = <T = any>(initialState) => {
+    const [state, setState] = useState<T>(initialState);
 
     const isFirstLoad = useRef(true);
     const callbackFunction = useRef<Function>(null);
@@ -20,9 +30,6 @@ export const useStateWithCallback = (initialState) => {
             isFirstLoad.current = false;
             return;
         }
-
-        console.log(callbackFunction.current);
-
         callbackFunction.current?.(state);
     }, [state]);
 

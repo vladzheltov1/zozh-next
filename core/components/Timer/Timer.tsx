@@ -1,52 +1,37 @@
 import { Text } from "@/components/UI";
-import { timerActions, timerStore } from "@/core/redux";
-import React, { useEffect, useRef, useState } from "react";
+import { formatTime, useTimer } from "@/core/public";
+import { useTypedSelector } from "@/core/redux/hooks/redux";
+import { useEffect } from "react";
 
-/**
- * Таймер, который используется в заданиях
- */
 export const Timer = () => {
-    const [timer, setTimer] = useState(0);
-    const interval = useRef(null);
+    const { startTimer, stopTimer, resetTimer, increment } = useTimer();
+    const { timer } = useTypedSelector(state => state);
 
-    const startTimer = (): void => {
-        interval.current = setInterval(() => {
-            timerStore.dispatch({ type: timerActions.INCREMENT });
-        }, 1000);
-    }
+    useEffect(() => {
+        let interval = null;
 
-    /**
-     * Запуск таймера после загрузки страницы, очистка при выходе из карточки
-     */
+        if (timer.isActive) {
+            interval = setInterval(() => increment(), 1000);
+        } else {
+            clearInterval(interval);
+        }
+
+        return () => {
+            clearInterval(interval)
+        };
+    }, [timer.isActive]);
+
     useEffect(() => {
         startTimer();
         return () => {
-            clearInterval(interval.current);
-            timerStore.dispatch({ type: timerActions.RESET })
+            stopTimer();
+            resetTimer();
         }
     }, []);
 
-    /**
-     * Форматирование числа, записанного в таймере в нормальный вид
-     * @returns строка вида `mm:ss` 
-     */
-    const formatTime = (): string => {
-        const getSeconds: string = `0${(timer % 60)}`.slice(-2);
-        const minutes: string = `${Math.floor(timer / 60)}`;
-        const getMinutes: string = `0${Number(minutes) % 60}`.slice(-2);
-        return `${getMinutes}:${getSeconds}`;
-    }
-
-    /**
-     * Нужно, чтобы перерисовывать компонент при обновлении `store`
-     */
-    timerStore.subscribe(() => {
-        setTimer(timerStore.getState());
-    })
-
     return (
         <Text size={16}>
-            {formatTime()}
+            {formatTime(timer)}
         </Text>
     );
 };

@@ -1,42 +1,37 @@
-import { Text } from "@/components/UI";
-import { Timer } from "@/core/components/Timer";
-import { cardStore } from "@/core/redux";
-import vars from "@/styles/var.module.scss";
-import { useRouter } from "next/router";
-import { useState } from "react";
+import { useCard, useTimer } from "@/core/public";
+import { useTypedSelector } from "@/core/redux/hooks/redux";
+import { FC, ReactNode, useEffect } from "react";
 import cardStyle from "./Card.module.scss";
+import { CardTopData } from "./CardTopData";
 
-export const Card = ({ children }) => {
-    const router = useRouter();
+export interface ICardProps {
+    children: ReactNode[]
+}
 
-    // Данная прослойка нужна для того, чтобы React сам перерендеривал компонент, когда меняется состояние в `store`,
-    // иначе перерисовка страницы не произойдёт. Возможно, есть способ сделать это по-другому?
-    const [currentNode, setCurrentNode] = useState<number>(0);
-    const [score, setScore] = useState<number>(0);
+export const Card: FC<ICardProps> = (props) => {
+    const { children } = props;
 
-    cardStore.subscribe(() => {
-        const state = cardStore.getState();
+    const { card } = useTypedSelector(state => state);
+    const { currentNode, score } = card;
 
-        // Перенаправление в меню, если все компоненты отработали
-        if (children[state.currentNode] == null) {
-            router.push("/hub");
-            return;
+    const { backToHub } = useCard();
+    const { stopTimer } = useTimer();
+
+    useEffect(() => {
+        if (currentNode === children.length - 1) {
+            stopTimer();
         }
 
-        setCurrentNode(state.currentNode);
-        setScore(state.score);
-    });
+        return () => {
+            if (currentNode == children.length - 1) {
+                backToHub();
+            }
+        };
+    }, [currentNode]);
 
     return (
         <div className={cardStyle.card}>
-            <div className={cardStyle.card__header}>
-                <Text bold>Количество очков:&nbsp;
-                    <Text mode="span" color={score >= 0 ? vars.extraGreen : vars.red100}>
-                        {score}
-                    </Text>
-                </Text>
-                <Timer />
-            </div>
+            <CardTopData score={score} />
             {children[currentNode]}
             <style jsx global>{`
                 body{

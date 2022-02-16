@@ -14,6 +14,10 @@ p {
     margin: 0;
 }
 
+small {
+    color: $gray-60;
+}
+
 a {
     color: $blue-100;
     text-decoration: none;
@@ -23,7 +27,12 @@ a {
     }
 }
 
-h1, h2, h3, h4, h5, h6{
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
     margin: 0;
 }
 

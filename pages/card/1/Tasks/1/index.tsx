@@ -1,70 +1,36 @@
-import { onAnswerSubmit, Task } from "@/core/index";
+import { Task, useCore } from "@/core/public";
+import { ClickList, isChosenCorrect, List } from "@/libs/ClickList";
 import { useState } from "react";
-import style from "./style.module.scss";
+
+const initialState: List[] = [
+    { value: "Курение", isSelected: false },
+    { value: "4-часовой сон", isSelected: false },
+    { value: "Закалка", isSelected: false },
+    { value: "Молочная диета", isSelected: false },
+    { value: "Употребление алкоголя", isSelected: false },
+    { value: "Здоровое питание", isSelected: false },
+    { value: "Употребление фаст-фуда", isSelected: false },
+    { value: "Физическая активность", isSelected: false },
+    { value: "Сбитый режим дня", isSelected: false },
+];
+
+const CORRECT_OPTIONS = ["Курение", "4-часовой сон", "Употребление алкоголя", "Употребление фаст-фуда", "Сбитый режим дня"];
 
 export const Task1 = () => {
-    const [options, setOptions] = useState([
-        { id: 1, value: "Курение", isSelected: false },
-        { id: 2, value: "4-часовой сон", isSelected: false },
-        { id: 3, value: "Закалка", isSelected: false },
-        { id: 4, value: "Молочная диета", isSelected: false },
-        { id: 5, value: "Употребление алкоголя", isSelected: false },
-        { id: 6, value: "Здоровое питание", isSelected: false },
-        { id: 7, value: "Употребление фаст-фуда", isSelected: false },
-        { id: 8, value: "Физическая активность", isSelected: false },
-        { id: 9, value: "Сбитый режим дня", isSelected: false },
-    ]);
-
-    const correct_options = [1, 2, 5, 7, 9];
+    const { onAnswerSubmit } = useCore();
+    const [options, setOptions] = useState(initialState);
 
     const checkTask = () => {
-        const chosen_options = options.filter(option => option.isSelected);
-
-        if (chosen_options.length === correct_options.length) {
-            const correct = () => {
-                let res = true;
-
-                chosen_options.forEach((option => {
-                    if (!correct_options.includes(option.id)) {
-                        res = false;
-                    }
-                }))
-
-                return res;
-            }
-
-            if (correct()) {
-                onAnswerSubmit(true);
-                return;
-            }
-
-        }
-        onAnswerSubmit(false);
+        onAnswerSubmit(isChosenCorrect(options, CORRECT_OPTIONS));
     }
 
-    const optionToggleClick = (id) => {
-        setOptions(
-            options.map(option => {
-                if (option.id === id) {
-                    option.isSelected = !option.isSelected;
-                }
-                return option;
-            })
-        )
+    const updateState = (newState) => {
+        setOptions(newState);
     }
+
     return (
         <Task title="1. Что из этого негативно влияет на здоровье человека?" action={checkTask}>
-            <div className={style.task_wrapper}>
-                {options.map(option => (
-                    <div
-                        className={`${style.task_option} ${option.isSelected ? style.task_option_selected : null}`}
-                        key={option.id}
-                        onClick={() => optionToggleClick(option.id)}
-                    >
-                        {option.value}
-                    </div>
-                ))}
-            </div>
+            <ClickList list={options} updateState={updateState} />
         </Task>
     )
 }

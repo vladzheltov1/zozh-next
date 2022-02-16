@@ -1,5 +1,7 @@
+import { store } from '@/core/redux/store';
 import '@/styles/globals.scss';
 import Head from "next/head";
+import { Provider } from 'react-redux';
 
 function Application({ Component, pageProps }) {
     return <>
@@ -10,7 +12,9 @@ function Application({ Component, pageProps }) {
             <link rel="icon" type="image/png" href="/favicon.png" />
             <title>HealthyLife - Ваша жизнь в Ваших руках!</title>
         </Head>
-        <Component {...pageProps} />
+        <Provider store={store}>
+            <Component {...pageProps} />
+        </Provider>
     </>;
 }
 

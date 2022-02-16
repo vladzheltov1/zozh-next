@@ -1,12 +1,13 @@
 import { Color } from "@/types/Color";
 import classNames from "classnames";
-import React from "react";
-import style from "./Text.module.scss";
+import React, { CSSProperties } from "react";
+import styles from "./Text.module.scss";
 
 export type TextModes =
     | "div"
     | "span"
     | "label"
+    | "small"
     | "h1"
     | "h2"
     | "h3"
@@ -55,33 +56,29 @@ export interface ITextProps {
      * Дополнительные классы для компонента 
      */
     className?: string
+
+    /**
+     * Дополнительные стили для компонента
+     */
+    style?: CSSProperties
 }
 
 export const Text: React.FC<ITextProps> = (props) => {
-
-    const {
-        children,
-        mode = "div",
-        bold,
-        italic,
-        color,
-        size,
-        light,
-        ...restProps
-    } = props;
+    const { children, mode = "div", bold, italic, color, size, light, style = "", ...restProps } = props;
 
     const className = classNames(
-        style.text,
+        styles.text,
         {
-            [style.text_bold]: bold,
-            [style.text_italic]: italic,
-            [style.text_light]: light
+            [styles.text_bold]: bold,
+            [styles.text_italic]: italic,
+            [styles.text_light]: light
         }
     );
 
     const extraStyles = {
         color: color || null,
-        fontSize: size || null
+        fontSize: size || null,
+        ...style,
     }
 
     const Mode = mode;

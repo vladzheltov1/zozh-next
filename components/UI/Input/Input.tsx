@@ -1,5 +1,4 @@
 import classNames from "classnames";
-import React from "react";
 import style from "./Input.module.scss";
 
 export type InputTypes =
@@ -13,12 +12,12 @@ export type InputTypes =
 
 export interface IInputProps {
     /**
-     * Разный тип текстового поля
+     * Указание формата текстового поля: `input/textarea`
      */
     mode?: "input" | "textarea",
 
     /**
-     * Тип поля. Работает только при mode="input"
+     * Тип поля. Работает только при `mode="input"`
      */
     type?: InputTypes,
 
