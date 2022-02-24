@@ -1,9 +1,9 @@
 import { Space } from "@/components/UI";
 import { Task, useCore } from "@/core/public";
 import { DragAndDropBlock, DragItem, DropArea, IContainerBundle, onDragEnd } from "@/libs/DragAndDrop2";
+import Image from "next/image";
 import { useState } from "react";
 import style from "./style.module.scss";
-import Image from "next/image";
 
 const initialState = {
     root: ["apple", "french-fries", "hamburger", "eggplant", "pizza", "porridge"],

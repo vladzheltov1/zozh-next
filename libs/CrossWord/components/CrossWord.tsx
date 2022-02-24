@@ -1,5 +1,5 @@
 import { Text } from "@/components/UI";
-import { FC, useState, useEffect } from "react";
+import { FC, useEffect, useState } from "react";
 import crossWordStyle from "../styles/CrossWord.module.scss";
 
 export interface ICrossWord {
@@ -9,6 +9,7 @@ export interface ICrossWord {
 }
 
 const regex = /[А-Яа-я]/;
+const Backspace = "Backspace";
 
 export const CrossWord: FC<ICrossWord> = (props) => {
     const { question, letters, onFinish = () => { } } = props;
@@ -16,7 +17,7 @@ export const CrossWord: FC<ICrossWord> = (props) => {
     const [gaps, setGaps] = useState([]);
 
     const checkCondition = (event) => {
-        return !regex.test(event.key) && event.key !== "Backspace";
+        return !regex.test(event.key) && event.key !== Backspace;
     }
 
     const onKeyDown = (event) => {
@@ -41,7 +42,7 @@ export const CrossWord: FC<ICrossWord> = (props) => {
 
         const { form, index } = getFormData(event);
 
-        const offset = event.key !== "Backspace" ? 1 : -1;
+        const offset = event.key !== Backspace ? 1 : -1;
 
         const focusElement = form.elements[index + offset];
         if (!focusElement) return;

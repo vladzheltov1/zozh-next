@@ -6,7 +6,7 @@ export type Pair = {
     color: Color | string
 }
 
-export class MatcherManager {
+export class MatcherData {
     private pairs: Pair[]
 
     public constructor(pairs: Pair[]) {
@@ -14,9 +14,9 @@ export class MatcherManager {
     }
 
     public checkIfExistsAndDeletePair(item): Pair[] {
-        const candidate = this.findPairWithItem(item)
-        if (candidate !== -1) {
-            const updatedPairsList = this.deletePair(candidate);
+        const itemIndex = this.findPairWithItem(item);
+        if (itemIndex !== -1) {
+            const updatedPairsList = this.deletePair(itemIndex);
             this.pairs = updatedPairsList;
         }
         return this.pairs;
@@ -30,8 +30,7 @@ export class MatcherManager {
     }
 
     private deletePair(index) {
-        const tempArray = Array.from(this.pairs);
-        tempArray.splice(index, 1);
-        return tempArray;
+        this.pairs.splice(index, 1);
+        return this.pairs;
     }
 }

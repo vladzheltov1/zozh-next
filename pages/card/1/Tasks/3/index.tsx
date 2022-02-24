@@ -1,6 +1,6 @@
 import { Space, Table, TableColumn, TableRow } from "@/components/UI";
 import { Task, useCore } from "@/core/public";
-import { onDragEnd, DragAndDropBlock, DragItem, DropArea, IContainerBundle } from "@/libs/DragAndDrop2";
+import { DragAndDropBlock, DragItem, DropArea, IContainerBundle, onDragEnd } from "@/libs/DragAndDrop2";
 import { useState } from "react";
 import style from "./style.module.scss";
 
