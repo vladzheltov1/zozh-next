@@ -14,7 +14,7 @@ const Card3 = () => {
                 <Task1 />
                 <Task2 />
                 <Task3 />
-                <Results maxScore={400} />
+                <Results maxScore={300} />
             </Card>
         </CardLayout>
     )
