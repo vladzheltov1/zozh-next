@@ -37,7 +37,7 @@ export interface IMatcherProps {
 }
 
 export const Matcher: FC<IMatcherProps> = (props) => {
-    const { leftList, rightList, onFinish = () => { }, colors = "default" } = props;
+    const { leftList = [], rightList = [], onFinish = () => { }, colors = "default" } = props;
 
     const [chosen, setChosen] = useStateWithCallback(chosenInitialState);
     const [pairs, setPairs] = useState<Pair[]>([]);
