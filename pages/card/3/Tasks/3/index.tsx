@@ -1,6 +1,6 @@
-import { Task, useCore } from "@/core/public"
-import { CrossWord } from "@/libs/CrossWord"
-import { useState } from "react"
+import { Task, useCore } from "@/core/public";
+import { CrossWord } from "@/libs/CrossWord";
+import { useState } from "react";
 
 const solution = "теннис";
 
@@ -23,3 +23,5 @@ export const Task3 = () => {
         </Task>
     )
 }
+
+export default Task3;

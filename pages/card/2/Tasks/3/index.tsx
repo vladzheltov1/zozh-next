@@ -77,3 +77,5 @@ const DraggablePicture = ({ path, index }) => {
         </DragItem>
     )
 }
+
+export default Task3;

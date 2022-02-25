@@ -36,3 +36,5 @@ export const Task5 = () => {
         </Task>
     )
 }
+
+export default Task5;

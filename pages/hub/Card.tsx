@@ -25,3 +25,5 @@ export const Card: FC<ICardProps> = (props) => {
         </div>
     )
 }
+
+export default Card;

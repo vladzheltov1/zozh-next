@@ -90,3 +90,5 @@ export const Task2: FC = () => {
         </Task>
     )
 }
+
+export default Task2;
