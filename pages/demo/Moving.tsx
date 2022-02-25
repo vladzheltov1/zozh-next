@@ -58,3 +58,5 @@ export const Moving: FC = () => {
         </DragDropContext>
     </>
 }
+
+export default Moving;

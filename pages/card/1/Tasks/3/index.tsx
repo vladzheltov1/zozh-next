@@ -93,3 +93,5 @@ export const Task3 = () => {
         </Task>
     )
 }
+
+export default Task3;

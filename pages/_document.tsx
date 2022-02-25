@@ -1,7 +1,7 @@
-import Document, { Html, Head, Main, NextScript } from 'next/document';
+import Document, { Head, Html, Main, NextScript } from 'next/document';
 import { resetServerContext } from "react-beautiful-dnd";
 
-class MyDocument extends Document {
+class AppDocument extends Document {
     static async getInitialProps(ctx) {
         const initialProps = await Document.getInitialProps(ctx);
         resetServerContext();
@@ -21,4 +21,4 @@ class MyDocument extends Document {
     }
 }
 
-export default MyDocument;
+export default AppDocument;

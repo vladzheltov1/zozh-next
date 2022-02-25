@@ -6,19 +6,23 @@
     align-items: center;
     justify-content: center;
     padding: 15px;
+    position: relative;
 }
 
 .info_block__picture {
     width: 100%;
     min-width: 50%;
     height: 100%;
-    margin-right: 20px;
+    min-height: 500px;
     position: relative;
+    display: flex;
+    justify-content: center;
 
     img {
         width: 100%;
         height: 100%;
         object-fit: contain;
+        margin: auto;
     }
 }
 
@@ -31,7 +35,7 @@
     order: 1;
 }
 
-@media (max-width: 800px) {
+@media (max-width: 907px) {
     .info_block__inner {
         flex-wrap: wrap;
         text-align: center;

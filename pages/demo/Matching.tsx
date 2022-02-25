@@ -18,3 +18,5 @@ export const Matching: FC = () => {
         </>
     )
 }
+
+export default Matcher;

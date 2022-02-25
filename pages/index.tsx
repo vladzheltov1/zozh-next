@@ -25,8 +25,8 @@ export default function Home() {
             <StudyProgram />
 
             <InfoBlock
-                order="tp"
-                picture="/pictures/landing/block-pic2.jpg"
+                order="text-picture"
+                picture="/pictures/landing/block-pic2-2.jpg"
                 info={
                     <>
                         <Text mode="h2">В чём состоят цели нашего проекта?</Text>

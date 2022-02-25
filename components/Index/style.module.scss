@@ -1,16 +1,19 @@
 @import "@/styles/var.module.scss";
 
-.block{
+.block {
     padding: 20px;
+    position: relative;
+    height: max-content;
+    width: 100%;
 }
 
-.block__copyright__author{
+.block__copyright__author {
     position: absolute;
     bottom: 1rem;
     right: 1rem;
     font-size: $font-size-16;
-    
-    *{
+
+    * {
         text-decoration: underline;
         color: $gray-0;
     }
