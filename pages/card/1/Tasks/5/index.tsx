@@ -15,11 +15,9 @@ const correctPairs = {
     "Диета": "для похудения"
 }
 
-export const Task5 = () => {
-
-    const { onAnswerSubmit } = useCore();
-
+const Task5 = () => {
     const [pairs, setPairs] = useState(null);
+    const { onAnswerSubmit } = useCore();
 
     const getPairs = (updatedPairs) => {
         setPairs(updatedPairs);

@@ -4,17 +4,19 @@ import { DragAndDropBlock, DragItem, DropArea, IContainerBundle, onDragEnd } fro
 import { useState } from "react";
 import style from "./style.module.scss";
 
-export const Task3 = () => {
+const initialState = {
+    root: ["16:00", "7:30", "22:00", "21:30", "17:00"],
+    gap1: [],
+    gap2: [],
+    gap3: [],
+    gap4: [],
+    gap5: [],
+};
+
+const Task3 = () => {
     const { onAnswerSubmit } = useCore();
 
-    const [containers, setContainers] = useState<IContainerBundle>({
-        root: ["16:00", "7:30", "22:00", "21:30", "17:00"],
-        gap1: [],
-        gap2: [],
-        gap3: [],
-        gap4: [],
-        gap5: [],
-    });
+    const [containers, setContainers] = useState<IContainerBundle>(initialState);
 
     const checkTask = () => {
         onAnswerSubmit(isAnswerCorrect());

@@ -16,9 +16,9 @@ const initialState: List[] = [
 
 const CORRECT_OPTIONS = ["Курение", "4-часовой сон", "Употребление алкоголя", "Употребление фаст-фуда", "Сбитый режим дня"];
 
-export const Task1 = () => {
-    const { onAnswerSubmit } = useCore();
+const Task1 = () => {
     const [options, setOptions] = useState(initialState);
+    const { onAnswerSubmit } = useCore();
 
     const checkTask = () => {
         onAnswerSubmit(isChosenCorrect(options, CORRECT_OPTIONS));

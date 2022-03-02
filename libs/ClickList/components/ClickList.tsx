@@ -50,7 +50,7 @@ export const ClickList: FC<IClickListProps> = (props) => {
                     ) : (
                         <>
                             <div className={clickListStyle.imageContainer}>
-                                <Image src={path + option.value + ext} layout="fill" alt="" />
+                                <Image src={path + option.value + ext} layout="fill" loading="eager" alt="" />
                             </div>
                         </>
                     )}
