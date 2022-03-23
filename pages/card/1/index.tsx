@@ -1,10 +1,10 @@
 import { Card, Results, Theory } from "@/core/public";
 import { CardLayout } from "@/layouts/index";
-import { Task1 } from "./Tasks/1";
-import { Task2 } from "./Tasks/2";
-import { Task3 } from "./Tasks/3";
-import { Task4 } from "./Tasks/4";
-import { Task5 } from "./Tasks/5";
+import Task1 from "./Tasks/1";
+import Task2 from "./Tasks/2";
+import Task3 from "./Tasks/3";
+import Task4 from "./Tasks/4";
+import Task5 from "./Tasks/5";
 
 const Card1 = () => {
     return (

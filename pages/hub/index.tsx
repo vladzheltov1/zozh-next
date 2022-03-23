@@ -1,5 +1,6 @@
 import { Text } from "@/components/UI";
 import { Layout } from "@/layouts/Layout";
+import React from "react";
 import { Card } from "./Card";
 import style from "./style.module.scss";
 
@@ -22,7 +23,7 @@ const Hub = () => {
                 <Text mode="h1">Здоровый образ жизни</Text>
                 <div className={style.card_wrapper}>
                     {cards.map((card, index) => (
-                        <Card key={index} data={card} />
+                        <Card data={card} key={index} />
                     ))}
                 </div>
             </div>

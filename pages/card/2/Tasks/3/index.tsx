@@ -73,7 +73,7 @@ const DraggablePicture = ({ path, index }) => {
             index={index}
             className={style.blockWithPicture}
         >
-            <Image src={`/pictures/cards/card2/task3/${path}.jpg`} layout="fill" alt="" />
+            <Image src={`/pictures/cards/card2/task3/${path}.jpg`} layout="fill" alt="" loading="eager" />
         </DragItem>
     )
 }

@@ -15,17 +15,19 @@ const items = {
     group4: ["", "конфеты", "молочные продукты"]
 }
 
-export const Task4 = () => {
+const initialState = {
+    value1: null,
+    value2: null,
+    value3: null,
+    value4: null
+};
+
+const Task4 = () => {
     const [check, setCheck] = useState<string>(null);
 
     const { onAnswerSubmit } = useCore();
 
-    const [values, setValues] = useState({
-        value1: null,
-        value2: null,
-        value3: null,
-        value4: null
-    });
+    const [values, setValues] = useState(initialState);
 
     const handleChange = (event, key) => {
         setValues({ ...values, [key]: event.target.value });
