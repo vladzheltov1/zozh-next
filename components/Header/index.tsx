@@ -1,5 +1,5 @@
 import { Icon } from "@/UI/Icon";
-import { AbTest, Grid, InfoOutline, Menu } from "@rsuite/icons";
+import { AbTest, Grid, Menu } from "@rsuite/icons";
 import Link from "next/link";
 import { FC, useEffect, useRef, useState } from "react";
 import { HeaderNavLink, IHeaderNavLinkProps } from "./HeaderNavLink";
@@ -10,7 +10,6 @@ type HeaderMode = "desktop" | "mobile";
 const headerNavItems: IHeaderNavLinkProps[] = [
     { title: "Задания", href: "/hub", icon: Grid },
     { title: "Демо", href: "/demo", icon: AbTest },
-    { title: "О проекте", href: "/about", icon: InfoOutline },
 ]
 
 const MIN_DESKTOP_WIDTH = 580;
